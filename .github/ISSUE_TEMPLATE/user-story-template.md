@@ -11,6 +11,17 @@ assignees: ''
 - TBD
 
 ## Acceptance criteria
+title: ""
+labels: user story
+assignees: ""
+---
+
+## Estimation of effort (optional)
+
+- TBD
+
+## Acceptance criteria (optional)
+
 - [ ] foo
 - [ ] bar
 - [ ] baz
