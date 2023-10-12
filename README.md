@@ -1,10 +1,5 @@
 # Project Repository
 
-This repository will be used for team projects.
-
-Several sets of instructions are included in this repository. They should each be treated as separate assignments with their own due dates and sets of requirements.
-
-1. See the [App Map & Wireframes](instructions-0a-app-map-wireframes.md) and [Prototyping](./instructions-0b-prototyping.md) instructions for the requirements of the initial user experience design of the app.
 ## Product Vision Statement
 Huddle is a web app solution to the problem of wanting to play a game of your favorite sport but missing the required amount of players. Huddle connects you to your local talent and allows you to organize immediate pick-up games. Huddle also saves your win-loss history and allows other people to rank your skills after playing a match.
 
