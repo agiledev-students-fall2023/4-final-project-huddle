@@ -8,17 +8,17 @@ import './CreateAccount.css'
  */
 const CreateAccount = props => {
   return (
-    <div className='container'>
-      <h1 className='CreateAccountHeader'>CreateAccount</h1>
-      <form>
-        <div className='EmailInput' > <input type='text' name='email' placeholder='Email' style={{ width: '400px', height: '50px' }}></input> <br /><br /><br /><br /></div>
-        <div className='PasswordInput'> <input type='text' name='pw' placeholder='Password' style={{ width: '400px', height: '50px' }}></input><br /><br /><br /><br /></div>
-        <div className='UsernameInput'> <input type='text' name='username' placeholder='Username' style={{ width: '400px', height: '50px' }}></input><br /><br /><br /><br /></div>
-        <div className='SubmitButton'><input type='submit' value='CreateAccount' style={{ width: '400px', height: '50px' }}/> </div>
+    <>
+    <h1 className='CreateAccountHeader'>CreateAccount</h1>
+    <form>
+      <div className='EmailInput' > <input type='text' name='email' placeholder='Email' style={{ width: '400px', height: '30px' }}></input> <br /><br /><br /><br /></div>
+      <div className='PasswordInput'> <input type='text' name='pw' placeholder='Password' style={{ width: '400px', height: '30px' }}></input><br /><br /><br /><br /></div>
+      <div className='UsernameInput'> <input type='text' name='username' placeholder='Username' style={{ width: '400px', height: '30px' }}></input><br /><br /><br /><br /></div>
+      <div className='SubmitButton'><input type='submit' value='CreateAccount' style={{ width: '400px', height: '30px' }}/> </div>
 
-      </form>
-
-    </div>
+    </form>
+    </>
+    
   )
 }
 
