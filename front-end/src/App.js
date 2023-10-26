@@ -10,6 +10,9 @@ import GamesHappeningSoon from "./GamesHappeningSoon.js"
 import CreateGame from "./CreateGame.js"
 import Match from "./Match.js"
 import HamburgerMenu from './HamburgerMenu';
+import Play from './Play.js';
+import AboutUs from './AboutUs.js';
+
 import "./App.css"
 
 // set up routes so different URL routes load up different main components
@@ -48,8 +51,15 @@ const App = props => {
 
           {/* a route to the match history screen */}
           <Route path="/createGame" element={<CreateGame/>} />
+
           {/* a route to the match screen */}
           <Route path="/match" element={<Match/>} />
+
+          {/* a route to the match screen */}
+          <Route path="/aboutUs" element={<AboutUs/>} />
+
+          {/* a route to the match screen */}
+          <Route path="/play" element={<Play/>} />
 
 
         </Routes>

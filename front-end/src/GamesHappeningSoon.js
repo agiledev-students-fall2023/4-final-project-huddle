@@ -23,23 +23,23 @@ function GameCard() {
     return (
         <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }}>
             <div>
-                <label>Sport</label>
+                <label>Sport:</label>
                 <span style={{ marginLeft: '10px' }}>Sport Name</span>
             </div>
             <div>
-                <label># Players needed</label>
+                <label># Players needed:</label>
                 <span style={{ marginLeft: '10px' }}>Number</span>
             </div>
             <div>
-                <label>Tier</label>
+                <label>Tier:</label>
                 <span style={{ marginLeft: '10px' }}>Tier Level</span>
             </div>
             <div>
-                <label>Location</label>
+                <label>Location:</label>
                 <span style={{ marginLeft: '10px' }}>Location Name</span>
             </div>
             <div>
-                <label>Time</label>
+                <label>Time:</label>
                 <span style={{ marginLeft: '10px' }}>00:00 PM</span>
             </div>
             <button style={{ marginTop: '10px' }}>Join Game</button>
