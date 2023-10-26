@@ -8,6 +8,10 @@ import Search from "./Search.js"
 import Lobby from "./Lobby.js"
 import GamesHappeningSoon from "./GamesHappeningSoon.js"
 import CreateGame from "./CreateGame.js"
+import Match from "./Match.js"
+import HamburgerMenu from './HamburgerMenu';
+import Play from './Play.js';
+import AboutUs from './AboutUs.js';
 import Messages from "./Messages.js"
 import Chat from "./Chat.js"
 
@@ -18,7 +22,11 @@ const App = props => {
   //const [user, setUser] = useState({}) // a state variable that stores the logged-in user, if any
 
   return (
+    
     <div className="container">
+      <div className="App">
+      <HamburgerMenu />
+      </div>
       <Router>
         {/* pass the setter function that can be called if the user successfully logs in from the login screen */}
         <Routes>
@@ -45,6 +53,15 @@ const App = props => {
 
           {/* a route to the match history screen */}
           <Route path="/createGame" element={<CreateGame/>} />
+
+          {/* a route to the match screen */}
+          <Route path="/match" element={<Match/>} />
+
+          {/* a route to the match screen */}
+          <Route path="/aboutUs" element={<AboutUs/>} />
+
+          {/* a route to the match screen */}
+          <Route path="/play" element={<Play/>} />
 
           {/* a route to the messages screen */}
           <Route path="/messages" element={<Messages/>} />
