@@ -16,6 +16,10 @@ import HamburgerMenu from './HamburgerMenu';
 import Settings from './Settings'
 import Login from './Login'
 import CreateAccount from './CreateAccount'
+import Play from './Play.js';
+import AboutUs from './AboutUs.js';
+import Messages from "./Messages.js"
+import Chat from "./Chat.js"
 
 import "./App.css"
 
@@ -60,8 +64,21 @@ const App = props => {
 
           {/* a route to the match history screen */}
           <Route path="/createGame" element={<CreateGame/>} />
+
           {/* a route to the match screen */}
           <Route path="/match" element={<Match/>} />
+
+          {/* a route to the match screen */}
+          <Route path="/aboutUs" element={<AboutUs/>} />
+
+          {/* a route to the match screen */}
+          <Route path="/play" element={<Play/>} />
+
+          {/* a route to the messages screen */}
+          <Route path="/messages" element={<Messages/>} />
+
+          {/* a route to the messages screen */}
+          <Route path="/chat" element={<Chat/>} />
 
 
         </Routes>
