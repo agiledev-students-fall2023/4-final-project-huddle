@@ -9,7 +9,7 @@ import Lobby from "./Lobby.js"
 import GamesHappeningSoon from "./GamesHappeningSoon.js"
 import CreateGame from "./CreateGame.js"
 import Match from "./Match.js"
-
+import HamburgerMenu from './HamburgerMenu';
 import "./App.css"
 
 // set up routes so different URL routes load up different main components
@@ -17,7 +17,11 @@ const App = props => {
   //const [user, setUser] = useState({}) // a state variable that stores the logged-in user, if any
 
   return (
+    
     <div className="container">
+      <div className="App">
+      <HamburgerMenu />
+      </div>
       <Router>
         {/* pass the setter function that can be called if the user successfully logs in from the login screen */}
         <Routes>
