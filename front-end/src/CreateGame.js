@@ -4,11 +4,11 @@ import "./CreateGame.css"
 class NewGameForm extends React.Component {
     render() {
         return (
-            <div className="container">
-                <h2>New Game</h2>
+            <div className="container" style={{ display: 'grid', justifyContent: 'center', alignItems: 'center', height: '10vh'}}>
+                <h2 style={{ textAlign: 'center'}}>New Game</h2>
                 
                 <div className="form-group">
-                    <label>Tier</label>
+                    <label>Tier: </label>
                     <select className="form-control">
                         {/* Options can be added here */}
                         <option>Select Tier</option>
@@ -16,7 +16,7 @@ class NewGameForm extends React.Component {
                 </div>
                 <br></br>
                 <div className="form-group">
-                    <label>Location</label>
+                    <label>Location: </label>
                     <select className="form-control">
                         {/* Options can be added here */}
                         <option>Select Location</option>
@@ -24,7 +24,7 @@ class NewGameForm extends React.Component {
                 </div>
                 <br></br>
                 <div className="form-group">
-                    <label>Time</label>
+                    <label>Time: </label>
                     <select className="form-control">
                         {/* Options can be added here */}
                         <option>Select Time</option>
@@ -32,7 +32,7 @@ class NewGameForm extends React.Component {
                 </div>
                 <br></br>
                 <div className="form-group">
-                    <label>Sport</label>
+                    <label>Sport: </label>
                     <select className="form-control">
                         {/* Options can be added here */}
                         <option>Select Sport</option>
@@ -40,7 +40,7 @@ class NewGameForm extends React.Component {
                 </div>
                 <br></br>
                 <div className="form-group">
-                    <label># of Players</label>
+                    <label># of Players: </label>
                     <select className="form-control">
                         {/* Options can be added here */}
                         <option>Select Number of Players</option>
