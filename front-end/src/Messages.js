@@ -32,7 +32,7 @@ function NewMessage(){
         </div>
     )
 }
-  
+
 function Message(){
     return(
         <Link to="/chat">
