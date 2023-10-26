@@ -12,6 +12,8 @@ import Match from "./Match.js"
 import HamburgerMenu from './HamburgerMenu';
 import Play from './Play.js';
 import AboutUs from './AboutUs.js';
+import Messages from "./Messages.js"
+import Chat from "./Chat.js"
 
 import "./App.css"
 
@@ -60,6 +62,12 @@ const App = props => {
 
           {/* a route to the match screen */}
           <Route path="/play" element={<Play/>} />
+
+          {/* a route to the messages screen */}
+          <Route path="/messages" element={<Messages/>} />
+
+          {/* a route to the messages screen */}
+          <Route path="/chat" element={<Chat/>} />
 
 
         </Routes>
