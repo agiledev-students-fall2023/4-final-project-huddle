@@ -26,7 +26,7 @@ function Messages(){
 function NewMessage(){
     return (
         <div>
-            <Link to="/chat">
+            <Link to="/NewMessage">
                 <h3>New Message </h3>
             </Link>
         </div>

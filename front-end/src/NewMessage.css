@@ -1,0 +1,63 @@
+NewMessage {
+    /* margin-left: 20px; */
+    /* padding: 30px; */
+    /* text-align: center; */
+    width: 70%;
+    margin: auto;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+}
+
+.Recipient {
+    width: 70%;
+    margin: auto;
+    padding-top: 10;
+    padding-bottom: 10;
+    display: flex;
+    /* margin-right: 20px; */
+    align-items: center;
+
+
+}
+
+
+.profpic{
+    width: 50px;
+    height: 50px;
+    border-radius: 100%;
+    /* margin-left: 15px; */
+}
+
+.textbox{
+    border: 2px solid black;
+    width: 70%;
+    height: 50px;
+    padding: 10px; 
+    margin-top: 20px;
+    margin-bottom: 20px;
+    margin-left: 20px;
+    margin-right: 20px; 
+    position: absolute;
+    bottom: 0;
+    left: 0;
+    right: 0;
+    margin: auto;
+
+}
+
+.textbox2{
+
+    border: 2px solid grey;
+    width: 60%;
+    height: 10px;
+    padding: 10px; 
+    background-color: lightgrey;
+    /* position: absolute; */
+    margin-left: 20px;
+    margin-top: 20;
+    margin-bottom: 20;
+
+}
