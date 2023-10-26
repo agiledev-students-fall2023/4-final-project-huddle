@@ -8,6 +8,7 @@ import Search from "./Search.js"
 import Lobby from "./Lobby.js"
 import GamesHappeningSoon from "./GamesHappeningSoon.js"
 import CreateGame from "./CreateGame.js"
+import Match from "./Match.js"
 
 import "./App.css"
 
@@ -43,6 +44,8 @@ const App = props => {
 
           {/* a route to the match history screen */}
           <Route path="/createGame" element={<CreateGame/>} />
+          {/* a route to the match screen */}
+          <Route path="/match" element={<Match/>} />
 
 
         </Routes>
