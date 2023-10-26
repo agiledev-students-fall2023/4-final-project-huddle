@@ -20,6 +20,7 @@ function HamburgerMenu() {
           <a href="./Play" onClick={toggleMenu}>Play</a>
           <a href="./Profile" onClick={toggleMenu}>Profile</a>
           <a href="./Friends" onClick={toggleMenu}>Friends</a>
+          <a href="./messages" onClick={toggleMenu}>Messages</a>
           <a href="./MatchHistory" onClick={toggleMenu}>Match History</a>
           <a href="./GamesHappeningSoon" onClick={toggleMenu}>Games Happening Soon</a>
           <a href="./Search" onClick={toggleMenu}>Search</a>
