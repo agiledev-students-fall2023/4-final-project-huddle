@@ -9,7 +9,7 @@ import './Home.css'
 const Home = props => {
   return (
     <>
-      <h1>Home</h1>
+      <h1 className='header'>Home</h1>
 
       <p>
         <Link to="/login"><button style={{ width: '400px', height: '50px' }}>Login</button></Link><br /><br /><br /><br />
