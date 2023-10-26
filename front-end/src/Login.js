@@ -13,9 +13,12 @@ const Login = props => {
       <form>
         <div> <input type='text' name='email' placeholder='Email' style={{ width: '400px', height: '50px' }}/><br /><br /><br /><br /></div> 
         <div> <input type='text' name='pw' placeholder='Password' style={{ width: '400px', height: '50px' }}/><br /><br /><br /><br /></div>
-        <div><input type='submit' value="Login" style={{ width: '400px', height: '50px' }}/> </div>
+        <div><input type='submit' value="Login" style={{ width: '400px', height: '50px', display: 'none'}}/> </div>
 
       </form>
+      <p>
+      <Link to="/play"><button style={{ width: '400px', height: '50px' }}>Login</button></Link>
+      </p>
       <p>
       <Link to="/createaccount"><button style={{ width: '400px', height: '50px' }}>CreateAccount</button></Link>
       </p>
