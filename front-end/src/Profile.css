@@ -1,0 +1,53 @@
+.Profile{
+    background-color: rgb(46, 3, 64);
+    margin: 0;
+    padding: 0;
+
+}
+.main-content{
+    width: 70%;
+    margin: auto;
+    background-color: white;
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+}
+img{
+    float:left ;
+    margin-right: 1em;
+}
+p{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.biofull{
+    margin-bottom: 3em;
+    
+}
+.bio{
+    
+}
+.comments{
+    border-top: 2px black solid;
+}
+.comments > p{
+    text-align: center;
+}
+
+.userSports>ul{
+    text-align: center;
+    list-style: inside;
+}
+
+.sportRating{
+    text-align: center;
+}
+.match{
+    text-align: center;
+}
+#history{
+    text-align: center;
+    
+}

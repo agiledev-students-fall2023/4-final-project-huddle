@@ -1,7 +1,7 @@
 //import React, { useState } from "react"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
-import Home from "./Home.js"
-import Profile from "./Profile.js"
+import Home from "./Home"
+import Profile from "./Profile"
 
 import "./App.css"
 
