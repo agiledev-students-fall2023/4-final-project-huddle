@@ -14,6 +14,7 @@ import Play from './Play.js';
 import AboutUs from './AboutUs.js';
 import Messages from "./Messages.js"
 import Chat from "./Chat.js"
+import NewMessage from "./NewMessage.js"
 
 import "./App.css"
 
@@ -68,7 +69,11 @@ const App = props => {
 
           {/* a route to the messages screen */}
           <Route path="/chat" element={<Chat/>} />
+          
+          {/* a route to the compose new message screen */}
+          <Route path="/newmessage" element={<NewMessage/>} />
 
+          
 
         </Routes>
       </Router>
