@@ -16,6 +16,7 @@ function HamburgerMenu() {
       </div>
       {isOpen && (
         <div className="menu-list">
+          <a href="./" onClick={toggleMenu}>Home</a>
           <a href="./Play" onClick={toggleMenu}>Play</a>
           <a href="./Profile" onClick={toggleMenu}>Profile</a>
           <a href="./Friends" onClick={toggleMenu}>Friends</a>
@@ -24,7 +25,7 @@ function HamburgerMenu() {
           <a href="./Search" onClick={toggleMenu}>Search</a>
           <a href="./AboutUs" onClick={toggleMenu}>About Us</a>
           <a href="./Settings" onClick={toggleMenu}>Settings</a>
-          <a href="./LogOut" onClick={toggleMenu}>Logout</a>
+          <a href="./login" onClick={toggleMenu}>Logout</a>
         </div>
       )}
     </div>

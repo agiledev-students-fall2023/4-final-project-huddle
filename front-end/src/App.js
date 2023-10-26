@@ -10,6 +10,13 @@ import GamesHappeningSoon from "./GamesHappeningSoon.js"
 import CreateGame from "./CreateGame.js"
 import Match from "./Match.js"
 import HamburgerMenu from './HamburgerMenu';
+
+
+
+import Settings from './Settings'
+import Login from './Login'
+import CreateAccount from './CreateAccount'
+
 import "./App.css"
 
 // set up routes so different URL routes load up different main components
@@ -19,6 +26,7 @@ const App = props => {
   return (
     
     <div className="container">
+
       <div className="App">
       <HamburgerMenu />
       </div>
@@ -33,6 +41,10 @@ const App = props => {
 
           {/* a route to the friends screen */}
           <Route path="/friends" element={<Friends/>} />
+          <Route path="/login" element={<Login />} />
+          <Route path="/createaccount" element={<CreateAccount />} />
+
+            <Route path="/settings" element={<Settings />} />
 
           {/* a route to the match history screen */}
           <Route path="/matchHistory" element={<MatchHistory/>} />
@@ -53,6 +65,7 @@ const App = props => {
 
 
         </Routes>
+
       </Router>
     </div>
   )
