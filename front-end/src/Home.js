@@ -15,7 +15,7 @@ const Home = props => {
         <Link to="/login"><button style={{ width: '400px', height: '50px' }}>Login</button></Link><br /><br /><br /><br />
       </p>
       <p>
-      <Link to="/createaccount"><button style={{ width: '400px', height: '50px' }}>CreateAccount</button></Link><br /><br /><br /><br />
+      <Link to="/createaccount"><button style={{ width: '400px', height: '50px' }}>Create Account</button></Link><br /><br /><br /><br />
       </p>
       <p>
       <Link to="/settings"><button style={{ width: '400px', height: '50px' }}>Settings</button></Link><br /><br /><br /><br />
