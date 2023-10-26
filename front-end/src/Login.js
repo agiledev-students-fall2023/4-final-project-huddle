@@ -20,7 +20,7 @@ const Login = props => {
       <Link to="/play"><button style={{ width: '400px', height: '50px' }}>Login</button></Link>
       </p>
       <p>
-      <Link to="/createaccount"><button style={{ width: '400px', height: '50px' }}>CreateAccount</button></Link>
+      <Link to="/createaccount"><button style={{ width: '400px', height: '50px' }}>Create Account</button></Link>
       </p>
 
     </>

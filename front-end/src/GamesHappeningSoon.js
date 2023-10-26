@@ -42,7 +42,7 @@ function GameCard() {
                 <label>Time:</label>
                 <span style={{ marginLeft: '10px' }}>00:00 PM</span>
             </div>
-            <button style={{ marginTop: '10px' }}>Join Game</button>
+            <button style={{ marginTop: '10px' }}><a href={"./Lobby"}>Join Game</a></button>
         </div>
     );
 }
