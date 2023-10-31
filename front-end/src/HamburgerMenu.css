@@ -5,6 +5,7 @@
 .menu-icon {
 font-size: 2rem;
 cursor: pointer;
+background-color: #666666;
 }
 
 .menu-list {
