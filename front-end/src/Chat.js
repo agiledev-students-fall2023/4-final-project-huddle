@@ -4,7 +4,7 @@ import "./Chat.css"
 function Chat(){
     return (
         <div>
-            <h2>Chat with Person X </h2>
+            <h3>Chat with Person X </h3>
             <Recieved />
             <Sent /> 
             <Textbox /> 
