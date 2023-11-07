@@ -6,6 +6,9 @@
 font-size: 2rem;
 cursor: pointer;
 background-color: #666666;
+position: absolute;
+top: 0;
+left: 0;
 }
 
 .menu-list {

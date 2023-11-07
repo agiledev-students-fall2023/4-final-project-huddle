@@ -1,3 +1,8 @@
 .CreateAccountHeader{
     text-align: center;
 }
+.container {
+
+    margin-right: auto;
+    width: 50%; /* You can adjust the width as needed */
+}
