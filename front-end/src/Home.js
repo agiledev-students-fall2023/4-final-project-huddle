@@ -12,13 +12,13 @@ const Home = props => {
       <h1 className='header'>Home</h1>
 
       <p>
-        <Link to="/login"><button style={{ width: '400px', height: '50px' }}>Login</button></Link><br /><br /><br /><br />
+        <Link to="/login"><button style={{ width: '388px', height: '50px' }}>Login</button></Link><br /><br /><br /><br />
       </p>
       <p>
-      <Link to="/createaccount"><button style={{ width: '400px', height: '50px' }}>Create Account</button></Link><br /><br /><br /><br />
+      <Link to="/createaccount"><button style={{ width: '388px', height: '50px' }}>Create Account</button></Link><br /><br /><br /><br />
       </p>
       <p>
-      <Link to="/settings"><button style={{ width: '400px', height: '50px' }}>Settings</button></Link><br /><br /><br /><br />
+      <Link to="/settings"><button style={{ width: '388px', height: '50px' }}>Settings</button></Link><br /><br /><br /><br />
       </p>
     </>
   )
