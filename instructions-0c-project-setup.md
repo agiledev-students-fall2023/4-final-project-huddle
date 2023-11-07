@@ -55,9 +55,7 @@ Here is the full recipe:
 
 ## Configure GitHub repository
 
-GitHub is each team's primary resource for version control, project
-planning, issue tracking, and project documentation. Each member's
-contributions within GitHub are tracked and used towards grading.
+GitHub is each team's primary resource for version control, project planning, issue tracking, and project documentation. Each member's contributions within GitHub are tracked and used towards grading.
 
 Each team member must understand that their contributions are only visible if they commit work using their own git/GitHub account.
 
@@ -132,6 +130,12 @@ Once a particular sprint has begun, all issues representing tasks that have been
 Each team must create a Task Board for each of the four Sprints following [these setup instructions](https://knowledge.kitchen/content/courses/agile-development-and-devops/scrum/github-task-boards/) (these use the "Classic" type of Task Boards available on GitHub).
 
 View a [video overview of setting up a Task Board on GitHub](https://youtu.be/Qasz5fhxIqE).
+
+### Git/GitHub workflow
+
+When in development, teams are expected to follow the [feature branch workflow](https://knowledge.kitchen/content/courses/agile-development-and-devops/slides/feature-branch-workflow/), where all changes are made in branches, peer reviews are done via pull requests, and approved changes are merged into the `main` branch, which is always in a deployable state.
+
+Team members must make these feature branches in the shared team repository, not in a fork or other copy of the repository.
 
 ## Prepare to git to work
 
