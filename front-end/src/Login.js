@@ -11,16 +11,16 @@ const Login = props => {
     <>
       <h1 className='login_header'>Login</h1>
       <form>
-        <div> <input type='text' name='email' placeholder='Email' style={{ width: '400px', height: '30px' }}/><br /><br /><br /><br /></div> 
-        <div> <input type='text' name='pw' placeholder='Password' style={{ width: '400px', height: '30px' }}/><br /><br /><br /><br /></div>
-        <div><input type='submit' value="Login" style={{ width: '400px', height: '30px', display: 'none'}}/> </div>
+        <div> <input type='text' name='email' placeholder='Email' style={{ width: '388px', height: '30px' }}/><br /><br /><br /><br /></div> 
+        <div> <input type='text' name='pw' placeholder='Password' style={{ width: '388px', height: '30px' }}/><br /><br /><br /><br /></div>
+        <div><input type='submit' value="Login" style={{ width: '388px', height: '30px', display: 'none'}}/> </div>
 
       </form>
       <p>
-      <Link to="/play"><button style={{ width: '400px', height: '30px' }}>Login</button></Link>
+      <Link to="/play"><button style={{ width: '388px', height: '30px' }}>Login</button></Link>
       </p>
       <p>
-      <Link to="/createaccount"><button style={{ width: '400px', height: '30px' }}>CreateAccount</button></Link>
+      <Link to="/createaccount"><button style={{ width: '388px', height: '30px' }}>CreateAccount</button></Link>
       </p>
 
     </>
