@@ -1,19 +1,40 @@
 import React from "react"
 import "./Profile.css"
+import { useState, useEffect } from 'react'
+import axios from 'axios'
 
 
 const Profile = props => {
+  const [profile, setProfile] = useState([]);
+  useEffect(() => {
+    const fetchProfile = async () => {
+      axios
+        .get("http://localhost:3000/profile")
+        .then(response => {
+          // axios bundles up all response data in response.data property
+          const profile = response.data;
+          setProfile(profile);
+        })
+        .catch(err => {
+          const errMsg = JSON.stringify(err, null, 2);// convert error object to a string so we can simply dump it to the screen
+          console.log(errMsg);
+        })
+    }
+    fetchProfile();
+  }, []);
+
+
   return (
     <div className="Profile">
       
       <section className="main-content">
         <div className="biofull">
-          <img alt="welcome!" src="https://picsum.photos/150?page=home"/>
+          <img alt="welcome!" src={profile.img}/>
 
           <div className="bio">
-            <p>Name: First, Last</p>
-            <p>Location: City, State</p>
-            <p>Bio: Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec dui nunc mattis enim ut tellus. Elit ullamcorper dignissim cras tincidunt lobortis.</p>
+            <p>Name: {profile.name}</p>
+            <p>Location: {profile.location}</p>
+            <p>Bio:{profile.bio}</p>
           </div>
 
         </div>
@@ -66,3 +87,7 @@ const Profile = props => {
 }
 
 export default Profile
+
+
+
+
