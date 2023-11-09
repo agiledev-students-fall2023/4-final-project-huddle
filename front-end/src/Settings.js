@@ -14,6 +14,7 @@ const Settings = props => {
     setSelectedOption(event.target.value);}
   return (
     <>
+    <br /><br /><br />
       <form>
       <div>Setting1: 
       <select value={selectedOption} onChange={handleSelectChange} style={{ width: '388px', height: '50px' }}>
