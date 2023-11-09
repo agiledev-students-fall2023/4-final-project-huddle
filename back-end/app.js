@@ -54,12 +54,12 @@ app.get('/matchHistory', async (req, res) => {
 
 app.post('/login', (req, res)=> {
   console.log(req.body)
-  res.json({})
+  res.json({success:true})
 })
 
 app.post('/createaccount', (req, res)=> {
   console.log(req.body)
-  res.json({})
+  res.json({success:true})
 })
 
 module.exports = app;

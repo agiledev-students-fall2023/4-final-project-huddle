@@ -47,7 +47,7 @@ const CreateAccount = props => {
     })
     .then(response => {
       // success
-      console.log(`Received server response: ${response.data}`)
+      console.log(`Received server response: ${JSON.stringify(response.data)}`)
       navigate("/login");
     })
     .catch(err => {
@@ -64,13 +64,13 @@ const CreateAccount = props => {
       <form onSubmit={handleSubmit}>
         <div className='EmailInput' > <input type='text' name='email'  
         value={info.email} 
-        onChange={handleEmailChange}
-        style={{ width: '388px', height: '50px' }}></input> <br /><br /><br /><br /></div>
+        onChange={handleEmailChange} placeholder='Email'
+        style={{ width: '380px', height: '50px' }}></input> <br /><br /><br /><br /></div>
         <div className='PasswordInput'> <input type='text' name='pw' value={info.pw} 
-        onChange={handlePasswordChange} style={{ width: '388px', height: '50px' }}></input><br /><br /><br /><br /></div>
+        onChange={handlePasswordChange} placeholder='Password' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
         <div className='UsernameInput'> <input type='text' name='username' value={info.username} 
-        onChange={handleUsernameChange} style={{ width: '388px', height: '50px' }}></input><br /><br /><br /><br /></div>
-        <div><input type='submit' onChange={handleSubmit} value="Login" style={{ width: '388px', height: '30px'}}/> </div>
+        onChange={handleUsernameChange} placeholder='Username' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
+        <div><input type='submit' onChange={handleSubmit} value="Login" style={{ width: '380px', height: '30px'}}/> </div>
       </form>
 
     </div>

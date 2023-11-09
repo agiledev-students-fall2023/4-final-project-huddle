@@ -39,7 +39,8 @@ const Login = props => {
     })
     .then(response => {
       // success
-      console.log(`Received server response: ${response.data}`)
+
+      console.log(`Received server response: ${JSON.stringify(response.data)}`)
       navigate("/play");
     })
     .catch(err => {
@@ -55,17 +56,15 @@ const Login = props => {
       <h1 className='login_header'>Login</h1>
       <form onSubmit={handleSubmit}>
         <div> <input type='text' name='email' placeholder='Email' id="name_field" value={info.email} 
-        onChange={handleEmailChange} style={{ width: '388px', height: '30px' }}/><br /><br /><br /><br /></div> 
+        onChange={handleEmailChange} style={{ width: '380px', height: '30px' }}/><br /><br /><br /><br /></div> 
         <div> <input type='text' name='pw' value={info.pw} 
-        onChange={handlePasswordChange} placeholder='Password' style={{ width: '388px', height: '30px' }}/><br /><br /><br /><br /></div>
-        <div><input type='submit' onChange={handleSubmit} value="Login" style={{ width: '388px', height: '30px'}}/> </div>
+        onChange={handlePasswordChange} placeholder='Password' style={{ width: '380px', height: '30px' }}/><br /><br /><br /><br /></div>
+        <div><input type='submit' onChange={handleSubmit} value="Login" style={{ width: '380px', height: '30px'}}/> </div>
 
       </form>
+
       <p>
-      <Link to="/play"><button style={{ width: '388px', height: '30px' }}>Login</button></Link>
-      </p>
-      <p>
-      <Link to="/createaccount"><button style={{ width: '388px', height: '30px' }}>CreateAccount</button></Link>
+      <Link to="/createaccount"><button style={{ width: '380px', height: '30px' }}>CreateAccount</button></Link>
       </p>
 
     </>
