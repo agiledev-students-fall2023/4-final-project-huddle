@@ -46,10 +46,15 @@ const App = props => {
 
           {/* a route to the friends screen */}
           <Route path="/friends" element={<Friends/>} />
+
+          {/* a route to the login screen*/}
           <Route path="/login" element={<Login />} />
+
+          {/* a route to the create account screen*/}
           <Route path="/createaccount" element={<CreateAccount />} />
 
-            <Route path="/settings" element={<Settings />} />
+          {/* a route to the settings screen*/}
+          <Route path="/settings" element={<Settings />} />
 
           {/* a route to the match history screen */}
           <Route path="/matchHistory" element={<MatchHistory/>} />
