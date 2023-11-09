@@ -21,4 +21,25 @@ app.get('/profile', async (req, res) => {
     });
   });
 
+
+app.get('/friends', async (req, res) => {
+
+    res.json({
+        name: "Account Name",
+        location: "??? Town",
+        contact: "123-456-7890",
+            
+    });
+});
+
+app.get('/matchHistory', async (req, res) => {
+
+    res.json({
+        player: "xx player",
+        location: "??? Town",
+        time: "xx-xx-xxxx",
+            
+    });
+});
+
 module.exports = app;
