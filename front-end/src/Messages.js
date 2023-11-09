@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 function Messages(){
     return (
         <div>
-            <h2>Messages </h2>
+            <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Messages </h2>
             {/* <Link to="/chat">
                 <h3>New Message </h3>
             </Link> */}
