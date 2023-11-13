@@ -14,9 +14,10 @@ const Settings = props => {
     setSelectedOption(event.target.value);}
   return (
     <>
+    <br /><br /><br />
       <form>
       <div>Setting1: 
-      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '400px', height: '50px' }}>
+      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '388px', height: '50px' }}>
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
@@ -26,7 +27,7 @@ const Settings = props => {
       </form>
       <form>
       <div>Setting2: 
-      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '400px', height: '50px' }}>
+      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '388px', height: '50px' }}>
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
@@ -36,7 +37,7 @@ const Settings = props => {
       </form>
       <form>
       <div>Setting3: 
-      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '400px', height: '50px' }}>
+      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '388px', height: '50px' }}>
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
@@ -46,7 +47,7 @@ const Settings = props => {
       </form>
       <form>
       <div>Setting4: 
-      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '400px', height: '50px' }}>
+      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '388px', height: '50px' }}>
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>

@@ -2,6 +2,7 @@
     background-color: whitesmoke;
     margin: 0;
     padding: 0;
+    
 
 }
 .main-content{
@@ -58,7 +59,7 @@ p{
 
 @media only screen and (max-width: 600px) {
     .bio>p{
-        font-size: 0.8em;
+        font-size: 0.75em;
     }
 
     .biofull{
