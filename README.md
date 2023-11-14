@@ -23,3 +23,15 @@ The idea of Huddle came from asking friends and family which issues they have th
 1. See the [Database Integration instructions](./instructions-3-database.md) for the requirements of integrating a database into the back-end.
 
 1. See the [Deployment instructions](./instructions-4-deployment.md) for the requirements of deploying an app.
+
+### Build and launch the back end
+
+1. Navigate into the `back-end` directory
+1. Run `npm install` to install all dependencies listed in the `package.json` file.
+1. Run `npm start` to launch the back-end server
+
+### Launch the front end
+
+1. Navigate into the `front-end` directory
+1. Run `npm install` to install all dependencies listed in the `package.json` file.
+1. Run `npm start` to launch the React.js server

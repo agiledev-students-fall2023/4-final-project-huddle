@@ -1,3 +1,5 @@
-The back-end of your project will live in this directory.
 
-You will most likely initiate the back-end Node.js/Express.js server by running the "npm init" command from within this directory.
+### Build and launch the back end
+
+1. Run `npm install` to install all dependencies listed in the `package.json` file.
+1. Run `npm start` to launch the back-end server
