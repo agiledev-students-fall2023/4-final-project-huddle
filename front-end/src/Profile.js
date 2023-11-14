@@ -41,16 +41,23 @@ const Profile = props => {
 
         <div className="comments">
           <h2>Profile Comments</h2>
-          <h3>User 1</h3>
-          <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet. Elementum nisi quis eleifend quam adipiscing.</p>
+          {profile.comments?.map(comment=>(
+            <div className="comment">
+              <h3>{comment.user}</h3>
+              <p>{comment.comment}</p>
+            </div>
+
+          ))}
+        
         </div>
 
         <div className="userSports">
           <h2>User's Sports</h2>
           <ul>
-            <li>Sport 1 : Ranking</li>
-            <li>Sport 2 : Ranking</li>
-            <li>Sport 3 : Ranking</li>
+          {profile.sports?.map(sport=>(
+            <li>{sport.sport}::: {sport.ranking}</li>
+          ))}
+          
           </ul>
         </div>
 
