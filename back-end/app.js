@@ -68,11 +68,30 @@ app.post('/createaccount', (req, res)=> {
 app.get("/messages", (req, res) => {
     // res.send("messages!");
     res.json({
-        message1: "Hey",
-        message2: "want to play bball?",
-        message3: "sure what time works?",
-        message4: "I get off work at 5",   
-        message5: "my friend wants to join... can you find another player for a 2 on 2?",           
+        from: "person A",
+        text: "hey! hows..."
+
+        // message1: "Hey",
+        // message2: "want to play bball?",
+        // message3: "sure what time works?",
+        // message4: "I get off work at 5",   
+        // message5: "my friend wants to join... can you find another player for a 2 on 2?",           
+    });
+});
+
+
+app.get("/chat", (req, res) => {
+    // res.send("messages!");
+    res.json({
+        person: "person A",
+        sentmsg: ["Hey",
+        "want to play bball?", 
+        "sure what time works?", 
+        "I get off work at 5",
+        "my friend wants to join... can you find another player for a 2 on 2?",], 
+        rcvdmsg: []
+        
+        
     });
 });
 

@@ -1,12 +1,43 @@
-import React from "react"
+import React, { useState, useEffect } from "react"
 import "./Chat.css"
+import { Link } from "react-router-dom";
+import axios from "axios"
 
-function Chat(){
+
+const Chat = (props) => {
+
+    const [chat, setChat] = useState({
+        person: '', 
+        sentmsg: [], 
+        rcvdmsg: []
+    }); 
+    useEffect(() => {
+        const fetchChat = () => {
+            axios
+                .get("http://localhost:3000/chat")
+                .then(response => {
+                    const chat = response.data
+                    setChat(chat)
+        });
+
+        }
+        fetchChat();
+    }, [])
+
+
     return (
         <div>
-            <h3>Chat with Person X </h3>
-            <Recieved />
-            <Sent /> 
+            <h3>Chat with {chat.person} </h3>
+            {chat.sentmsg.map((message, index) => (
+                <Recieved key={index} message={message} />
+            ))}
+            {chat.rcvdmsg.map((message, index) => (
+                <><Sent key={index} message={message} /></>
+            ))}
+
+            {/* <Recieved chat={chat}/>
+            <Sent chat={chat}/> 
+            <Recieved chat={chat}/> */}
             <Textbox /> 
         </div>
     );
@@ -21,25 +52,27 @@ function Textbox(){
     )
 }
   
-function Sent(){
+function Sent({ message }){
     return(
         <div className="Sent">
             <div className="messagetext">
-                <p>lorum ipsum</p>
+                {/* <p>lorum ipsum</p> */}
+                <p>{message}</p>
+
             </div>
             <img className = "profpic" alt="welcome!" src="https://picsum.photos/200?page=home" />
 
         </div>
-    );
+    ); 
 }
 
-function Recieved(){
+function Recieved({ message }){
     return(
         <div className="Recieved">
             <img className = "profpic" alt="welcome!" src="https://picsum.photos/200?page=home" />
 
             <div className="messagetext">
-                <p>lorum ipsum</p>
+            <p>{message}</p>
             </div>
 
         </div>
