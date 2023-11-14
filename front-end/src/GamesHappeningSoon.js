@@ -1,50 +1,77 @@
-import React from 'react';
-import "./GamesHappeningSoon.css"
+import React, { useState, useEffect } from 'react';
+import { useLocation } from 'react-router-dom';
+import axios from 'axios';
+import "./GamesHappeningSoon.css";
 
-function App() {
+function GamesHappeningSoon() {
+    const [games, setGames] = useState([]);
+    const location = useLocation();
+    const { sport } = location.state || {};
+
+    useEffect(() => {
+        if (sport) {
+            axios.get(`/sampleGames/${sport}`)
+                .then(response => {
+                    setGames(response.data);
+                })
+                .catch(error => {
+                    console.error('There was an error fetching the games:', error);
+                });
+        }
+    }, [sport]);
+
     return (
         <div style={{ padding: '20px' }}>
             <header style={{ marginBottom: '20px' }}>
-                {/* Placeholder for the top part of the wireframe */}
+                {/* placeholder*/}
             </header>
 
             <section>
-                <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Games Happening Soon</h2>
+                <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>
+                    Games Happening Soon for {sport || 'All Sports'}
+                </h2>
 
-                <GameCard />
-                <GameCard />
-                <GameCard />
+                {games.map((game, index) => (
+                    <GameCard
+                        key={index}
+                        sport={game.sport}
+                        playersNeeded={game.playersNeeded}
+                        tier={game.tier}
+                        location={game.location}
+                        time={game.time}
+                    />
+                ))}
             </section>
         </div>
     );
 }
 
-function GameCard() {
+function GameCard({ sport, playersNeeded, tier, location, time }) {
     return (
         <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }}>
             <div>
                 <label>Sport:</label>
-                <span style={{ marginLeft: '10px' }}>Sport Name</span>
+                <span style={{ marginLeft: '10px' }}>{sport}</span>
             </div>
             <div>
                 <label># Players needed:</label>
-                <span style={{ marginLeft: '10px' }}>Number</span>
+                <span style={{ marginLeft: '10px' }}>{playersNeeded}</span>
             </div>
             <div>
                 <label>Tier:</label>
-                <span style={{ marginLeft: '10px' }}>Tier Level</span>
+                <span style={{ marginLeft: '10px' }}>{tier}</span>
             </div>
             <div>
                 <label>Location:</label>
-                <span style={{ marginLeft: '10px' }}>Location Name</span>
+                <span style={{ marginLeft: '10px' }}>{location}</span>
             </div>
             <div>
                 <label>Time:</label>
-                <span style={{ marginLeft: '10px' }}>00:00 PM</span>
+                <span style={{ marginLeft: '10px' }}>{time}</span>
             </div>
             <button style={{ marginTop: '10px' }}><a href={"./Lobby"}>Join Game</a></button>
         </div>
     );
 }
 
-export default App;
+export default GamesHappeningSoon;
