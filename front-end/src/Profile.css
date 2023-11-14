@@ -31,9 +31,11 @@ p{
 }
 .comments{
     border-top: 2px black solid;
+    border-bottom: 2px black dashed;
+    
 }
-.comments > p{
-    text-align: center;
+.comment > p{
+    
     background-color: white;
     padding: 1em;
 }
