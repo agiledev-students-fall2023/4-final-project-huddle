@@ -63,13 +63,6 @@ app.get('/matchHistory', async (req, res) => {
     });
 });
 
-app.get('/Play', async (req, res) => {
-
-    res.json({
-        state: "basketball",
-
-    });
-});
 app.post('/login', (req, res)=> {
   console.log(req.body)
   res.json({success:true})
