@@ -23,7 +23,7 @@ describe("GET request to /createaccount route", () => {
     it("it should respond with an HTTP 200 status code and an object in the response body", done => {
       chai
         .request(app)
-        .post("/profile")
+        .get("/profile")
         .end((err, res) => {
             expect(res.body).to.be.a("object"); // Use the expect syntax
             
