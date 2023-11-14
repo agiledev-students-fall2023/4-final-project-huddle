@@ -64,8 +64,12 @@ app.get('/matchHistory', async (req, res) => {
 });
 
 app.post('/login', (req, res)=> {
-  console.log(req.body)
-  res.json({success:true})
+    const [email, password] = ['abc','123'];
+  console.log(req.body);
+  if (email == req.body.email && password == req.body.pw){
+    res.json({success:true})
+  }
+  else{res.json({success:false})}
 })
 
 app.post('/createaccount', (req, res)=> {
