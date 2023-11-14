@@ -4,7 +4,7 @@
   "description": "The back-end of your project will live in this directory.",
   "main": "server.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
+    "test": "mocha",
     "start": "node server.js"
   },
   "author": "",
@@ -16,6 +16,10 @@
   },
   "devDependencies": {
     "nodemon": "^3.0.1"
-    
+  },
+  "dependencies": {
+    "axios": "^1.6.1",
+    "chai-http": "^4.4.0",
+    "supertest": "^6.3.3"
   }
 }
