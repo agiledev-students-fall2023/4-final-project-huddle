@@ -41,7 +41,8 @@ const Login = props => {
       // success
 
       console.log(`Received server response: ${JSON.stringify(response.data)}`)
-      navigate("/play");
+      if (response.data.success ==true)
+        {navigate("/play");}
     })
     .catch(err => {
       // failure

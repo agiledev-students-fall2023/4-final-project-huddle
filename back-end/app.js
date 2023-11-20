@@ -6,6 +6,17 @@ const axios = require("axios");
 const app = express(); // instantiate an Express object
 // we will put some server logic here later...
 // export the express app we created to make it available to other modules
+
+const sampleGames = [
+    { sportName: 'Basketball', numberOfPeople: 10, tierLevel: 3, locationName: 'Central Gym', time: '2023-11-20T12:00:00Z' },
+    { sportName: 'Football', numberOfPeople: 22, tierLevel: 2, locationName: 'Stadium West', time: '2023-11-20T15:00:00Z' },
+    { sportName: 'Volleyball', numberOfPeople: 12, tierLevel: 4, locationName: 'North Beach Courts', time: '2023-11-21T10:00:00Z' },
+    { sportName: 'Baseball', numberOfPeople: 18, tierLevel: 1, locationName: 'Downtown Field', time: '2023-11-22T16:00:00Z' },
+    { sportName: 'Soccer', numberOfPeople: 22, tierLevel: 5, locationName: 'East Park Stadium', time: '2023-11-23T14:00:00Z' },
+    { sportName: 'Tennis', numberOfPeople: 2, tierLevel: 3, locationName: 'Riverfront Courts', time: '2023-11-24T09:00:00Z' }
+  ];
+  
+  
 app.use(cors());
 app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
@@ -53,8 +64,12 @@ app.get('/matchHistory', async (req, res) => {
 });
 
 app.post('/login', (req, res)=> {
-  console.log(req.body)
-  res.json({success:true})
+    const [email, password] = ['abc','123'];
+  console.log(req.body);
+  if (email == req.body.email && password == req.body.pw){
+    res.json({success:true})
+  }
+  else{res.json({success:false})}
 })
 
 app.post('/createaccount', (req, res)=> {
@@ -63,6 +78,14 @@ app.post('/createaccount', (req, res)=> {
 })
 
 
+app.get('/gamesHappeningSoon/:sport', (req, res) => {
+    const { sport } = req.params;
+    // will later fetch this data from a database
+    const games = gamesData[sport] || [];
+    
+    // sending the games data back to the client
+    res.json(games);
+  });
 
 
 app.get("/messages", (req, res) => {
