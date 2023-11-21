@@ -13,9 +13,8 @@ class Lobby extends React.Component {
                         <div className="player" key={index}>
                             <div className="avatar"></div>
                             <div className="details">
-                                <span>Name</span>
+                                <span>Name</span><span> </span>
                                 <span>Location</span>
-                                <span>Tier</span>
                             </div>
                         </div>
                     ))}
