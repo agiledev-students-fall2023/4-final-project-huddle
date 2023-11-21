@@ -4,10 +4,10 @@ import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 
 const sports = [
-  { name: 'Basketball', icon: '/icons/basketball.png' },
-  { name: 'Soccer', icon: '/icons/soccer.png' },
-  { name: 'Tennis', icon: '/icons/tennis.png' },
-  { name: 'Volleyball', icon: '/icons/volleyball.png' },
+  { name: 'Basketball', icon: 'https://picsum.photos/200' },
+  { name: 'Soccer', icon: 'https://picsum.photos/100' },
+  { name: 'Tennis', icon: 'https://picsum.photos/300' },
+  { name: 'Volleyball', icon: 'https://picsum.photos/400' },
 ];
 
 const Play = () => {
