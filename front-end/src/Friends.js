@@ -28,15 +28,14 @@ const Friends = props => {
 
   return (
     <div className="Friends">
-      <h1 style={{ textAlign: 'center'}}>Your Friends</h1>
+      <h1 >Your Friends</h1>
 
       <section className="main-content">
-        {/* <img alt="welcome!" src="https://t3.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" /> */}
         <p>
           {/* {friends.map((friend) => (
             <FriendCard key={friend.id} friend={friend} />
           ))} */}
-          <FriendCard  friend = {friend} />
+          {/* <FriendCard  friend = {friend} /> */}
           <FriendCard  friend = {friend} />
           <FriendCard  friend = {friend} />
           {/* <FriendCard />
@@ -46,7 +45,7 @@ const Friends = props => {
 
           
 
-          <button style={{ marginTop: '10px' }}>Add a New Friend</button>
+          {/* <button style={{ marginTop: '10px' }}>Add a New Friend</button> */}
 
 
         </p>
@@ -58,26 +57,35 @@ const Friends = props => {
 
 function FriendCard({friend}) {
   return (
-      <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }}>
-          <div>
-              <label>Name: {friend.name}</label>
-              <span style={{ marginLeft: '10px' }}></span>
+      <div className="FriendCard">
+        <img className="profpic" alt="profpic!" src="https://picsum.photos/200?page=home" />
+        <div className="friendDetails">
+          <div>Name: {friend.name}
+                {/* <span style={{ marginLeft: '10px' }}></span> */}
+            </div>
+
+            <div>
+                <label>Sport Names:</label>
+                {/* <span style={{ marginLeft: '10px' }}></span> */}
+            </div>
+
+            <div>
+                <label>Location: {friend.location}</label>
+                {/* <span style={{ marginLeft: '10px' }}> </span> */}
+            </div>
+            
+            {/* <div>
+                {/* <label>Contacts: {friend.contact}</label> */}
+                {/* <span style={{ marginLeft: '10px' }}></span> */}
+            {/* </div> */} 
           </div>
 
-          <div>
-              <label>Sport Names:</label>
-              <span style={{ marginLeft: '10px' }}></span>
-          </div>
+          {/* <div className="mbutton">
+            See Details
+          </div> */}
 
-          <div>
-              <label>Location: {friend.location}</label>
-              <span style={{ marginLeft: '10px' }}> </span>
-          </div>
-          
-          <div>
-              <label>Contacts: {friend.contact}</label>
-              <span style={{ marginLeft: '10px' }}></span>
-          </div>
+          {/* <mbutton>See Details</mbutton> */}
+            
 
           <button style={{ marginTop: '10px' }}><a href={"./Profile"}>See Details</a></button>
 

@@ -62,15 +62,23 @@ const CreateAccount = props => {
     <div className='container'>
       <h1 className='CreateAccountHeader'>Create Account</h1>
       <form onSubmit={handleSubmit}>
-        <div className='EmailInput' > <input type='text' name='email'  
+        <div 
+        className='EmailInput' > <input type='text' name='email'  
         value={info.email} 
         onChange={handleEmailChange} placeholder='Email'
-        style={{ width: '380px', height: '50px' }}></input> <br /><br /><br /><br /></div>
-        <div className='PasswordInput'> <input type='text' name='pw' value={info.pw} 
-        onChange={handlePasswordChange} placeholder='Password' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
-        <div className='UsernameInput'> <input type='text' name='username' value={info.username} 
-        onChange={handleUsernameChange} placeholder='Username' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
-        <div><input type='submit' onChange={handleSubmit} value="Login" style={{ width: '380px', height: '30px'}}/> </div>
+        style={{ width: '380px', height: '50px', borderRadius: 10 }}></input> <br /><br /><br /><br />
+        </div>
+        <div 
+        className='PasswordInput'> <input type='text' name='pw' value={info.pw} 
+        onChange={handlePasswordChange} placeholder='Password' style={{ width: '380px', height: '50px', borderRadius: 10 }}>
+          </input><br /><br /><br /><br />
+        </div>
+        <div 
+        className='UsernameInput'> <input type='text' name='username' value={info.username} 
+        onChange={handleUsernameChange} placeholder='Username' style={{ width: '380px', height: '50px', borderRadius: 10 }}></input><br /><br /><br /><br />
+        </div>
+        <div>
+          <input type='submit' onChange={handleSubmit} value="Login" style={{ width: '380px', height: '30px', borderRadius: 10}}/> </div>
       </form>
 
     </div>

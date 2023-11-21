@@ -1,8 +1,21 @@
 .header{
     text-align: center;
+    
 
 }
 body {
     display: flex;
     justify-content: center;
+    /* color: blueviolet; */
+    background-color: aliceblue;
+  }
+
+  .hbutton {
+    width: 360px; 
+    height: 100px;
+    border-radius: 10px;
+    /* font: large; */
+    border-style: double;  
+    font-size: larger;
+    background-color: rgb(173, 214, 226);
   }

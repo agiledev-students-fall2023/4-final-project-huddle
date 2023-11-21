@@ -11,6 +11,7 @@ body {
     /* margin-top: 100; */
      /* flex-direction: row; */
     align-items: center;
+    margin: 5%;
   }
 .pic{
   max-width: 100%;

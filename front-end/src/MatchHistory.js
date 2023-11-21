@@ -50,7 +50,7 @@ const MatchHistory = props => {
 
 function MatchCard({matchHistory}) {
     return (
-        <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }}>
+        <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' , borderRadius: '10px', background: 'white'}}>
             <div>
                 <label>Sport:</label>
                 <span style={{ marginLeft: '10px' }}>Sport Name</span>
