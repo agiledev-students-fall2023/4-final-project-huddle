@@ -9,12 +9,15 @@ const Match = props => {
       <section className="main-content">
         {/* <img alt="welcome!" src="https://t3.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" /> */}
         <p>
-          Match Details
-          <MatchCard />
           
+          <div className="MatchCard">
+            <MatchCard />
+            
+          </div>
 
           
         </p>
+
       </section>
       
     </div>
@@ -23,30 +26,31 @@ const Match = props => {
 
 function MatchCard() {
   return (
-      <div style={{ border: '1px solid black', padding: '50px', marginBottom: '50px' }}>
+      <div >
+       <h3>Match Details</h3> 
           <div>
-              <label>Sport:</label>
-              <span style={{ marginLeft: '10px' }}>Sport Name</span>
+              <label>Sport: </label>
+              <span >Sport Name</span>
           </div>
 
           <div>
-              <label>Players:</label>
-              <span style={{ marginLeft: '10px' }}>#</span>
+              <label>Players: </label>
+              <span >#</span>
           </div>
 
           <div>
-              <label>Tier:</label>
-              <span style={{ marginLeft: '10px' }}> </span>
+              <label>Tier: </label>
+              <span > </span>
           </div>
 
           <div>
-              <label>Location:</label>
-              <span style={{ marginLeft: '10px' }}> </span>
+              <label>Location: </label>
+              <span > </span>
           </div>
 
           <div>
-              <label>Time:</label>
-              <span style={{ marginLeft: '10px' }}>00:00</span>
+              <label>Time: </label>
+              <span >00:00</span>
           </div>
 
           {/* <button style={{ marginTop: '10px' }}><a href={"./Match"}>See Details</a></button> */}

@@ -41,8 +41,8 @@ const Login = props => {
       // success
 
       console.log(`Received server response: ${JSON.stringify(response.data)}`)
-      if (response.data.success ==true)
-        {navigate("/play");}
+      if (response.data.success ===true)
+        {navigate("/home");}
     })
     .catch(err => {
       // failure
@@ -56,16 +56,26 @@ const Login = props => {
     <>
       <h1 className='login_header'>Login</h1>
       <form onSubmit={handleSubmit}>
-        <div> <input type='text' name='email' placeholder='Email' id="name_field" value={info.email} 
-        onChange={handleEmailChange} style={{ width: '380px', height: '30px' }}/><br /><br /><br /><br /></div> 
-        <div> <input type='text' name='pw' value={info.pw} 
-        onChange={handlePasswordChange} placeholder='Password' style={{ width: '380px', height: '30px' }}/><br /><br /><br /><br /></div>
-        <div><input type='submit' onChange={handleSubmit} value="Login" style={{ width: '380px', height: '30px'}}/> </div>
+        <div> 
+          <input type='text' name='email' placeholder='Email' id="name_field" value={info.email} 
+        onChange={handleEmailChange} className='infobox'/><br /><br />
+        </div> 
+        <div> 
+          <input type='text' name='pw' value={info.pw} 
+        onChange={handlePasswordChange} placeholder='Password' className='infobox'/><br /><br />
+        </div>
+        {/* <div>
+          <input type='submit' value="Login" className='button'/> 
+        </div> */}
 
       </form>
 
+    
       <p>
-      <Link to="/createaccount"><button style={{ width: '380px', height: '30px' }}>CreateAccount</button></Link>
+        <Link to="/home"><button className='button'>Login</button></Link>
+      </p>
+      <p>
+        <Link to="/createaccount"><button className='button'>Create Account</button></Link>
       </p>
 
     </>
