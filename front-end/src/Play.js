@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Play.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
@@ -21,18 +21,8 @@ const Play = () => {
     const renderSportCell = (sport, index) => (
       <div 
           key={index}
+          className='sportcard'
           onClick={() => setSelectedSport(sport.name)}
-          style={{
-              width: '100px',
-              height: '100px',
-              backgroundColor: 'gray',
-              border: selectedSport === sport.name ? '2px solid red' : 'none',
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center'
-          }}
       >
           <img src={sport.icon} alt={sport.name} style={{ width: '50px', height: '50px' }} />
           <span>{sport.name}</span>
@@ -40,15 +30,15 @@ const Play = () => {
     );
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+        <div className='play'>
             <h2>Choose a Sport</h2>
-            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '20px' }}>
                 {sports.map(renderSportCell)}
-            </div>
-            <div style={{ marginTop: '40px' }}>
-                <button onClick={handleJoinGame} style={{ marginRight: '20px' }}>Join a Game</button>
-                <button onClick={() => navigate('/CreateGame')}>Create a Game</button>
-            </div>
+
+                
+                <button className='mbutton' onClick={handleJoinGame}>Join a Game</button>
+                {/* <button onClick={handleJoinGame} style={{ marginRight: '20px' }}>Join a Game</button> */}
+
+                <button className='mbutton' onClick={() => navigate('/CreateGame')}>Create a Game</button>
         </div>
     );
 }
