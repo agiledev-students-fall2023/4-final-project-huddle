@@ -14,8 +14,7 @@ class Lobby extends React.Component {
                             <div className="avatar"></div>
                             <div className="details">
                                 <span>Name </span>
-                                <span>Location</span>
-                                
+                                <span>Location</span>    
                             </div>
                         </div>
                     ))}
