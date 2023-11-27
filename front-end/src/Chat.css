@@ -9,8 +9,13 @@
 
 }
 
+/* .messageBubble {
+    display: flex;
+    justify-content: flex-end;
+    margin: 10p;
+} */
+
 .Sent { 
-    /* sent isnt working!! only recieved is... */
     display: flex;
     border: 2px solid black;
     padding: 20px; 
@@ -23,8 +28,10 @@
     justify-content: flex-end;
     width: 100%;
     text-align: right;
-    /* border-radius: 30px; */
-    background-color: blue;
+    border-radius: 30px;
+    background-color: lightblue;
+    height: 60px;
+
 }
 
 .Recieved {

@@ -28,7 +28,7 @@ code {
 .sportcard{
   width: 80%;
   height:  100px;
-  background-color: gray;
+  /* background-color: gray; */
   /* border: selectedSport == sport.name ? '2px solid red' : 'none'; */
   cursor: pointer;
   display: flex;
@@ -36,6 +36,20 @@ code {
   justify-content: center;
   align-items: center;
   border-radius: 10px;
+  font-size: larger;
+  margin-bottom: 10px;
+}
+
+.sportpic.selected {
+  outline: 2px solid red;
+}
+
+.sportpic {
+  width: max-content;
+  /* width: 90px; */
+  height: 100px;
+  border-radius: 10px;
+
 }
 
 .mbutton {

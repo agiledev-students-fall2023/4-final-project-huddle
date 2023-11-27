@@ -26,10 +26,11 @@ const Chat = (props) => {
 
 
     return (
+        
         <div className="Chat">
             <h3>Chat with {chat.person} </h3>
             {chat.sentmsg.map((message, index) => (
-                 <><Sent key={index} message={message} /></>
+                 <Sent key={index} message={message} />
                
             ))}
             {chat.rcvdmsg.map((message, index) => (

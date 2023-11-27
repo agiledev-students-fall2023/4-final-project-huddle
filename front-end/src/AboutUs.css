@@ -1,7 +1,8 @@
 body {
     display: flex;
     justify-content: center;
-    
+    padding: 30px;
+    padding-top: 60px;
     margin: auto;
     font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
       'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
@@ -19,6 +20,8 @@ body {
   margin-left: auto;
   margin-right: auto;
   align-items: center;
+  width: auto;
+  height: auto;
 
 }
 code {
