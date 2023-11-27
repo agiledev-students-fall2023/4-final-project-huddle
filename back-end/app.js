@@ -125,11 +125,10 @@ app.get("/chat", (req, res) => {
     res.json({
         person: "person A",
         sentmsg: ["Hey",
-        "want to play bball?", 
         "sure what time works?", 
-        "I get off work at 5",
         "my friend wants to join... can you find another player for a 2 on 2?"], 
-        rcvdmsg: []
+        rcvdmsg: ["want to play bball?", 
+        "I get off work at 5"]
         
         
     });

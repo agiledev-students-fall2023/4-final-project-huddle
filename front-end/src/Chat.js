@@ -29,12 +29,12 @@ const Chat = (props) => {
         <div className="Chat">
             <h3>Chat with {chat.person} </h3>
             {chat.sentmsg.map((message, index) => (
-                 
-                <Recieved key={index} message={message} />
+                 <><Sent key={index} message={message} /></>
+               
             ))}
             {chat.rcvdmsg.map((message, index) => (
                 <div className="Sent">
-                <><Sent key={index} message={message} /></>
+                 <Recieved key={index} message={message} />
                 </div>
             ))}
             
