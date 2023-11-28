@@ -40,6 +40,7 @@ passport.use(jwtStrategy)
 // tell express to use passport middleware
 app.use(passport.initialize())
 
+
 // mongoose models for MongoDB data manipulation
 
 const User = require("./models/User.js")
@@ -80,8 +81,45 @@ app.use(function(req, res, next) {
   next();
 });
 
+
+
+const getuser = () => {
+  // create a new router that we can customize
+  const router = express.Router();
+  
+  router.get('/', async function getuser(req, res, next){
+    try {
+      
+      const oneuser = await User.findOne().exec();
+      // check if user was found
+      if (!oneuser) {
+        console.error(`User not found.`);
+        next();
+      }
+      else{
+        console.log(oneuser)
+        next();
+      }
+  }
+  catch (err) {
+    // check error
+    console.error(`Error looking up user: ${err}`);
+  
+    next();
+  }
+  }
+  ) 
+  return router;
+}
+
+
+
+
+app.use('/', getuser())
 app.get("/", (req, res) => {
     res.send("Hello!");
+    
+  getuser(req,res);
 });
 
 

@@ -7,15 +7,47 @@ const jwtStrategy = require("../config/jwt-config.js") // import setup options f
 
 // this is our mongoose model for a user
 const UserSchema = new Schema({
-  username: {
-    type: String,
-    unique: true,
+  id: {
     required: true,
+    type: String
+},
+  username: {
+      required: true,
+      type: String
   },
   password: {
-    type: String,
-    required: true,
+      required: true,
+      type: String
   },
+  games: {
+      required: true,
+      type: Array
+  },
+  location: {
+      required: true,
+      type: String
+  },
+  win: {
+      required: true,
+      type: Number
+  },
+  loss: {
+      required: true,
+      type: Number
+  },
+  friends: {
+      required: true,
+      type: Array
+  },
+  comments: {
+      required: true,
+      type: Array
+  },
+  bio: {
+      required: true,
+      type: String
+  }
+
 })
 
 // hash the password before the user is saved
