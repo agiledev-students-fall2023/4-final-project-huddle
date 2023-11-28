@@ -6,8 +6,11 @@ const axios = require("axios");
 const app = express(); // instantiate an Express object
 
 const mongoose = require("mongoose")
-const dotenv = require("dotenv")
-
+const dotenv = require("dotenv");
+const User = require("./models/user");
+const Game = require("./models/game");
+const { match } = require("assert");
+const Message = require("./models/message");
 require('dotenv').config();
 
 const MONGODB_URL = process.env.MONGODB_URL
@@ -124,9 +127,22 @@ app.get("/", (req, res) => {
 
 
 app.get('/profile', async (req, res) => {
+  const theUser = await User.findOne({username: "ihunt"});
+  console.log(theUser);
+  res.json({
+    img: theUser.profilePicture,
+    name: theUser.username,
+    location: theUser.location,
+    bio: theUser.bio,
+    comments: theUser.comments,
+    success:true
+  });
+});
+
+  app.get('/otherprofile', async (req, res) => {
     
     res.json({
-        name: "John Smith",
+        name: "Jane Doe",
         img: "https://picsum.photos/150?page=home",
         location: "New York ",
         bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec dui nunc mattis enim ut tellus.",
@@ -141,23 +157,34 @@ app.get('/profile', async (req, res) => {
 
 
 app.get('/friends', async (req, res) => {
-
-    res.json({
-        name: "Account Name",
-        location: "??? Town",
-        contact: "123-456-7890",
-            
-    });
+  const allUsers = await User.find();
+  res.json({
+    users: allUsers.map(user => ({
+      img: user.profilePicture,
+      name: user.username,
+      location: user.location,
+    })),
+    success: true
+  });
 });
 
-app.get('/matchHistory', async (req, res) => {
 
-    res.json({
-        player: "xx player",
-        location: "??? Town",
-        time: "xx-xx-xxxx",
-            
-    });
+
+app.get('/matchHistory', async (req, res) => {
+  const allMatches = await Game.find();
+  res.json({
+    matches: allMatches.map(match => ({
+      sportName: match.sportName,
+      location: match.location,
+      inProgress: match.inProgress,
+      team1: match.team1,
+      team2: match.team2,
+      dateAndTime: match.dateAndTime,
+      isFull: match.isFull,
+      winner: match.winner
+    })),
+    success: true
+  });
 });
 
 app.post('/login', (req, res)=> {
@@ -205,11 +232,10 @@ app.get("/chat", (req, res) => {
     res.json({
         person: "person A",
         sentmsg: ["Hey",
-        "want to play bball?", 
         "sure what time works?", 
-        "I get off work at 5",
         "my friend wants to join... can you find another player for a 2 on 2?"], 
-        rcvdmsg: []
+        rcvdmsg: ["want to play bball?", 
+        "I get off work at 5"]
         
         
     });

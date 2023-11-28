@@ -13,6 +13,7 @@ const Profile = props => {
         .then(response => {
           // axios bundles up all response data in response.data property
           const profile = response.data;
+          console.log(profile);
           setProfile(profile);
         })
         .catch(err => {
@@ -29,7 +30,7 @@ const Profile = props => {
       
       <section className="main-content">
         <div className="biofull">
-          <img alt="welcome!" src={profile.img}/>
+          <img alt="welcome!" src={profile.img} length = "75" width = "75"/>
 
           <div className="bio">
             <p>Name: {profile.name}</p>
@@ -43,39 +44,15 @@ const Profile = props => {
           <h2>Profile Comments</h2>
           {profile.comments?.map(comment=>(
             <div className="comment">
-              <h3>{comment.user}</h3>
-              <p>{comment.comment}</p>
+              <h3>user</h3>
+              <p>{comment}</p>
             </div>
 
           ))}
         
         </div>
 
-        <div className="userSports">
-          <h2>User's Sports</h2>
-          <ul>
-          {profile.sports?.map(sport=>(
-            <li>{sport.sport}::: {sport.ranking}</li>
-          ))}
-          
-          </ul>
-        </div>
 
-        <div className="ratings">
-          <h2>Ratings</h2>
-          <div className="sportRating">
-            <h3>Sport 1</h3>
-            <p>Skill 1: ⭐⭐⭐☆☆</p>
-            <p>Skill 2: ⭐⭐⭐⭐☆</p>
-            <p>Skill 3: ⭐⭐⭐☆☆</p>
-          </div>
-          <div className="sportRating">
-            <h3>Sport 2</h3>
-            <p>Skill 1: ⭐⭐⭐⭐⭐</p>
-            <p>Skill 2: ⭐⭐⭐⭐☆</p>
-            <p>Skill 3: ⭐☆☆☆☆</p>
-          </div>
-        </div>
         <div className="record">
           <h2>Record</h2>
           

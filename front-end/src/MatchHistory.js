@@ -3,43 +3,44 @@ import "./MatchHistory.css"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 // import { Link } from 'react-router-dom'
-
+  
 const MatchHistory = props => {
 
     const [matchHistory, setMatchHistory] = useState([]);
     useEffect(() => {
-    const fetchMatchHistory = async () => {
-        axios
-        .get("http://localhost:3000/friends")
-        .then(response => {
-            // axios bundles up all response data in response.data property
-            const matchHistory = response.data;
-            setMatchHistory(matchHistory);
-        })
-        .catch(err => {
-            const errMsg = JSON.stringify(err, null, 2);// convert error object to a string so we can simply dump it to the screen
-            console.log(errMsg);
-        })
-    }
-    fetchMatchHistory();
+      const fetchMatchHistory = async () => {
+        try {
+          const response = await axios.get("http://localhost:3000/matchHistory");
+          const matchHistoryData = response.data;
+          setMatchHistory(matchHistoryData);
+        } catch (error) {
+          const errMsg = JSON.stringify(error, null, 2);
+          console.log(errMsg);
+        }
+      };
+  
+      fetchMatchHistory();
     }, []);
     
-    const divStyle = {
-        border: '2px solid red',
-    };
+    // const divStyle = {
+    //     border: '2px solid red',
+    // };
 
     return (
         <><div className="MatchHistory">
             <h1 style={{ textAlign: 'center'}}>Your Match History</h1>
 
             <section className="main-content">
+                {matchHistory.map((match) => (
+                <MatchCard key={match.id} match={match} />
+                ))}
                 {/* <img alt="welcome!" src="https://t3.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" /> */}
-                <p>
+                {/* <p>
                     
                     <MatchCard matchHistory={matchHistory}/>
                     <MatchCard matchHistory={matchHistory}/>
                     <MatchCard matchHistory={matchHistory}/>
-                </p>
+                </p> */}
             </section>
 
 
@@ -48,12 +49,53 @@ const MatchHistory = props => {
     )
 }
 
+function MatchCard({ match }) {
+  return (
+    <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px', borderRadius: '10px', background: 'white' }}>
+      <div>
+        <label>Sport:</label>
+        <span style={{ marginLeft: '10px' }}>{match.sportName}</span>
+      </div>
+
+      <div>
+        <label>Location:</label>
+        <span style={{ marginLeft: '10px' }}>{match.location}</span>
+      </div>
+
+      <div>
+        <label>In Progress:</label>
+        <span style={{ marginLeft: '10px' }}>{match.inProgress ? 'Yes' : 'No'}</span>
+      </div>
+
+      <div>
+        <label>Teams:</label>
+        <span style={{ marginLeft: '10px' }}>{match.team1} vs {match.team2}</span>
+      </div>
+
+      <div>
+        <label>Date and Time:</label>
+        <span style={{ marginLeft: '10px' }}>{match.dateAndTime}</span>
+      </div>
+
+      <div>
+        <label>Is Full:</label>
+        <span style={{ marginLeft: '10px' }}>{match.isFull ? 'Yes' : 'No'}</span>
+      </div>
+
+      <div>
+        <label>Winner:</label>
+        <span style={{ marginLeft: '10px' }}>{match.winner || 'Not decided yet'}</span>
+      </div>
+
+      <button style={{ marginTop: '10px' }}><a href={`./Match/${match.id}`}>See Details</a></button>
+    </div>
+  );
 function MatchCard({matchHistory}) {
     return (
-        <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' , borderRadius: '10px', background: 'white'}}>
-            <div>
+        <div style={{ border: '1px solid black', display: 'flex', flexDirection: 'column', padding: '10px', marginBottom: '10px' , borderRadius: '10px', background: 'white', fontFamily: 'Arial', width: '300px', alignContent: 'center', justifyContent: 'center', fontSize:'larger'}}>
+            <div >
                 <label>Sport:</label>
-                <span style={{ marginLeft: '10px' }}>Sport Name</span>
+                <span style={{ marginLeft: '15px' }}>Sport Name</span>
             </div>
 
             <div>
@@ -76,9 +118,18 @@ function MatchCard({matchHistory}) {
                 <span style={{ marginLeft: '10px' }}>00:00</span>
             </div>
 
-            <button style={{ marginTop: '10px' }}><a href={"./Match"}>See Details</a></button>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+
+                <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid', height:'40px'  }}> 
+                    <a href={"./Match"}> Details  </a>
+                </button>
+
+            </div> 
         </div>
     );
 }
+
+export default MatchCard;
+
 
 export default MatchHistory

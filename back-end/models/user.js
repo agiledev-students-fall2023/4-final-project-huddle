@@ -33,6 +33,10 @@ const userSchema =new mongoose.Schema({
         required: true,
         type: Array
     },
+    profilePicture: {
+        required: false,
+        type: String
+    },
     comments: {
         required: true,
         type: Array
@@ -44,6 +48,6 @@ const userSchema =new mongoose.Schema({
 });
 
 
-const user = mongoose.model('user', userSchema)
+const User = mongoose.model('User', userSchema)
 
-module.exports = user
+module.exports = User

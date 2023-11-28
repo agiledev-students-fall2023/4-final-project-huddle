@@ -9,7 +9,7 @@ class SearchScreen extends React.Component {
                 <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>Search</h2>
 
                 {/* Search Bar */}
-                <div className="search-bar" style={{ textAlign: 'center', marginBottom: '20px' }}>
+                <div className="search-bar" style={{ height: '50px', textAlign: 'center', marginBottom: '20px', borderRadius: '10px' }}>
                     <input type="text" placeholder="Username" />
                     <button>Enter</button>
                 </div>

@@ -1,13 +1,15 @@
-import { useState, useEffect } from 'react'
+import React, { useState, useEffect } from 'react'
 import "./Play.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
+import { GiBasketballBasket } from "react-icons/gi";
+import huddlelogo from './icons/huddlelogo.png';
 
 const sports = [
-  { name: 'Basketball', icon: 'https://picsum.photos/200' },
-  { name: 'Soccer', icon: 'https://picsum.photos/100' },
-  { name: 'Tennis', icon: 'https://picsum.photos/300' },
-  { name: 'Volleyball', icon: 'https://picsum.photos/400' },
+  { name: 'Basketball', icon: process.env.PUBLIC_URL + '/bball.jpeg' },
+  { name: 'Soccer', icon: process.env.PUBLIC_URL + '/soccer.jpeg' },
+  { name: 'Tennis', icon: process.env.PUBLIC_URL + '/tennis.jpeg' },
+  { name: 'Volleyball', icon: process.env.PUBLIC_URL + '/volleyball.jpeg' },
 ];
 
 const Play = () => {
@@ -18,37 +20,36 @@ const Play = () => {
         navigate('/GamesHappeningSoon', { state: { sport: selectedSport } });
     };
 
-    const renderSportCell = (sport, index) => (
+    const renderSportCell = (sport, index) => {
+        const isSelected = selectedSport === sport.name;
+        return (
       <div 
           key={index}
+          className='sportcard'
           onClick={() => setSelectedSport(sport.name)}
-          style={{
-              width: '100px',
-              height: '100px',
-              backgroundColor: 'gray',
-              border: selectedSport === sport.name ? '2px solid red' : 'none',
-              cursor: 'pointer',
-              display: 'flex',
-              flexDirection: 'column',
-              justifyContent: 'center',
-              alignItems: 'center'
-          }}
+        
       >
-          <img src={sport.icon} alt={sport.name} style={{ width: '50px', height: '50px' }} />
+         <img className={`sportpic ${isSelected ? 'selected' : ''}`}
+            src={sport.icon} 
+            alt={sport.name} />
+
+          {/* <img src={sport.icon} alt={sport.name} style={{ width: '50px', height: '50px' }} /> */}
           <span>{sport.name}</span>
       </div>
-    );
+         );
+     };
 
     return (
-        <div style={{ display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '50vh' }}>
+        <div className='play'>
             <h2>Choose a Sport</h2>
-            <div style={{ display: 'flex', flexDirection: 'row', flexWrap: 'wrap', gap: '20px' }}>
                 {sports.map(renderSportCell)}
-            </div>
-            <div style={{ marginTop: '40px' }}>
-                <button onClick={handleJoinGame} style={{ marginRight: '20px' }}>Join a Game</button>
-                <button onClick={() => navigate('/CreateGame')}>Create a Game</button>
-            </div>
+                {/* <GiBasketballBasket /> **bball icon*/} 
+
+                
+                <button className='mbutton' onClick={handleJoinGame}>Join a Game</button>
+                {/* <button onClick={handleJoinGame} style={{ marginRight: '20px' }}>Join a Game</button> */}
+
+                <button className='mbutton' onClick={() => navigate('/CreateGame')}>Create a Game</button>
         </div>
     );
 }
