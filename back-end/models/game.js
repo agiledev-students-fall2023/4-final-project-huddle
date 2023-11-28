@@ -42,3 +42,7 @@ const gameSchema = mongoose.Schema({
         type: String
     }
 })
+
+const Game = mongoose.model('Game', gameSchema);
+
+module.exports = Game;
