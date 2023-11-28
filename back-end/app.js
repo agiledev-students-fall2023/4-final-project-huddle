@@ -41,7 +41,7 @@ passport.use(jwtStrategy)
 app.use(passport.initialize())
 
 // mongoose models for MongoDB data manipulation
-const mongoose = require("mongoose")
+
 const User = require("./models/User.js")
 
 const sampleGames = [
