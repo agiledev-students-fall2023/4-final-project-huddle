@@ -9,6 +9,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv");
 const User = require("./models/user");
 const Game = require("./models/game");
+const { match } = require("assert");
 const Message = require("./models/message");
 require('dotenv').config();
 
@@ -76,23 +77,34 @@ app.get('/profile', async (req, res) => {
 
 
 app.get('/friends', async (req, res) => {
-
-    res.json({
-        name: "Account Name",
-        location: "??? Town",
-        contact: "123-456-7890",
-            
-    });
+  const allUsers = await User.find();
+  res.json({
+    users: allUsers.map(user => ({
+      img: user.profilePicture,
+      name: user.username,
+      location: user.location,
+    })),
+    success: true
+  });
 });
 
-app.get('/matchHistory', async (req, res) => {
 
-    res.json({
-        player: "xx player",
-        location: "??? Town",
-        time: "xx-xx-xxxx",
-            
-    });
+
+app.get('/matchHistory', async (req, res) => {
+  const allMatches = await Game.find();
+  res.json({
+    matches: allMatches.map(match => ({
+      sportName: match.sportName,
+      location: match.location,
+      inProgress: match.inProgress,
+      team1: match.team1,
+      team2: match.team2,
+      dateAndTime: match.dateAndTime,
+      isFull: match.isFull,
+      winner: match.winner
+    })),
+    success: true
+  });
 });
 
 app.post('/login', (req, res)=> {
