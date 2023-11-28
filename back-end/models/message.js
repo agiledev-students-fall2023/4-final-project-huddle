@@ -4,11 +4,16 @@ const messageSchema = mongoose.Schema({
 
     senderid: {
         required: true,
-        type: String
+        type: String,
     },
     message: {
         required: true,
-        type: String
+        type: String,
+    },
+
+    timestamp: {
+        type: Date, 
+        default: Date.now,
     }
 })
     

@@ -9,6 +9,7 @@ const mongoose = require("mongoose")
 const dotenv = require("dotenv");
 const User = require("./models/user");
 const Game = require("./models/game");
+const Message = require("./models/message");
 require('dotenv').config();
 
 const MONGODB_URL = process.env.MONGODB_URL
