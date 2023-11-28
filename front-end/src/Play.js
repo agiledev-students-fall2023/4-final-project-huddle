@@ -3,6 +3,7 @@ import "./Play.css"
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios'
 import { GiBasketballBasket } from "react-icons/gi";
+import huddlelogo from './icons/huddlelogo.png';
 
 const sports = [
   { name: 'Basketball', icon: process.env.PUBLIC_URL + '/bball.jpeg' },

@@ -1,5 +1,7 @@
 import React from 'react';
 import "./AboutUs.css"
+import huddlelogo from './icons/huddlelogo.png';
+
 
 
 class AboutUs extends React.Component {
@@ -9,7 +11,8 @@ class AboutUs extends React.Component {
                 <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>About Us</h2>
                 {/* <div className='pic'><img src={'https://picsum.photos/120'} /></div> */}
 
-                <div className='pic'><img src={`$process.env.PUBLIC_URL/huddle logo.jpeg`} /></div>
+                <div className='pic'>
+                    <img src={huddlelogo} alt='huddle logo'/></div>
                 {/* process.env.PUBLIC_URL + '/bball.jpeg' */}
                 <div>
                     <p> 
