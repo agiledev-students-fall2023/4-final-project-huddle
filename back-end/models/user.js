@@ -37,9 +37,9 @@ const userSchema = mongoose.Schema({
         required: true,
         type: Array
     },
-    comments: {
+    bio: {
         required: true,
-        type: Array
+        type: String
     }
 });
 
