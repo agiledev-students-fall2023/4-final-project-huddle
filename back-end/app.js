@@ -6,8 +6,9 @@ const axios = require("axios");
 const app = express(); // instantiate an Express object
 
 const mongoose = require("mongoose")
-const dotenv = require("dotenv")
-
+const dotenv = require("dotenv");
+const User = require("./models/user");
+const Game = require("./models/game");
 require('dotenv').config();
 
 const MONGODB_URL = process.env.MONGODB_URL
@@ -44,20 +45,17 @@ app.get("/", (req, res) => {
 
 
 app.get('/profile', async (req, res) => {
-    
-    res.json({
-        name: "John Smith",
-        img: "https://picsum.photos/150?page=home",
-        location: "New York ",
-        bio: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Nec dui nunc mattis enim ut tellus.",
-        comments: [{user: "@User1 ", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. Pellentesque adipiscing commodo elit at imperdiet dui accumsan sit amet. Elementum nisi quis eleifend quam adipiscing."},{user: "@User2", comment: "Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore magna aliqua."}],
-        sports: [{sport: "Sport 1", ranking: "Ranking", skills: [{skill: "Skill 1", rating: 4},{skill: "Skill 2",rating: 5},{skill: "Skill 3", rating: 5}], record: {wins: 10, loss: 10}} , 
-        {sport: "Sport 2", ranking: "Ranking", skills: [{skill: "Skill 1", rating: 2},{skill: "Skill 2",rating: 2},{skill: "Skill 3", rating: 4}], record: {wins: 10, loss: 10}}, 
-        {sport: "Sport 3", ranking: "Ranking", skills: [{skill: "Skill 1", rating: 3},{skill: "Skill 2",rating: 1},{skill: "Skill 3", rating: 2}], record: {wins: 10, loss: 10}}],
-        success:true
-
-    });
+  const theUser = await User.findOne({username: "ihunt"});
+  console.log(theUser);
+  res.json({
+    img: theUser.profilePicture,
+    name: theUser.username,
+    location: theUser.location,
+    bio: theUser.bio,
+    comments: theUser.comments,
+    success:true
   });
+});
 
   app.get('/otherprofile', async (req, res) => {
     
