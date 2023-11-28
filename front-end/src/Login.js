@@ -41,8 +41,8 @@ const Login = props => {
       // success
 
       console.log(`Received server response: ${JSON.stringify(response.data)}`)
-      if (response.data.success ===true)
-        {navigate("/home");}
+      3
+      navigate("/play");
     })
     .catch(err => {
       // failure
@@ -64,16 +64,16 @@ const Login = props => {
           <input type='text' name='pw' value={info.pw} 
         onChange={handlePasswordChange} placeholder='Password' className='infobox'/><br /><br />
         </div>
-        {/* <div>
+        <div>
           <input type='submit' value="Login" className='button'/> 
-        </div> */}
+        </div>
 
       </form>
 
     
-      <p>
+      {/* <p>
         <Link to="/home"><button className='button'>Login</button></Link>
-      </p>
+      </p> */}
       <p>
         <Link to="/createaccount"><button className='button'>Create Account</button></Link>
       </p>
