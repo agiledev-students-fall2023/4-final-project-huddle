@@ -4,6 +4,23 @@ const cors = require('cors');
 const path = require("path");
 const axios = require("axios");
 const app = express(); // instantiate an Express object
+
+const mongoose = require("mongoose")
+const dotenv = require("dotenv")
+
+require('dotenv').config();
+
+const MONGODB_URL = process.env.MONGODB_URL
+console.log(MONGODB_URL)
+const db = async () => {
+  try {
+    const con = await mongoose.connect(MONGODB_URL)
+    console.log(`MONGODB connected: ${con.connection.host}`)
+  } catch (error) {
+    console.error (error)
+  }
+}
+
 // we will put some server logic here later...
 // export the express app we created to make it available to other modules
 
@@ -36,8 +53,13 @@ const sampleGames = [
     { sportName: 'Tennis', numberOfPeople: 2, tierLevel: 3, locationName: 'Riverfront Courts', time: '2023-11-24T09:00:00Z' }
   ];
   
+<<<<<<< HEAD
   
 // app.use(cors());
+=======
+db()  
+app.use(cors());
+>>>>>>> d83c988d58c11f3833397b9ade9c31da34aaeaa2
 app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
