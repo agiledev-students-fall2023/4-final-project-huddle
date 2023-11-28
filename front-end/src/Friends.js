@@ -7,48 +7,55 @@ import axios from 'axios'
 
 const Friends = props => {
 
-  const [friend, setFriend] = useState([]);
+  const [friends, setFriends] = useState([]);
   useEffect(() => {
     const fetchFriend = async () => {
-      axios
-        .get("http://localhost:3000/friends")
-        .then(response => {
-          // axios bundles up all response data in response.data property
-          const friend = response.data;
-          setFriend(friend);
-        })
-        .catch(err => {
-          const errMsg = JSON.stringify(err, null, 2);// convert error object to a string so we can simply dump it to the screen
-          console.log(errMsg);
-        })
+      try {
+        const response = await axios.get("http://localhost:3000/friends")
+        const friendsData = response.data.users;
+        setFriends(friendsData);
+      } catch (error) {
+        const errMsg = JSON.stringify(error, null, 2);
+        console.log(errMsg);
+      }
     }
     fetchFriend();
   }, []);
+  // const Friends = props => {
 
+  //   const [friend, setFriend] = useState([]);
+  //   useEffect(() => {
+  //     const fetchFriend = async () => {
+  //       axios
+  //         .get("http://localhost:3000/friends")
+  //         .then(response => {
+  //           // axios bundles up all response data in response.data property
+  //           const friend = response.data;
+  //           setFriend(friend);
+  //         })
+  //         .catch(err => {
+  //           const errMsg = JSON.stringify(err, null, 2);// convert error object to a string so we can simply dump it to the screen
+  //           console.log(errMsg);
+  //         })
+  //     }
+  //     fetchFriend();
+  //   }, []);
 
   return (
     <div className="Friends">
       <h1 >Your Friends</h1>
 
       <section className="main-content">
-        <p>
-          {/* {friends.map((friend) => (
-            <FriendCard key={friend.id} friend={friend} />
-          ))} */}
-          {/* <FriendCard  friend = {friend} /> */}
+        <div>
+          {friends.map((friend) => (
+            <FriendCard key={friend.name} friend={friend} />
+          ))}
+        </div>
+
+        {/* <p>
           <FriendCard  friend = {friend} />
           <FriendCard  friend = {friend} />
-          {/* <FriendCard />
-          <FriendCard /> */}
-
-
-
-          
-
-          {/* <button style={{ marginTop: '10px' }}>Add a New Friend</button> */}
-
-
-        </p>
+        </p> */}
       </section>
       
     </div>
@@ -61,11 +68,6 @@ function FriendCard({friend}) {
         <img className="profpic" alt="profpic!" src="https://picsum.photos/200?page=home" />
         <div className="friendDetails">
           <div>Name: {friend.name}
-                {/* <span style={{ marginLeft: '10px' }}></span> */}
-            </div>
-
-            <div>
-                <label>Sport Names:</label>
                 {/* <span style={{ marginLeft: '10px' }}></span> */}
             </div>
 
