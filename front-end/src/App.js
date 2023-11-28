@@ -2,6 +2,7 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./Home.js"
 import Profile from "./Profile.js"
+import OtherProfile from "./OtherProfile.js"
 import Friends from "./Friends.js"
 import MatchHistory from "./MatchHistory.js"
 import Search from "./Search.js"
@@ -43,6 +44,9 @@ const App = props => {
 
           {/* a route to the about us screen */}
           <Route path="/profile" element={<Profile/>} />
+
+          {/* a route to the other profile  screen */}
+          <Route path="/otherprofile" element={<OtherProfile/>} />
 
           {/* a route to the friends screen */}
           <Route path="/friends" element={<Friends/>} />

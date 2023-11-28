@@ -56,6 +56,12 @@ const Friends = props => {
           <FriendCard  friend = {friend} />
           <FriendCard  friend = {friend} />
         </p> */}
+          {/* <FriendCard />
+          <FriendCard /> */}
+          {/* <button style={{ marginTop: '10px' }}>Add a New Friend</button> */}
+
+
+        </p>
       </section>
       
     </div>
@@ -89,9 +95,9 @@ function FriendCard({friend}) {
           {/* <mbutton>See Details</mbutton> */}
             
 
-          <button style={{ marginTop: '10px' }}><a href={"./Profile"}>See Details</a></button>
+          <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid' }}><a href={"./Profile"}>See Details</a></button>
 
-          <button style={{ marginTop: '10px' }}><a href={"./Lobby"}>Invite</a></button>
+          <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid'  }}><a href={"./Lobby"}>Invite</a></button>
           {/* <button className="plus-icon"><a href={"./Lobby"}>+</a></button> */}
       </div>
   );

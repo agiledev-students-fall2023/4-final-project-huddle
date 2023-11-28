@@ -3,6 +3,9 @@ import "./Messages.css"
 import { Link } from "react-router-dom";
 import axios from "axios"
 // import { response } from "../../back-end/app";
+import { LuMessageSquarePlus } from "react-icons/lu";
+
+
 
 const Messages = (props) => {
 
@@ -26,7 +29,10 @@ const Messages = (props) => {
 
     return (
         <div>
-            <h2>Messages </h2>
+            <div className="header">
+                <h2>Messages </h2>
+            </div>
+            
             {/* <Link to="/chat">
                 <h3>New Message </h3>
             </Link> */}
@@ -65,7 +71,7 @@ function NewMessage(){
         <div>
             <Link to="/NewMessage">
                 {/* <h3>props.NewMessage </h3> */}
-                <h3>New Message </h3>
+                <h3>New Message <LuMessageSquarePlus /></h3>
             </Link>
         </div>
     )

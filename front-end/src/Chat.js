@@ -26,27 +26,38 @@ const Chat = (props) => {
 
 
     return (
-        <div>
+        
+        <div className="Chat">
             <h3>Chat with {chat.person} </h3>
             {chat.sentmsg.map((message, index) => (
-                <Recieved key={index} message={message} />
+                 <Sent key={index} message={message} />
+               
             ))}
             {chat.rcvdmsg.map((message, index) => (
-                <><Sent key={index} message={message} /></>
+                <div className="Sent">
+                 <Recieved key={index} message={message} />
+                </div>
             ))}
+            
 
             {/* <Recieved chat={chat}/>
             <Sent chat={chat}/> 
             <Recieved chat={chat}/> */}
-            <Textbox /> 
+             <Textbox /> 
         </div>
+
+
+
     );
 }
 
 function Textbox(){
     return(
-        <div className="text">
-            <textarea className = "textbox"></textarea>
+        <div className="textbox">
+            <input type="text" placeholder="Type your message..."/>
+            <button>></button>
+            
+            {/* <textarea className = "textbox"></textarea> */}
         </div>
         
     )
@@ -64,6 +75,7 @@ function Sent({ message }){
 
         </div>
     ); 
+
 }
 
 function Recieved({ message }){
