@@ -24,9 +24,9 @@ const MatchHistory = props => {
     fetchMatchHistory();
     }, []);
     
-    const divStyle = {
-        border: '2px solid red',
-    };
+    // const divStyle = {
+    //     border: '2px solid red',
+    // };
 
     return (
         <><div className="MatchHistory">
@@ -50,10 +50,10 @@ const MatchHistory = props => {
 
 function MatchCard({matchHistory}) {
     return (
-        <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' , borderRadius: '10px', background: 'white'}}>
-            <div>
+        <div style={{ border: '1px solid black', display: 'flex', flexDirection: 'column', padding: '10px', marginBottom: '10px' , borderRadius: '10px', background: 'white', fontFamily: 'Arial', width: '300px', alignContent: 'center', justifyContent: 'center', fontSize:'larger'}}>
+            <div >
                 <label>Sport:</label>
-                <span style={{ marginLeft: '10px' }}>Sport Name</span>
+                <span style={{ marginLeft: '15px' }}>Sport Name</span>
             </div>
 
             <div>
@@ -76,7 +76,13 @@ function MatchCard({matchHistory}) {
                 <span style={{ marginLeft: '10px' }}>00:00</span>
             </div>
 
-            <button style={{ marginTop: '10px' }}><a href={"./Match"}>See Details</a></button>
+            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
+
+                <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid', height:'40px'  }}> 
+                    <a href={"./Match"}> Details  </a>
+                </button>
+
+            </div> 
         </div>
     );
 }

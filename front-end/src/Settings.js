@@ -1,5 +1,5 @@
 import { Link } from 'react-router-dom'
-import { useState } from 'react';
+import React, { useState } from 'react';
 import './Settings.css'
 
 /**
@@ -14,46 +14,47 @@ const Settings = props => {
     setSelectedOption(event.target.value);}
   return (
     <>
+
     <br /><br /><br />
       <form>
-      <div>Setting1: 
-      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '388px', height: '50px' }}>
+      <div>Setting 1: 
+      <select className='settingBar' value={selectedOption} onChange={handleSelectChange} >
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
           </select>
         </div>
-      <div><input type='submit' style={{ display: 'none' }}></input><br /><br /><br /><br /></div>
+      <div><input type='submit' ></input><br /><br /><br /><br /></div>
       </form>
       <form>
-      <div>Setting2: 
-      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '388px', height: '50px' }}>
+      <div>Setting 2: 
+      <select className='settingBar' value={selectedOption} onChange={handleSelectChange} >
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
           </select>
         </div>
-      <div><input type='submit' style={{ display: 'none' }} ></input><br /><br /><br /><br /></div>
+      <div><input type='submit'  ></input><br /><br /><br /><br /></div>
       </form>
       <form>
-      <div>Setting3: 
-      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '388px', height: '50px' }}>
+      <div>Setting 3: 
+      <select className='settingBar' value={selectedOption} onChange={handleSelectChange} >
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
           </select>
         </div>
-      <div><input type='submit' style={{ display: 'none' }}></input><br /><br /><br /><br /></div>
+      <div><input type='submit' ></input><br /><br /><br /><br /></div>
       </form>
       <form>
-      <div>Setting4: 
-      <select value={selectedOption} onChange={handleSelectChange} style={{ width: '388px', height: '50px' }}>
+      <div>Setting 4: 
+      <select className='settingBar' value={selectedOption} onChange={handleSelectChange} >
             <option value="option1">Option 1</option>
             <option value="option2">Option 2</option>
             <option value="option3">Option 3</option>
           </select>
         </div>
-      <div><input type='submit' style={{ display: 'none' }}></input><br /><br /><br /><br /></div>
+      <div><input type='submit' ></input><br /><br /><br /><br /></div>
       </form>
     </>
   )
