@@ -53,13 +53,8 @@ const sampleGames = [
     { sportName: 'Tennis', numberOfPeople: 2, tierLevel: 3, locationName: 'Riverfront Courts', time: '2023-11-24T09:00:00Z' }
   ];
   
-<<<<<<< HEAD
-  
-// app.use(cors());
-=======
 db()  
 app.use(cors());
->>>>>>> d83c988d58c11f3833397b9ade9c31da34aaeaa2
 app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
