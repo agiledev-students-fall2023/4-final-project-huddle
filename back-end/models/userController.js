@@ -19,3 +19,10 @@ const deleteUsers = async (res,res) => {
     await user.findByIdAndRemove(userId)
     res.send(`User ${userId} deleted.`)
 }
+
+module.exports = {
+    getUsers,
+    addUsers,
+    updateUsers,
+    deleteUsers
+}

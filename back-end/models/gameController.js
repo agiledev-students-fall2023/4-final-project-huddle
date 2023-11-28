@@ -19,3 +19,10 @@ const deleteGames = async (res,res) => {
     await game.findByIdAndRemove(gameId)
     res.send(`User ${gameId} deleted.`)
 }
+
+module.exports = {
+    getGames,
+    addGames,
+    updateGames,
+    deleteGames
+}
