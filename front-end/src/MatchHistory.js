@@ -31,16 +31,13 @@ const MatchHistory = props => {
             <h1 style={{ textAlign: 'center'}}>Your Match History</h1>
 
             <section className="main-content">
-                {matchHistory.map((match) => (
-                <MatchCard key={match.id} match={match} />
-                ))}
-                {/* <img alt="welcome!" src="https://t3.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" /> */}
-                {/* <p>
-                    
-                    <MatchCard matchHistory={matchHistory}/>
-                    <MatchCard matchHistory={matchHistory}/>
-                    <MatchCard matchHistory={matchHistory}/>
-                </p> */}
+                {Array.isArray(matchHistory) && matchHistory.length > 0 ? (
+                matchHistory.map((match) => (
+                    <MatchCard key={match.id} match={match} />
+                ))
+                ) : (
+                <p>Loading...</p>
+                )}
             </section>
 
 
@@ -90,46 +87,8 @@ function MatchCard({ match }) {
       <button style={{ marginTop: '10px' }}><a href={`./Match/${match.id}`}>See Details</a></button>
     </div>
   );
-function MatchCard({matchHistory}) {
-    return (
-        <div style={{ border: '1px solid black', display: 'flex', flexDirection: 'column', padding: '10px', marginBottom: '10px' , borderRadius: '10px', background: 'white', fontFamily: 'Arial', width: '300px', alignContent: 'center', justifyContent: 'center', fontSize:'larger'}}>
-            <div >
-                <label>Sport:</label>
-                <span style={{ marginLeft: '15px' }}>Sport Name</span>
-            </div>
-
-            <div>
-                <label>Players: {matchHistory.player}</label>
-                <span style={{ marginLeft: '10px' }}>#</span>
-            </div>
-
-            <div>
-                <label>Tier:</label>
-                <span style={{ marginLeft: '10px' }}> </span>
-            </div>
-
-            <div>
-                <label>Location: {matchHistory.location}</label>
-                <span style={{ marginLeft: '10px' }}> </span>
-            </div>
-
-            <div>
-                <label>Time: {matchHistory.time}</label>
-                <span style={{ marginLeft: '10px' }}>00:00</span>
-            </div>
-
-            <div style={{ display: 'flex', justifyContent: 'flex-end', alignItems: 'center' }}>
-
-                <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid', height:'40px'  }}> 
-                    <a href={"./Match"}> Details  </a>
-                </button>
-
-            </div> 
-        </div>
-    );
 }
 
-export default MatchCard;
 
 
-export default MatchHistory
+export default MatchHistory;

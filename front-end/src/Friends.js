@@ -52,16 +52,7 @@ const Friends = props => {
           ))}
         </div>
 
-        {/* <p>
-          <FriendCard  friend = {friend} />
-          <FriendCard  friend = {friend} />
-        </p> */}
-          {/* <FriendCard />
-          <FriendCard /> */}
-          {/* <button style={{ marginTop: '10px' }}>Add a New Friend</button> */}
-
-
-        </p>
+        
       </section>
       
     </div>
