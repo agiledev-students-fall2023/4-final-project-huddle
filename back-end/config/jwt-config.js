@@ -1,7 +1,7 @@
 require('dotenv').config();
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
+const User = require("../models/User.js");
 const ObjectId = mongoose.Types.ObjectId
-const User = require("../models/User.js")
 
 const passportJWT = require("passport-jwt")
 const ExtractJwt = passportJWT.ExtractJwt
@@ -23,8 +23,6 @@ const dotenv = require("dotenv");
 // }
 // db();
 // mongoose models for MongoDB data manipulation
-
-
 
 // set up some JWT authentication options for passport
 let jwtOptions = {
