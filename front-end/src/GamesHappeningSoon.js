@@ -13,6 +13,7 @@ function GamesHappeningSoon() {
             axios.get(`/sampleGames/${sport}`)
                 .then(response => {
                     setGames(response.data);
+                    console.log(games);
                 })
                 .catch(error => {
                     console.error('There was an error fetching the games:', error);

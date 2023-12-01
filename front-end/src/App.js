@@ -1,8 +1,10 @@
 //import React, { useState } from "react"
+import axios from "axios"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./Home.js"
 import Profile from "./Profile.js"
-import OtherProfile from "./OtherProfile.js"
+import ViewProfile from "./ViewProfile.js"
+import EditProfile from "./EditProfile.js"
 import Friends from "./Friends.js"
 import MatchHistory from "./MatchHistory.js"
 import Search from "./Search.js"
@@ -28,7 +30,7 @@ import "./App.css"
 // set up routes so different URL routes load up different main components
 const App = props => {
   //const [user, setUser] = useState({}) // a state variable that stores the logged-in user, if any
-
+  // axios.defaults.withCredentials = true;
   return (
     
     <div className="container">
@@ -46,7 +48,10 @@ const App = props => {
           <Route path="/profile" element={<Profile/>} />
 
           {/* a route to the other profile  screen */}
-          <Route path="/otherprofile" element={<OtherProfile/>} />
+          <Route path="/viewprofile" element={<ViewProfile/>} />
+
+           {/* a route to the edit profile  screen */}
+           <Route path="/editprofile" element={<EditProfile/>} />
 
           {/* a route to the friends screen */}
           <Route path="/friends" element={<Friends/>} />
