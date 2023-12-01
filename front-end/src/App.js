@@ -1,4 +1,5 @@
 //import React, { useState } from "react"
+import axios from "axios"
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./Home.js"
 import Profile from "./Profile.js"
@@ -29,7 +30,7 @@ import "./App.css"
 // set up routes so different URL routes load up different main components
 const App = props => {
   //const [user, setUser] = useState({}) // a state variable that stores the logged-in user, if any
-
+  // axios.defaults.withCredentials = true;
   return (
     
     <div className="container">

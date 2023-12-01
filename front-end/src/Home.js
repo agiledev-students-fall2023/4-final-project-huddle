@@ -10,7 +10,9 @@ const Home = props => {
   return (
     <>
       <h1 className='header'>Home</h1>
-
+      <p>
+      <Link to="/play"><button className="hbutton">Games</button></Link><br /><br /><br /><br />
+      </p>
       <p>
         <Link to="/login"><button className="hbutton">Login</button></Link><br /><br /><br /><br />
       </p>
