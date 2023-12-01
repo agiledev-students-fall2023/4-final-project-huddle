@@ -46,7 +46,9 @@ app.get("/", (req, res) => {
 
 
 app.get('/profile', async (req, res) => {
-  const theUser = await User.findOne({username: "yhunter"});
+  // const theUser = await User.findOne({username: "yhunter"});
+  const theUser = await User.findOne({_id: "65653a973fad11a425c9a76f"});
+
   console.log(theUser);
   res.json({
     img: theUser.profilePicture,
@@ -119,22 +121,39 @@ app.get('/gamesHappeningSoon/:sport', (req, res) => {
 
 
 app.get("/messages", (req, res) => {
-    // res.send("messages!");
+
+  // const singlemessage = await Message.findOne({_id : "6566008dcbd6e0752876b6ab"})
+  // console.log(singlemessage.body); 
+  // console.log(singlemessage);
+
+  // res.json({
+  //      _id: singlemessage._id, 
+  //      time: singlemessage.time,
+  //      body: singlemessage.body, 
+  //      success:true
+
     res.json({
         from: "person A",
         text: "hey! hows..."
 
-        // message1: "Hey",
-        // message2: "want to play bball?",
-        // message3: "sure what time works?",
-        // message4: "I get off work at 5",   
-        // message5: "my friend wants to join... can you find another player for a 2 on 2?",           
+        
     });
 });
 
 
-app.get("/chat", (req, res) => {
-    // res.send("messages!");
+app.get("/chat", async (req, res) => {
+  //  const singlemessage = await Message.findOne({_id : "6566008dcbd6e0752876b6ab"})
+  //  console.log(singlemessage.body); 
+  //  console.log(singlemessage);
+
+  //  res.json({
+  //       _id: "6566008dcbd6e0752876b6ab", 
+  //       time: Timestamp({ t: 0, i: 0 }),
+  //       body: " this is a test chat message"
+  //     });
+  
+  // res.send("messages!");
+
     res.json({
         person: "person A",
         sentmsg: ["Hey",
@@ -146,7 +165,6 @@ app.get("/chat", (req, res) => {
         
     });
 });
-
 
 
 // export the express app we created to make it available to other modules

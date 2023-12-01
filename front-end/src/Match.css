@@ -1,20 +1,24 @@
 .Match{
     text-align: center;
-    /* display: flex; */
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }
 
 
 .MatchCard {
     /* display: flex; */
     border-radius: 5%;
+    border-color: gray;
     /* justify-content: center; */
     width: 300px; 
-    /* height: 150px; */
+    height: 400px;
     /* padding: auto; */
     padding-bottom: 10%;
+    padding-top: 20%;
+    margin-top: auto;
     /* font: large; */
-    font-style: normal;
-    font-family: Arial, Helvetica, sans-serif;
+    
     border-style: solid;  
     /* font-family: Impact, Haettenschweiler, 'Arial Narrow Bold', sans-serif; */
     /* font-size: larger; */
@@ -23,5 +27,45 @@
     align-items: center;
     background-color: rgb(255, 255, 255);
     align-self: center;
+
   }
+
+  .cardtext{
+    font-style: normal;
+    align-self: center;
+    font-size: larger;
+    margin: auto;
+  }
+
+  .team{
+    padding-left: 40px;
+    font-size: larger;
+
+
+  }
+
+  .header{
+    background-color: coral;
+    width: 300px;
+    height: 60px; 
+    justify-self: center;
+    font-size: xx-large;
+    font-family: Arial, Helvetica, sans-serif;
+    margin-bottom: 10px;
+    border-radius: 10px;
+    text-align: center;
+    justify-content: center;
+    
+    /* align-self: flex-start; */
+    /* align-self: center; */
+    /* align-content: center; */
+    /* align-items: flex-end ; */
+  }
+
+  .pic{
+    height: 150px;
+    width: 300px;
+  }
+
+
 
