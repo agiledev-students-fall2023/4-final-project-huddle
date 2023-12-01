@@ -2,7 +2,8 @@
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom"
 import Home from "./Home.js"
 import Profile from "./Profile.js"
-import OtherProfile from "./OtherProfile.js"
+import ViewProfile from "./ViewProfile.js"
+import EditProfile from "./EditProfile.js"
 import Friends from "./Friends.js"
 import MatchHistory from "./MatchHistory.js"
 import Search from "./Search.js"
@@ -46,7 +47,10 @@ const App = props => {
           <Route path="/profile" element={<Profile/>} />
 
           {/* a route to the other profile  screen */}
-          <Route path="/otherprofile" element={<OtherProfile/>} />
+          <Route path="/viewprofile" element={<ViewProfile/>} />
+
+           {/* a route to the edit profile  screen */}
+           <Route path="/editprofile" element={<EditProfile/>} />
 
           {/* a route to the friends screen */}
           <Route path="/friends" element={<Friends/>} />

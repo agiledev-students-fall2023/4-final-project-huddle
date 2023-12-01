@@ -1,22 +1,20 @@
 import React from "react"
-import "./Profile.css"
+import "./ViewProfile.css"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { useNavigate } from "react-router-dom";
+import { Link } from "react-router-dom";
 
 
-const Profile = props => {
+const ViewProfile = props => {
   const [profile, setProfile] = useState([]);
-  const navigate = useNavigate();
   useEffect(() => {
     const fetchProfile = async () => {
       axios
-        .get("http://localhost:3000/profile")
+        .get("http://localhost:3000/viewprofile")
         .then(response => {
           // axios bundles up all response data in response.data property
-          const profile = response.data;
-          console.log(profile);
-          setProfile(profile);
+          const Profile = response.data;
+          setProfile(Profile);
         })
         .catch(err => {
           const errMsg = JSON.stringify(err, null, 2);// convert error object to a string so we can simply dump it to the screen
@@ -28,7 +26,7 @@ const Profile = props => {
 
 
   return (
-    <div className="Profile">
+    <div className="OtherProfile">
       
       <section className="main-content">
         <div className="biofull">
@@ -39,8 +37,8 @@ const Profile = props => {
             <p>Location: {profile.location}</p>
             <p>Bio:{profile.bio}</p>
           </div>
+
         </div>
-        <button onClick={() => navigate("/editprofile")}>Edit Profile</button>
 
         <div className="comments">
           <h2>Profile Comments</h2>
@@ -51,7 +49,15 @@ const Profile = props => {
             </div>
 
           ))}
-        
+        </div>
+        <div className="Commentform">
+          <form action = "viewprofile" method = "Post">
+            <textarea name="comments" id="comments" style={{width: "100%"}}>
+
+            </textarea>
+            <input type="submit" value="Add comment"></input>
+
+          </form>
         </div>
 
 
@@ -72,4 +78,16 @@ const Profile = props => {
   )
 }
 
-export default Profile
+
+function addComment(){
+    return (
+        <div>
+            <Link to="/NewMessage">
+                {/* <h3>props.NewMessage </h3> */}
+                <h3>Add a comment about this user </h3>
+            </Link>
+        </div>
+    )
+}
+
+export default ViewProfile
