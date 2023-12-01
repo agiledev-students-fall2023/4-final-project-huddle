@@ -12,16 +12,16 @@ import './Login.css'
 const Login = props => {
   let navigate = useNavigate()
   const [info, setInfo] = useState({
-    email: '',
+    username: '',
     pw: '',
     
   });
   const [error, setError] = useState("")
 
-  function handleEmailChange(e) {
+  function handleUsernameChange(e) {
     setInfo({
       ...info,
-      email: e.target.value
+      username: e.target.value
     });
   }
 
@@ -34,15 +34,31 @@ const Login = props => {
   function handleSubmit(e) {
     e.preventDefault();
     axios
-    .post("http://localhost:3000/login", {
+    .post("http://localhost:3000/auth/login", {
       ...info
     })
     .then(response => {
       // success
 
       console.log(`Received server response: ${JSON.stringify(response.data)}`)
-      3
-      navigate("/play");
+      localStorage.setItem("token", response.data.token);
+      console.log(localStorage.getItem("token"));
+      const jwtToken = localStorage.getItem("token");
+      axios
+      .get(`http://localhost:3000/protected/`, {
+        headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
+      })
+      .then(res => {
+        console.log(res.data) // store the response data
+      })
+      .catch(err => {
+        console.log(
+          "The server rejected the request for this protected resource... we probably do not have a valid JWT token."
+        )
+        // setIsLoggedIn(false)  update this state variable, so the component re-renders
+      })
+      
+      // navigate("/play");
     })
     .catch(err => {
       // failure
@@ -57,8 +73,8 @@ const Login = props => {
       <h1 className='login_header'>Login</h1>
       <form onSubmit={handleSubmit}>
         <div> 
-          <input type='text' name='email' placeholder='Email' id="name_field" value={info.email} 
-        onChange={handleEmailChange} className='infobox'/><br /><br />
+          <input type='text' name='username' placeholder='username' id="name_field" value={info.username} 
+        onChange={handleUsernameChange} className='infobox'/><br /><br />
         </div> 
         <div> 
           <input type='text' name='pw' value={info.pw} 

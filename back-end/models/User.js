@@ -8,7 +8,7 @@ const jwtStrategy = require("../config/jwt-config.js") // import setup options f
 // this is our mongoose model for a user
 const UserSchema = new Schema({
   id: {
-    required: true,
+    
     type: String
 },
   username: {
@@ -40,11 +40,15 @@ const UserSchema = new Schema({
       type: Array
   },
   comments: {
-      required: true,
+      required: false,
       type: Array
   },
+  profilePicture: {
+    required: false,
+    type: String
+},
   bio: {
-      required: true,
+      
       type: String
   }
 

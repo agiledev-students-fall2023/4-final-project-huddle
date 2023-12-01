@@ -15,10 +15,17 @@ const CreateAccount = props => {
   const [info, setInfo] = useState({
     email: '',
     pw: '',
-    username:''
+    username:'',
+    games:[],
+    location: '',
+    win: 0,
+    loss: 0,
+    friends:[],
+    bio:''
     
   });
-  const [error, setError] = useState("")
+  const [error, setError] = useState("");
+  const [response, setResponse] = useState("");
 
   function handleEmailChange(e) {
     setInfo({
@@ -39,16 +46,26 @@ const CreateAccount = props => {
       username: e.target.value
     });
   }
+  function handleLocationChange(e) {
+    setInfo({
+      ...info,
+      location: e.target.value
+    });
+  }
   function handleSubmit(e) {
     e.preventDefault();
     axios
-    .post("http://localhost:3000/createaccount", {
+    .post("http://localhost:3000/auth/signup", {
       ...info
     })
     .then(response => {
       // success
       console.log(`Received server response: ${JSON.stringify(response.data)}`)
-      navigate("/login");
+      console.log(`Server response: ${JSON.stringify(response.data, null, 0)}`);
+      setResponse(response.data);
+      //set Cookies
+    
+      // navigate("/login");
     })
     .catch(err => {
       // failure
@@ -62,14 +79,13 @@ const CreateAccount = props => {
     <div className='container'>
       <h1 className='CreateAccountHeader'>Create Account</h1>
       <form onSubmit={handleSubmit}>
-        <div className='EmailInput' > <input type='text' name='email'  
-        value={info.email} 
-        onChange={handleEmailChange} placeholder='Email'
-        style={{ width: '380px', height: '50px' }}></input> <br /><br /><br /><br /></div>
-        <div className='PasswordInput'> <input type='text' name='pw' value={info.pw} 
-        onChange={handlePasswordChange} placeholder='Password' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
         <div className='UsernameInput'> <input type='text' name='username' value={info.username} 
         onChange={handleUsernameChange} placeholder='Username' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
+        <div className='PasswordInput'> <input type='text' name='pw' value={info.pw} 
+        onChange={handlePasswordChange} placeholder='Password' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
+        
+        <div className='LocationInput'> <input type='text' name='location' value={info.location} 
+        onChange={handleLocationChange} placeholder='Location' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
         <div><input type='submit' onChange={handleSubmit} value="Login" style={{ width: '380px', height: '30px'}}/> </div>
       </form>
 

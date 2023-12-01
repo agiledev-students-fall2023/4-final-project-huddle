@@ -7,7 +7,7 @@ const app = express(); // instantiate an Express object
 
 const mongoose = require("mongoose")
 const dotenv = require("dotenv");
-const User = require("./models/user");
+const User = require("./models/User");
 const Game = require("./models/game");
 const { match } = require("assert");
 const Message = require("./models/message");
@@ -46,7 +46,6 @@ app.use(passport.initialize())
 
 // mongoose models for MongoDB data manipulation
 
-const User = require("./models/User.js")
 
 const sampleGames = [
     { sportName: 'Basketball', numberOfPeople: 10, tierLevel: 3, locationName: 'Central Gym', time: '2023-11-20T12:00:00Z' },
@@ -58,7 +57,8 @@ const sampleGames = [
   ];
   
 db()  
-app.use(cors());
+// app.use(cors());
+
 app.use(express.json()); // decode JSON-formatted incoming POST data
 app.use(express.urlencoded({ extended: true })); // decode url-encoded incoming POST data
 app.use(morgan("dev", { skip: (req, res) => process.env.NODE_ENV === "test" })) // log all incoming requests, except when in unit test mode.  morgan has a few logging default styles - dev is a nice concise color-coded style
@@ -76,13 +76,11 @@ const cookieRoutes = require("./routes/cookie-routes.js")
 const protectedContentRoutes = require("./routes/protected-content-routes.js")
 
 // use the specialized routing files
+
 app.use("/auth", authenticationRoutes()) // all requests for /auth/* will be handled by the authenticationRoutes router
 app.use("/cookie", cookieRoutes()) // all requests for /cookie/* will be handled by the cookieRoutes router
 app.use("/protected", protectedContentRoutes()) // all requests for /protected/* will be handled by the protectedRoutes router
-app.use(function(req, res, next) {
-  res.header("Access-Control-Allow-Origin", "http://localhost:7002");
-  next();
-});
+
 
 
 

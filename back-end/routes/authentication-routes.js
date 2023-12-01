@@ -1,4 +1,5 @@
 const express = require("express"); // CommonJS import style!
+const cors = require('cors');
 
 // mongoose models for MongoDB data manipulation
 const mongoose = require("mongoose");
@@ -8,14 +9,21 @@ const User = require("../models/User.js");
 const authenticationRouter = () => {
   // create a new router that we can customize
   const router = express.Router();
+  router.use(cors({ origin: process.env.FRONT_END_DOMAIN, credentials: true }))
 
   // a route to handle user signup requests to /auth/signup
   router.post("/signup", async (req, res, next) => {
-    // console.log(`Incoming signup data: ${JSON.stringify(req.body, null, 0)}`)
+    console.log(`Incoming signup data: ${JSON.stringify(req.body, null, 0)}`)
     // grab the username and password from the POST body
     const username = req.body.username;
-    const password = req.body.password;
-
+    const password = req.body.pw;
+    const games = req.body.games;
+    const win = req.body.win;
+    const loss = req.body.loss;
+    const location = req.body.location;
+    const friends = req.body.friends;
+    const bio = req.body.bio;
+    // res.send([username,password])
     if (!username || !password) {
       // no username or password received in the POST body... send an error
       res.status(401).json({
@@ -27,7 +35,7 @@ const authenticationRouter = () => {
 
     // try to create a new user
     try {
-      const user = await new User({ username, password }).save();
+      const user = await new User({ username, password, games, win, loss, location, friends, bio }).save();
       // user saved successfully... send a success response
       console.error(`New user: ${user}`);
       const token = user.generateJWT(); // generate a signed token
@@ -54,7 +62,10 @@ const authenticationRouter = () => {
   router.post("/login", async function (req, res, next) {
     // grab the name and password that were submitted as POST body data
     const username = req.body.username;
-    const password = req.body.password;
+    const password = req.body.pw;
+
+
+
     // console.log(`${username}, ${password}`)
 
     if (!username || !password) {

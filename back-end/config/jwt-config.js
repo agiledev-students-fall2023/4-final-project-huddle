@@ -1,3 +1,4 @@
+require('dotenv').config();
 const mongoose = require("mongoose")
 const ObjectId = mongoose.Types.ObjectId
 const User = require("../models/User.js")
@@ -5,6 +6,25 @@ const User = require("../models/User.js")
 const passportJWT = require("passport-jwt")
 const ExtractJwt = passportJWT.ExtractJwt
 const JwtStrategy = passportJWT.Strategy
+const express = require("express"); // CommonJS import style!
+const dotenv = require("dotenv");
+// require('dotenv').config({ path: '../.env' });
+
+// const MONGODB_URL = process.env.MONGODB_URL
+// const cors = require('cors');
+
+// const db = async () => {
+//   try {
+//     const con = await mongoose.connect(MONGODB_URL)
+//     console.log(`MONGODB connected: ${con.connection.host}`)
+//   } catch (error) {
+//     console.error (error)
+//   }
+// }
+// db();
+// mongoose models for MongoDB data manipulation
+
+
 
 // set up some JWT authentication options for passport
 let jwtOptions = {
@@ -27,8 +47,8 @@ const jwtVerifyToken = async function (jwt_payload, next) {
   // try to find a matching user in our database
 
   // find this user in the database
-  const userId = ObjectId(jwt_payload.id) // convert the string id to an ObjectId
-  const user = await User.findOne({ _id: userId }).exec()
+  const userId = new ObjectId(jwt_payload.id) // convert the string id to an ObjectId
+  const user = await User.findById({ _id: userId }).exec()
   if (user) {
     // we found the user... keep going
     next(null, user)
