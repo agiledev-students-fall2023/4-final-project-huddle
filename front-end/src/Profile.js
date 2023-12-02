@@ -40,7 +40,7 @@ const Profile = props => {
             <p>Bio:{profile.bio}</p>
           </div>
         </div>
-        <button onClick={() => navigate("/editprofile")}>Edit Profile</button>
+        {/*<button onClick={() => navigate("/editprofile")}>Edit Profile</button>*/}
 
         <div className="comments">
           <h2>Profile Comments</h2>
@@ -49,7 +49,7 @@ const Profile = props => {
               <h3>user</h3>
               <p>{comment}</p>
             </div>
-
+ 
           ))}
         
         </div>
