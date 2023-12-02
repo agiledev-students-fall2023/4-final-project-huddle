@@ -13,6 +13,7 @@ import GamesHappeningSoon from "./GamesHappeningSoon.js"
 import CreateGame from "./CreateGame.js"
 import Match from "./Match.js"
 import HamburgerMenu from './HamburgerMenu';
+import Logout from "./Logout.js"
 
 
 
@@ -58,6 +59,7 @@ const App = props => {
 
           {/* a route to the login screen*/}
           <Route path="/login" element={<Login />} />
+          <Route path="/logout" element={<Logout />} />
 
           {/* a route to the create account screen*/}
           <Route path="/createaccount" element={<CreateAccount />} />
