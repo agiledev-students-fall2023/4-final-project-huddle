@@ -1,6 +1,7 @@
 const express = require("express"); // CommonJS import style!
 const passport = require("passport");
-
+const mongoose = require("mongoose");
+const User = require("../models/User");
 // a method that constains code to handle routes related to protected content that requires login to access
 const protectedContentRoutes = () => {
   // create a new router that we can customize
@@ -26,8 +27,23 @@ const protectedContentRoutes = () => {
       next();
     }
   );
+  router.get("/profile",passport.authenticate("jwt", {session:false}), async (req,res,next)=>{
+    const theUser = await User.findOne({username: req.user.username});
+    res.json({
+      img: theUser.profilePicture,
+      name: theUser.username,
+      location: theUser.location,
+      bio: theUser.bio,
+      comments: theUser.comments,
+      success:true
+    });
+
+
+  }
+  );
 
   return router;
+
 };
 
 // export the function that contains code to handle cookie-related routes

@@ -3,15 +3,20 @@ import "./Profile.css"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { useNavigate } from "react-router-dom";
+import { Navigate } from "react-router-dom"
 
 
 const Profile = props => {
+  const jwtToken = localStorage.getItem("token");
+  const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true)
   const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     const fetchProfile = async () => {
       axios
-        .get("http://localhost:3000/profile")
+        .get("http://localhost:3000/protected/profile",
+        {headers: { Authorization: `JWT ${jwtToken}` },
+    })
         .then(response => {
           // axios bundles up all response data in response.data property
           const profile = response.data;
@@ -19,16 +24,18 @@ const Profile = props => {
           setProfile(profile);
         })
         .catch(err => {
-          const errMsg = JSON.stringify(err, null, 2);// convert error object to a string so we can simply dump it to the screen
-          console.log(errMsg);
+          console.log(
+            "The server rejected the request for this protected resource... we probably do not have a valid JWT token."
+          )
+          setIsLoggedIn(false);
         })
     }
     fetchProfile();
   }, []);
-
-
   return (
-    <div className="Profile">
+    <>
+    {isLoggedIn ? (
+      <div className="Profile">
       
       <section className="main-content">
         <div className="biofull">
@@ -68,8 +75,14 @@ const Profile = props => {
         </div>
 
         </section>
+    
     </div>
+    ) : (<Navigate to="/login" />
+    )}
+    </>
   )
+ 
+
 }
 
 export default Profile
