@@ -210,6 +210,13 @@ app.get('/gamesHappeningSoon/:sport', (req, res) => {
     // sending the games data back to the client
     res.json(games);
   });
+app.get('/protected/gamesHappeningSoon', async (req, res) => {
+    const all = await Game.find();
+    
+    
+    // sending the games data back to the client
+    res.send(all);
+  });
 
 
 app.get("/messages", (req, res) => {
