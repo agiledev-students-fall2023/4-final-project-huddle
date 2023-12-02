@@ -122,7 +122,7 @@ app.get("/", (req, res) => {
     
   getuser(req,res);
 });
-
+ 
 
 app.get('/profile', async (req, res) => {
   const theUser = await User.findOne({username: "ihunt"});
