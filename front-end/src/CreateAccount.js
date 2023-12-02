@@ -65,7 +65,7 @@ const CreateAccount = props => {
       setResponse(response.data);
       //set Cookies
     
-      // navigate("/login");
+      navigate("/login");
     })
     .catch(err => {
       // failure
