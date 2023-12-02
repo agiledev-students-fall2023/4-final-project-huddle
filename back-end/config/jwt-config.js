@@ -1,3 +1,4 @@
+// This is from https://github.com/nyu-software-engineering/data-storage-example-app
 require('dotenv').config();
 const mongoose = require("mongoose");
 const User = require("../models/User.js");
