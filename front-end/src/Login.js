@@ -10,6 +10,7 @@ import './Login.css'
  */
 
 const Login = props => {
+
   let navigate = useNavigate()
   const [info, setInfo] = useState({
     username: '',
@@ -17,7 +18,9 @@ const Login = props => {
     
   });
   const [error, setError] = useState("")
-
+  if (localStorage.getItem("token")){
+    return(<></>)
+  }
   function handleUsernameChange(e) {
     setInfo({
       ...info,
@@ -50,6 +53,7 @@ const Login = props => {
       })
       .then(res => {
         console.log(res.data) // store the response data
+        navigate("/profile");
       })
       .catch(err => {
         console.log(
@@ -58,7 +62,7 @@ const Login = props => {
         // setIsLoggedIn(false)  update this state variable, so the component re-renders
       })
       
-      // navigate("/play");
+      
     })
     .catch(err => {
       // failure

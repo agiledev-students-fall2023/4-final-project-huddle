@@ -33,6 +33,12 @@ const CreateAccount = props => {
       email: e.target.value
     });
   }
+  function handleBioChange(e) {
+    setInfo({
+      ...info,
+      bio: e.target.value
+    });
+  }
 
   function handlePasswordChange(e) {
     setInfo({
@@ -65,7 +71,7 @@ const CreateAccount = props => {
       setResponse(response.data);
       //set Cookies
     
-      // navigate("/login");
+      navigate("/login");
     })
     .catch(err => {
       // failure
@@ -81,9 +87,13 @@ const CreateAccount = props => {
       <form onSubmit={handleSubmit}>
         <div className='UsernameInput'> <input type='text' name='username' value={info.username} 
         onChange={handleUsernameChange} placeholder='Username' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
+        
         <div className='PasswordInput'> <input type='text' name='pw' value={info.pw} 
         onChange={handlePasswordChange} placeholder='Password' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
-        
+
+        <div className='BioInput'> <input type='text' name='bio' value={info.bio} 
+        onChange={handleBioChange} placeholder='Bio' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
+
         <div className='LocationInput'> <input type='text' name='location' value={info.location} 
         onChange={handleLocationChange} placeholder='Location' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
         <div><input type='submit' onChange={handleSubmit} value="Login" style={{ width: '380px', height: '30px'}}/> </div>
