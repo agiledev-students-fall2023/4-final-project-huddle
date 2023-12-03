@@ -14,10 +14,11 @@ const Match = props => {
     <div className="Match">
       {/* <h1>  Match</h1> */}
       <section className="main-content">
-        <img className="pic" alt="sport pic" src="https://t3.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" />
+         <img className="pic" alt="sport pic" src="https://t3.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" />
         <p>
           <div className="header">
             Match Details
+            
           </div>
           <div className="MatchCard">
             <MatchCard />
@@ -43,6 +44,7 @@ function MatchCard() {
           <div className="cardtext">
               <label>Sport: </label>
               <span >Baseball Game </span>
+
           </div>
 
           <div className="cardtext">
