@@ -4,6 +4,9 @@ import "./Friends.css"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 // import { Link } from 'react-router-dom'
+import { FaLocationDot } from "react-icons/fa6";
+
+
 
 const Friends = props => {
 
@@ -63,13 +66,13 @@ function FriendCard({friend}) {
   return (
       <div className="FriendCard">
         <img className="profpic" alt="profpic!" src="https://picsum.photos/200?page=home" />
-        <div className="friendDetails">
-          <div>Name: {friend.name}
+        <div className="username">
+          <div> {friend.name}
                 {/* <span style={{ marginLeft: '10px' }}></span> */}
             </div>
 
-            <div>
-                <label>Location: {friend.location}</label>
+            <div className="location">
+                <label> <FaLocationDot /> {friend.location}</label>
                 {/* <span style={{ marginLeft: '10px' }}> </span> */}
             </div>
             
@@ -86,9 +89,9 @@ function FriendCard({friend}) {
           {/* <mbutton>See Details</mbutton> */}
             
 
-          <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid' }}><a href={"./Profile"}>See Details</a></button>
+          <button style={{ marginLeft: '0px', marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'white', borderRadius: '10px', border: 'solid' }}><a href={"./Profile"}>See Details</a></button>
 
-          <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid'  }}><a href={"./Lobby"}>Invite</a></button>
+          <button style={{ marginLeft: '0px', marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'white', borderRadius: '10px', border: 'solid' }}><a href={"./Lobby"}>Invite</a></button>
           {/* <button className="plus-icon"><a href={"./Lobby"}>+</a></button> */}
       </div>
   );
