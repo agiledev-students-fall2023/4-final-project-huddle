@@ -124,6 +124,29 @@ app.get("/", (req, res) => {
 });
  
 
+
+app.post('/auth/createaccount', async (req, res)=> {
+  const {username, pw: password, location} = req.body;
+
+  if (!username || !password || !location) {
+    return res.status(400).json({ message: "Required fields missing" });
+  }
+
+  //create the new user thats about to register 
+  const newUser = new User({username, password, location})
+
+  try {
+    await newUser.save();
+    res.status(200).json({ message: "Account created successfully!" });
+  } catch (err) {
+    console.error("Error creating account", err);
+    return res.status(500).json({ message: "Error creating account" });
+  }
+
+  
+})
+
+
 app.get('/profile', async (req, res) => {
   // const theUser = await User.findOne({username: "yhunter"});
   const theUser = await User.findOne({_id: "65653a973fad11a425c9a76f"});
@@ -198,10 +221,6 @@ app.post('/login', (req, res)=> {
   else{res.json({success:false})}
 })
 
-app.post('/createaccount', (req, res)=> {
-  console.log(req.body)
-  res.json({success:true})
-})
 
 
 app.get('/gamesHappeningSoon/:sport', (req, res) => {

@@ -1,7 +1,6 @@
 import { Link, useNavigate } from 'react-router-dom'
 import axios from "axios"
-import { useState } from 'react'
-
+import React, { useState } from 'react'
 import './CreateAccount.css'
 
 /**
@@ -26,6 +25,13 @@ const CreateAccount = props => {
   });
   const [error, setError] = useState("");
   const [response, setResponse] = useState("");
+
+  const handleInputChange = (e) => {
+    setInfo({
+      ...info,
+      [e.target.name]: e.target.value 
+    });
+  };
 
   function handleEmailChange(e) {
     setInfo({
@@ -58,29 +64,58 @@ const CreateAccount = props => {
       location: e.target.value
     });
   }
-  function handleSubmit(e) {
+  const [username, setUsername]= useState("");
+  const [password, setPassword]= useState("");
+  const [location, setLocation]= useState("");
+
+  const handleSubmit = (e) => {
     e.preventDefault();
-    axios
-    .post("http://localhost:3000/auth/signup", {
-      ...info
-    })
-    .then(response => {
-      // success
-      console.log(`Received server response: ${JSON.stringify(response.data)}`)
-      console.log(`Server response: ${JSON.stringify(response.data, null, 0)}`);
-      setResponse(response.data);
-      //set Cookies
+
+    axios.post("http://localhost:3000/auth/createaccount", info)
+      .then(response => {
+        // Handle success
+        navigate("/login");
+      })
+      .catch(err => {
+        // Handle error
+        setError("Error creating account!");
+      });
+  };
+  // const handleSubmit = (e) => {
+  //   const user = {
+  //     name:name, 
+  //     password:password, 
+  //     email: email
+      
+      
+  //   }
+  //   //zaken|
+  //   e.preventDefault();
+  //   axios
+  //   .post("http://localhost:3000/auth/createaccount",user)
+  //   .then((response) => {
+  //     console.log(response)
+  //     setName("");
+  //     setEmail("");
+  //     setPassword("");
+
+  //     // success
+  //     console.log(`Received server response: ${JSON.stringify(response.data)}`)
+  //     console.log(`Server response: ${JSON.stringify(response.data, null, 0)}`);
+  //     setResponse(response.data);
+  //     //set Cookies
     
-      navigate("/login");
-    })
-    .catch(err => {
-      // failure
-      console.log(`Received server error: ${err}`)
-      setError(
-        "This form doesn't actually work, sorry.  There is no back-end for this example app in which to save the data. Pop open your web browser's Javascript Console to see the error trying to connect to a non-existent back-end."
-      )
-    })
-}
+  //     navigate("/login");
+  //   })
+    // .catch(err => {
+    //   // failure
+    //   console.log(`Received server error: ${err}`)
+    //   setError(
+    //     "error creating account!"
+    //   )
+    //   console.log("error cerating acocunt ", error)
+    // })
+// }
   return (
     <div className='container'>
       <h1 className='CreateAccountHeader'>Create Account</h1>
@@ -96,7 +131,7 @@ const CreateAccount = props => {
 
         <div className='LocationInput'> <input type='text' name='location' value={info.location} 
         onChange={handleLocationChange} placeholder='Location' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
-        <div><input type='submit' onChange={handleSubmit} value="Login" style={{ width: '380px', height: '30px'}}/> </div>
+        <div><input type='submit' onChange={handleSubmit} value="Create Account" style={{ width: '380px', height: '30px'}}/> </div>
       </form>
 
     </div>
