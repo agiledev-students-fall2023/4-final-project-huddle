@@ -221,25 +221,31 @@ app.get('/protected/gamesHappeningSoon', async (req, res) => {
   });
 
 
-app.get("/messages", (req, res) => {
+app.get("/messages", async (req, res) => {
 
   // const singlemessage = await Message.findOne({_id : "6566008dcbd6e0752876b6ab"})
   // console.log(singlemessage.body); 
   // console.log(singlemessage);
-
-  // res.json({
-  //      _id: singlemessage._id, 
-  //      time: singlemessage.time,
-  //      body: singlemessage.body, 
-  //      success:true
-
     res.json({
         from: "person A",
         text: "hey! hows..."
-
-        
+ 
     });
 });
+
+// app.get('/viewprofile', async (req, res) => {
+    
+//   const theUser = await User.findOne({username: "ihunt"});
+//  console.log(theUser);
+//  res.json({
+//   img: theUser.profilePicture,
+//   name: theUser.username,
+//   location: theUser.location,
+//   bio: theUser.bio,
+//   comments: theUser.comments,
+//   success:true
+// });
+// });
 
 
 app.get("/chat", async (req, res) => {

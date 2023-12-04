@@ -4,8 +4,10 @@ const messageSchema = mongoose.Schema({
 
     senderid: {
         required: true,
-        type: String,
+        type: mongoose.Schema.Types.ObjectId,
+        ref:"User"
     },
+
     message: {
         required: true,
         type: String,

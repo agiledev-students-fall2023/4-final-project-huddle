@@ -35,9 +35,21 @@ const UserSchema = new Schema({
       type: Number
   },
   friends: {
-      required: true,
-      type: Array
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"User"
   },
+
+  friendrequests: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"User"
+  },
+
+  sentFriendRequests: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"User"
+  },
+
+
   comments: {
       required: false,
       type: Array
