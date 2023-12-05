@@ -1,8 +1,11 @@
 // This is from https://github.com/nyu-software-engineering/data-storage-example-app
 const express = require("express"); // CommonJS import style!
 const passport = require("passport");
+const multer = require("multer");
+const path = require("path");
 const mongoose = require("mongoose");
 const User = require("../models/User");
+
 // a method that constains code to handle routes related to protected content that requires login to access
 const protectedContentRoutes = () => {
   // create a new router that we can customize
