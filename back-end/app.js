@@ -12,7 +12,17 @@ const Game = require("./models/game");
 const { match } = require("assert");
 const Message = require("./models/message");
 require('dotenv').config();
-
+const multer  = require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/images")
+  },
+  filename: function (req, file, cb) {
+    // rename the files to include the current time and date
+    cb(null, file.fieldname + "-" + Date.now()+ path.extname(file.originalname));
+  },
+});
+const upload = multer({storage: storage});
 const MONGODB_URL = process.env.MONGODB_URL
 console.log(MONGODB_URL)
 const db = async () => {
@@ -44,6 +54,7 @@ passport.use(jwtStrategy)
 app.use(passport.initialize())
 
 
+app.use(express.static('public'));
 // mongoose models for MongoDB data manipulation
 
 
@@ -117,56 +128,36 @@ const getuser = () => {
 
 
 app.use('/', getuser())
+app.use(express.static('public'))
 app.get("/", (req, res) => {
     res.send("Hello!");
     
   getuser(req,res);
 });
+app.post('/editprofile', upload.single('file'), async (req, res) => {
+  const username = req.body.username;
+  const newBio =req.body.bio;
+  const newLocation = req.body.location;
+  if(req.file!= undefined){
+    const image = "http://localhost:3000/images/"+req.file.filename;
+    const user = await User.findOne({username: username});
+    user.bio = newBio;
+    user.location = newLocation;
+    user.profilePicture = image;
+    await user.save();
+  }
+  else{
+    const user = await User.findOne({username: username});
+    user.bio = newBio;
+    user.location = newLocation;
+    await user.save();
 
-
-app.post('/auth/createaccount', async (req, res)=> {
-  const {username, pw: password, location} = req.body;
-
-  if (!username || !password || !location) {
-    return res.status(400).json({ message: "Required fields missing" });
   }
 
-  //create the new user thats about to register 
-  const newUser = new User({username, password, location})
-
-  try {
-    await newUser.save();
-    res.json({message:"SUCCESS"})
-    res.status(200).json({ message: "Account created successfully!" });
-  } catch (err) {
-    console.error("Error creating account", err);
-    return res.status(500).json({ message: "Error creating account" });
-  }
-
-  
-})
-
-
-app.get('/profile', async (req, res) => {
-  // const theUser = await User.findOne({username: "yhunter"});
-  const theUser = await User.findOne({_id: "65653a973fad11a425c9a76f"});
-
-  console.log(theUser);
-  res.json({
-    img: theUser.profilePicture,
-    name: theUser.username,
-    location: theUser.location,
-    bio: theUser.bio,
-    comments: theUser.comments,
-    success:true
-  });
+  res.json({success: true});
 });
 
-app.post('/editprofile', async(req, res)=>{
-
-});
-
-  app.get('/viewprofile', async (req, res) => {
+app.get('/viewprofile', async (req, res) => {
     
     const theUser = await User.findOne({username: "ihunt"});
    console.log(theUser);
@@ -217,7 +208,7 @@ app.get('/friends/:userId', async (req, res) => {
   //   success: true
   // });
 });
-
+ 
 
 
 
@@ -226,6 +217,7 @@ app.get('/matchHistory', async (req, res) => {
   const allMatches = await Game.find();
   res.json({
     matches: allMatches.map(match => ({
+      id: match.id,
       sportName: match.sportName,
       location: match.location,
       inProgress: match.inProgress,
@@ -238,6 +230,23 @@ app.get('/matchHistory', async (req, res) => {
     success: true
   });
 });
+
+app.get('/match/:matchId', async (req, res) => {
+  try {
+      const matchId = req.params.matchId;
+      const match = await Game.findOne({ id: matchId });
+
+      if (!match) {
+          return res.status(404).send('Match not found');
+      }
+
+      res.json(match);
+  } catch (error) {
+      console.error('Error fetching match:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
 
 app.post('/login', (req, res)=> {
     const [email, password] = ['abc','123'];

@@ -1,28 +1,39 @@
 import React from "react"
 import "./ViewProfile.css"
 import { useState, useEffect } from 'react'
+import { useNavigate } from "react-router-dom";
 import axios from 'axios'
 import { Link } from "react-router-dom";
 
 
 const EditProfile = props => {
+  const jwtToken = localStorage.getItem("token");
+  let navigate = useNavigate()
+  const [isLoggedIn, setIsLoggedIn]= useState(jwtToken && true);
   const [profile, setProfile] = useState([]);
+  const [username, setUsername]= useState();
   const [bio, setBio] = useState(profile.bio);
   const [location, setLocation]= useState(profile.location);
+  const [file, setFile] = useState();
   useEffect( () => {
     const fetchProfile = async () => {
       axios
-        .get("http://localhost:3000/profile")
+        .get("http://localhost:3000/protected/profile",
+        {headers: { Authorization: `JWT ${jwtToken}` },
+    })
         .then(response => {
           // axios bundles up all response data in response.data property
-          const Profile = response.data;
-          setProfile(Profile);
-          setBio(Profile.bio);
-          setLocation(Profile.location);
+          const profile = response.data;
+          setProfile(profile);
+          setBio(profile.bio);
+          setLocation(profile.location);
+          setUsername(profile.name);
         })
         .catch(err => {
-          const errMsg = JSON.stringify(err, null, 2);// convert error object to a string so we can simply dump it to the screen
-          console.log(errMsg);
+          console.log(
+            "The server rejected the request for this protected resource... we probably do not have a valid JWT token."
+          )
+          setIsLoggedIn(false);
         })
     }
     fetchProfile();
@@ -33,18 +44,40 @@ const EditProfile = props => {
   const handleChangeLocation = event =>{
     setLocation(event.target.value);
   };
+  const handleFileChange = event =>{
+    setFile(event.target.files[0]);
+  }
+  const handleUpload = (event)=>{
+    event.preventDefault();
+    const formData = new FormData();
+    formData.append('file', file);
+    formData.append('bio', bio);
+    formData.append('location', location);
+    formData.append('username',username);
+    axios
+    .post("http://localhost:3000/editprofile", formData)
+      .then(res=>{
+        console.log(res);
+        navigate("/profile");
+        
+      })
+      .catch(err=>{
+          console.log(err);
+      })
+       
+  }
 
   return (
     <div className="EditProfile">
       <section className="main-content">
         <form action="/editprofile" method="POST" encType="multipart/form-data">
-            <img alt="welcome!" src={profile.img} length = "75" width = "75"/>
-            <input name="my_files" type="file" multiple />
+            <img alt="welcome!" src={profile.img!==undefined ? profile.img: ("/defaultProfile.png")}  length = "75" width = "75"/>
+            <input type="file" onChange={handleFileChange} />
             <label for="bio">Bio: </label>
             <input type="text" id="bio" name="bio" onChange={handleChange} value= {bio}></input>
             <label for="location">Location: </label>
             <input type="text" id="location" name="location" onChange={handleChangeLocation} value = {location}></input>
-            <input type="submit" value="Save"/>
+            <input type="submit" onClick={handleUpload}value="Save"/>
         </form>
 
         </section>
