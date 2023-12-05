@@ -99,7 +99,7 @@ const authenticationRouter = () => {
         next();
       }
       // user found and password is correct... send a success response
-      console.log("User logged in successfully.");
+      else {console.log("User logged in successfully.");
       const token = user.generateJWT(); // generate a signed token
       res.json({
         success: true,
@@ -107,7 +107,7 @@ const authenticationRouter = () => {
         token: token,
         username: user.username,
       }); // send the token to the client to store
-      next();
+      next();}
     } catch (err) {
       // check error
       console.error(`Error looking up user: ${err}`);
