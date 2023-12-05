@@ -1,16 +1,18 @@
 
-import React from "react"
+import React, { useContext } from "react"
 import "./Friends.css"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 // import { Link } from 'react-router-dom'
 import { FaLocationDot } from "react-icons/fa6";
+import { UserType } from "./UserContext";
 
 
 
 const Friends = props => {
-
+  //  const {userId, setUserId} = useContext(UserType)
   const [friends, setFriends] = useState([]);
+  
   useEffect(() => {
     const fetchFriend = async () => {
       try {

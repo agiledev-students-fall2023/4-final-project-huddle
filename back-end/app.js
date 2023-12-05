@@ -137,6 +137,7 @@ app.post('/auth/createaccount', async (req, res)=> {
 
   try {
     await newUser.save();
+    res.json({message:"SUCCESS"})
     res.status(200).json({ message: "Account created successfully!" });
   } catch (err) {
     console.error("Error creating account", err);
@@ -292,6 +293,19 @@ app.get("/chat", async (req, res) => {
     });
 });
 
+//gettting all the users but excluding current logged in
+app.get("/users/:userId", (req, res) => {
+  const loggedInUserId = req.params.userId;
+
+  User.find({ _id: { $ne: loggedInUserId } })
+    .then((users) => {
+      res.status(200).json(users);
+    })
+    .catch((err) => {
+      console.log("Error retrieving users", err);
+      res.status(500).json({ message: "Error retrieving users" });
+    });
+});
 
 // export the express app we created to make it available to other modules
 module.exports = app

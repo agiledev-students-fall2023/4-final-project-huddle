@@ -25,6 +25,9 @@ import AboutUs from './AboutUs.js';
 import Messages from "./Messages.js"
 import Chat from "./Chat.js"
 import NewMessage from "./NewMessage.js"
+import { UserContext } from "../src/UserContext"
+// /Users/sophieanaparis/classcode/4-final-project-huddle/front-end/src/UserContext.js
+// /back-end/UserContext.js
 
 import "./App.css"
 
@@ -40,6 +43,7 @@ const App = props => {
       <HamburgerMenu />
       </div>
       <Router>
+      <UserContext>
         {/* pass the setter function that can be called if the user successfully logs in from the login screen */}
         <Routes>
           {/* a route to the home screen */}
@@ -102,7 +106,10 @@ const App = props => {
 
           
 
+          
         </Routes>
+        </UserContext>
+
 
       </Router>
     </div>

@@ -74,7 +74,7 @@ const CreateAccount = props => {
     axios.post("http://localhost:3000/auth/createaccount", info)
       .then(response => {
         // Handle success
-        navigate("/login");
+        navigate("/profile");
       })
       .catch(err => {
         // Handle error

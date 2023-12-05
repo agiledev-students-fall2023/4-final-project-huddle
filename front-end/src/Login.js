@@ -68,7 +68,7 @@ const Login = props => {
       // failure
       console.log(`Received server error: ${err}`)
       setError(
-        "...;."
+        "This form doesn't actually work, sorry.  There is no back-end for this example app in which to save the data. Pop open your web browser's Javascript Console to see the error trying to connect to a non-existent back-end."
       )
     })
 }
