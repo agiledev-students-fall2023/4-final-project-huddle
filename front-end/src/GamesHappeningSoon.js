@@ -69,7 +69,7 @@ function GamesHappeningSoon() {
                 <div>
                 {games.length > 0 ? (
                 games.map((game, index) => (
-                    <GameCard
+                    <GameCard 
                         key={index}
                         sport={game.sport}
                         playersNeeded={game.playersNeeded}
@@ -88,7 +88,7 @@ function GamesHappeningSoon() {
 
 function GameCard({ sport, playersNeeded, location, time }) {
     return (
-        <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }}>
+        <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }} class="GameCard">
             <div>
                 <label>Sport:</label>
                 <span style={{ marginLeft: '10px' }}>{sport}</span>
