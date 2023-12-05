@@ -35,23 +35,23 @@ const UserSchema = new Schema({
       type: Number
   },
   friends: {
-      type: mongoose.Schema.Types.ObjectId,
-      ref:"User"
-  },
+      type: Array,
+      required: true
+      },
 
   friendrequests: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref:"User"
-  },
+    type: Array,
+    required: true
+    },
 
   sentFriendRequests: {
-    type: mongoose.Schema.Types.ObjectId,
-    ref:"User"
-  },
+    type: Array,
+    required: true
+    },
 
 
   comments: {
-      required: false,
+    required: false,
       type: Array
   },
   profilePicture: {
@@ -59,7 +59,7 @@ const UserSchema = new Schema({
     type: String
 },
   bio: {
-      
+      required: false,
       type: String
   }
 
