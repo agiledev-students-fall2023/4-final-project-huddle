@@ -12,7 +12,17 @@ const Game = require("./models/game");
 const { match } = require("assert");
 const Message = require("./models/message");
 require('dotenv').config();
-
+const multer  = require('multer');
+const storage = multer.diskStorage({
+  destination: function (req, file, cb) {
+    cb(null, "public/images")
+  },
+  filename: function (req, file, cb) {
+    // rename the files to include the current time and date
+    cb(null, file.fieldname + "-" + Date.now()+ path.extname(file.originalname));
+  },
+});
+const upload = multer({storage: storage});
 const MONGODB_URL = process.env.MONGODB_URL
 console.log(MONGODB_URL)
 const db = async () => {
@@ -44,6 +54,7 @@ passport.use(jwtStrategy)
 app.use(passport.initialize())
 
 
+app.use(express.static('public'));
 // mongoose models for MongoDB data manipulation
 
 
@@ -117,31 +128,36 @@ const getuser = () => {
 
 
 app.use('/', getuser())
+app.use(express.static('public'))
 app.get("/", (req, res) => {
     res.send("Hello!");
     
   getuser(req,res);
 });
- 
+app.post('/editprofile', upload.single('file'), async (req, res) => {
+  const username = req.body.username;
+  const newBio =req.body.bio;
+  const newLocation = req.body.location;
+  if(req.file!= undefined){
+    const image = "http://localhost:3000/images/"+req.file.filename;
+    const user = await User.findOne({username: username});
+    user.bio = newBio;
+    user.location = newLocation;
+    user.profilePicture = image;
+    await user.save();
+  }
+  else{
+    const user = await User.findOne({username: username});
+    user.bio = newBio;
+    user.location = newLocation;
+    await user.save();
 
-app.get('/profile', async (req, res) => {
-  const theUser = await User.findOne({username: "ihunt"});
-  console.log(theUser);
-  res.json({
-    img: theUser.profilePicture,
-    name: theUser.username,
-    location: theUser.location,
-    bio: theUser.bio,
-    comments: theUser.comments,
-    success:true
-  });
+  }
+
+  res.json({success: true});
 });
 
-app.post('/editprofile', async(req, res)=>{
-
-});
-
-  app.get('/viewprofile', async (req, res) => {
+app.get('/viewprofile', async (req, res) => {
     
     const theUser = await User.findOne({username: "ihunt"});
    console.log(theUser);
