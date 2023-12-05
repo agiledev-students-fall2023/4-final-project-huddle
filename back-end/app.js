@@ -193,6 +193,33 @@ app.get('/friends', async (req, res) => {
   });
 });
 
+app.get('/friends/:userId', async (req, res) => {
+  try{
+    const {userId} = req.params;
+    const user = await User.findById(userId).populate(
+      "friends", 
+      "name email image"
+    )
+    
+    const friends = user.friends; 
+    res.json(friends)
+  } catch(error){
+    console.log(error);
+    res.status(500).json({message:"internal server error "})
+  }
+  
+  // res.json({
+  //   users: allUsers.map(user => ({
+  //     img: user.profilePicture,
+  //     name: user.username,
+  //     location: user.location,
+  //   })),
+  //   success: true
+  // });
+});
+
+
+
 
 
 app.get('/matchHistory', async (req, res) => {

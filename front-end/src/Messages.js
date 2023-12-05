@@ -6,33 +6,85 @@ import axios from "axios"
 import { LuMessageSquarePlus } from "react-icons/lu";
 import { UserType } from "./UserContext";
 
-
-
 const Messages = (props) => {
 
     const [friends, setFriends] = useState([]);
     const { userId, setUserId } = useContext(UserType);
     const [message, setMessage] = useState([])
+    const jwtToken = localStorage.getItem("token");
     useEffect(() => {
-        const friendsList = async () => {
-            try {
-              const response = await fetch(
-                // `http://localhost:3000/messages/${userId}` 
-                //^CHANGE?!?!
-                `http://localhost:3000/friends/${userId}` 
+        
+        const fetchFriends = async () => {
+            axios
+                .get("http://localhost:3000/protected/friends",
+                 {headers: { Authorization: `JWT ${jwtToken}` },
+                  })
+            // try {
+            //   const response = await fetch(
+            //     // `http://localhost:3000/messages/${userId}` 
+            //     //^CHANGE?!?!
+            //     `http://localhost:3000/protected/friends/${userId}` 
+            //   );
 
-              );
-              const data = await response.json();
+            .then(response => {
+                            // axios bundles up all response data in response.data property
+             const friends = response.data.friends;
+             console.log(friends);
+             setFriends(friends);
+              })
+            // })
+                      .catch(err => {
+                        console.log(
+                          "The server rejected the request for this protected resource... we probably do not have a valid JWT token."
+                        )
+                        setFriends(false);
+                      })
+            //   const data = await response.json();
       
-              if (response.ok) {
-                setFriends(data);
+            //   if (response.ok) {
+            //     setFriends(data);
               }
-            } catch (error) {
-              console.log("error showing the friends", error);
-            }
-          };
-          friendsList();
+            // } catch (error) {
+            //   console.log("error showing the friends", error);
+            // }
+        //   };
+          fetchFriends();
         }, []);
+
+        // const Profile = props => {
+        //     const jwtToken = localStorage.getItem("token");
+        //     const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true)
+        //     const [profile, setProfile] = useState([]);
+        //     const navigate = useNavigate();
+        //     useEffect(() => {
+        //       const fetchProfile = async () => {
+        //         axios
+        //           .get("http://localhost:3000/protected/profile",
+        //           {headers: { Authorization: `JWT ${jwtToken}` },
+        //       })
+        //           .then(response => {
+        //             // axios bundles up all response data in response.data property
+        //             const profile = response.data;
+        //             console.log(profile);
+        //             setProfile(profile);
+        //           })
+        //           .catch(err => {
+        //             console.log(
+        //               "The server rejected the request for this protected resource... we probably do not have a valid JWT token."
+        //             )
+        //             setIsLoggedIn(false);
+        //           })
+        //       }
+        //       fetchProfile();
+
+
+
+
+
+
+
+
+
         //   const fetchMessage = () => {
         //     axios
         //         .get("http://localhost:3000/messages")
