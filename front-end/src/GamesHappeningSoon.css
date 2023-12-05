@@ -35,3 +35,18 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   background-color: rgb(255, 255, 255);
 }
 
+.GameCard {
+  display: flex;
+  flex-direction: column; /* Stack children vertically */
+  justify-content: center; /* Center children vertically */
+  align-items: center; /* Center children horizontally */
+  border-radius: 5%;
+  width: 270px;
+  height: 150px;
+  padding: 10px;
+  font-style: normal;
+  font-family: Arial, Helvetica, sans-serif;
+  border-style: solid;
+  text-align: center;
+  background-color: rgb(255, 255, 255);
+}

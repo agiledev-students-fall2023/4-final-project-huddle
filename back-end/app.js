@@ -122,7 +122,6 @@ app.get("/", (req, res) => {
     
   getuser(req,res);
 });
- 
 
 
 app.post('/auth/createaccount', async (req, res)=> {
@@ -240,6 +239,35 @@ app.get('/protected/gamesHappeningSoon', async (req, res) => {
     res.send(all);
   });
 
+app.get('/search', async (req, res) => {
+    try {
+        const username = req.query.username;
+        const users = await User.find({ username: new RegExp(username, 'i') });
+        res.json(users);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
+
+app.post('/createGame', (req, res) => {
+  const newGame = new Game({
+      ...req.body,
+      id: uuidv4(), // Generate a unique ID for the game
+      // Default values for other fields are set by the schema
+  });
+
+  newGame.save()
+      .then(game => res.json(game))
+      .catch(err => res.status(400).json('Error: ' + err));
+});
+
+axios.post('http://localhost:7002/createGame', this.state)
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 
 app.get("/messages", async (req, res) => {
 

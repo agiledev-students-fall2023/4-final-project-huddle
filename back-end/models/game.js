@@ -1,4 +1,4 @@
-const mongoose = require("mongoose")
+const mongoose = require("mongoose");
 
 const gameSchema = mongoose.Schema({
     id: {
@@ -7,11 +7,13 @@ const gameSchema = mongoose.Schema({
     },
     team1: {
         required: true,
-        type: Array
+        type: Array,
+        default: [] 
     },
     team2: {
         required: true,
-        type: Array
+        type: Array,
+        default: [] 
     },
     sportName: {
         required: true,
@@ -23,11 +25,13 @@ const gameSchema = mongoose.Schema({
     },
     inProgress: {
         required: true,
-        type: Boolean
+        type: Boolean,
+        default: false 
     },
     creationTime: {
         required: true,
-        type: Date
+        type: Date,
+        default: Date.now 
     },
     dateAndTime: {
         required: true,
@@ -35,13 +39,15 @@ const gameSchema = mongoose.Schema({
     },
     isFull: {
         required: true,
-        type: Boolean
+        type: Boolean,
+        default: false
     },
     winner: {
         required: true,
-        type: String
+        type: String,
+        default: ''  
     }
-})
+});
 
 const Game = mongoose.model('Game', gameSchema);
 

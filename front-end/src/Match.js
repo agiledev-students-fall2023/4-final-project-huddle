@@ -1,6 +1,7 @@
-import React from "react"
-import "./Match.css"
-// import { Link } from 'react-router-dom'
+// Match.js
+
+import React from "react";
+import { useParams } from 'react-router-dom';
 
 const sports = [
   { name: 'Basketball', icon: process.env.PUBLIC_URL + '/bball.jpeg' },
@@ -9,87 +10,117 @@ const sports = [
   { name: 'Volleyball', icon: process.env.PUBLIC_URL + '/volleyball.jpeg' },
 ];
 
-const Match = props => {
-  return (
-    <div className="Match">
-      {/* <h1>  Match</h1> */}
-      <section className="main-content">
-         <img className="pic" alt="sport pic" src="https://t3.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" />
-        <p>
-          <div className="header">
-            Match Details
-            
-          </div>
-          <div className="MatchCard">
-            <MatchCard />
-         
-           
+const Match = () => {
+    // Get the matchId from the URL
+    const { matchId } = useParams();
 
-            
-          </div>
-        </p>
+    // You can use matchId to fetch the details of the specific match from your backend
+    // ...
 
-      </section>
+    return (
+        <div className="Match">
+            <h1>Match Details</h1>
+            <section className="main-content">
+                {/* Display match details using the fetched data */}
+                <MatchCard matchId={matchId} />
+            </section>
+        </div>
+    );
+}
+
+function MatchCard({ matchId }) {
+
+    return (
+        <div>
+            <h3>Match Details</h3>
+            {/* Display match details using the fetched data */}
+            <div>
+                <label>Sport: </label>
+                <span>Sport Name</span>
+            </div>
+
+            <div>
+                <label>Players: </label>
+                <span>#</span>
+            </div>
+
+            <div>
+                <label>Tier: </label>
+                <span> </span>
+            </div>
+
+            <div>
+                <label>Location: </label>
+                <span> </span>
+            </div>
+
+            <div>
+                <label>Time: </label>
+                <span>00:00</span>
+            </div>
+        </div>
+    );
+}
+
+export default Match;
+
+
+// import React from "react"
+// import "./Match.css"
+// // import { Link } from 'react-router-dom'
+
+// const Match = props => {
+//   return (
+//     <div className="Match">
+//       <h1>  Match</h1>
+//       <section className="main-content">
+//         {/* <img alt="welcome!" src="https://t3.ftcdn.net/jpg/03/46/83/96/240_F_346839683_6nAPzbhpSkIpb8pmAwufkC7c5eD7wYws.jpg" /> */}
+//         <p>
+          
+//           <div className="MatchCard">
+//             <MatchCard />
+            
+//           </div>
+//         </p>
+
+//       </section>
       
-    </div>
-  )
-}
+//     </div>
+//   )
+// }
 
-function MatchCard() {
-  return (
-      <div>
-      {/* <div className="cardheader"> */}
+// function MatchCard() {
+//   return (
+//       <div >
+//        <h3>Match Details</h3> 
+//           <div>
+//               <label>Sport: </label>
+//               <span >Sport Name</span>
+//           </div>
 
-       {/* <h3>Match Details</h3>  */}
-          <div className="cardtext">
-              <label>Sport: </label>
-              <span >Baseball Game </span>
+//           <div>
+//               <label>Players: </label>
+//               <span >#</span>
+//           </div>
 
-          </div>
+//           <div>
+//               <label>Tier: </label>
+//               <span > </span>
+//           </div>
 
-          <div className="cardtext">
-              <label>Team: </label>
-              <span > team Huddle </span>
-          </div>
+//           <div>
+//               <label>Location: </label>
+//               <span > </span>
+//           </div>
 
+//           <div>
+//               <label>Time: </label>
+//               <span >00:00</span>
+//           </div>
 
+//           {/* <button style={{ marginTop: '10px' }}><a href={"./Match"}>See Details</a></button> */}
+//       </div>
+//   );
+// }
 
-          <div className="team">
-              <label>  </label>
-              <div > soph </div>
-              <div > john </div>
-          </div>
-
-
-         
-
-          <div className="cardtext">
-            <label>
-              Date: 12/3 
-            </label>
-            
-              <label> | Time: </label>
-              <span >4:40</span>
-              <span >
-                
-              </span>
-          </div>
-
-
-
-          <div className="cardtext">
-              <label>Tier: </label>
-              <span > Beginner </span>
-          </div>
-
-          <div className="cardtext">
-              <label>Location: </label>
-              <span > 10012 </span>
-          </div>
-
-          {/* <button style={{ marginTop: '10px' }}><a href={"./Match"}>See Details</a></button> */}
-      </div>
-  );
-}
-
-export default Match
+// export default Match
