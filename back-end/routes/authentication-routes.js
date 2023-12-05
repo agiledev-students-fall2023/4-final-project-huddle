@@ -1,3 +1,4 @@
+// This is from https://github.com/nyu-software-engineering/data-storage-example-app
 const express = require("express"); // CommonJS import style!
 const cors = require('cors');
 
@@ -16,7 +17,7 @@ const authenticationRouter = () => {
     console.log(`Incoming signup data: ${JSON.stringify(req.body, null, 0)}`)
     // grab the username and password from the POST body
     const username = req.body.username;
-    const password = req.body.pw;
+    const password = req.body.pw; 
     const games = req.body.games;
     const win = req.body.win;
     const loss = req.body.loss;
@@ -58,10 +59,10 @@ const authenticationRouter = () => {
     }
   });
 
-  // a route to handle login attempts requested to /auth/login
+  // a route to handle login atempts requested to /auth/login
   router.post("/login", async function (req, res, next) {
     // grab the name and password that were submitted as POST body data
-    const username = req.body.username;
+    const username = req.body.username; 
     const password = req.body.pw;
 
 
@@ -98,7 +99,7 @@ const authenticationRouter = () => {
         next();
       }
       // user found and password is correct... send a success response
-      console.log("User logged in successfully.");
+      else {console.log("User logged in successfully.");
       const token = user.generateJWT(); // generate a signed token
       res.json({
         success: true,
@@ -106,7 +107,7 @@ const authenticationRouter = () => {
         token: token,
         username: user.username,
       }); // send the token to the client to store
-      next();
+      next();}
     } catch (err) {
       // check error
       console.error(`Error looking up user: ${err}`);

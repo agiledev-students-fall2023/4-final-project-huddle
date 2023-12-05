@@ -14,6 +14,7 @@ import CreateGame from "./CreateGame.js"
 import Match from "./Match.js"
 import HamburgerMenu from './HamburgerMenu';
 import Logout from "./Logout.js"
+import { ThemeProvider } from './ThemeContext';
 
 
 
@@ -25,6 +26,9 @@ import AboutUs from './AboutUs.js';
 import Messages from "./Messages.js"
 import Chat from "./Chat.js"
 import NewMessage from "./NewMessage.js"
+import { UserContext } from "../src/UserContext"
+// /Users/sophieanaparis/classcode/4-final-project-huddle/front-end/src/UserContext.js
+// /back-end/UserContext.js
 
 import "./App.css"
 
@@ -32,14 +36,19 @@ import "./App.css"
 const App = props => {
   //const [user, setUser] = useState({}) // a state variable that stores the logged-in user, if any
   // axios.defaults.withCredentials = true;
+  <script>
+  // Immediately set the class on the body based on local storage
+  document.body.className = localStorage.getItem('theme') || 'light';
+  </script>
   return (
-    
+    /*<ThemeProvider>*/
     <div className="container">
 
       <div className="App">
       <HamburgerMenu />
       </div>
       <Router>
+      <UserContext>
         {/* pass the setter function that can be called if the user successfully logs in from the login screen */}
         <Routes>
           {/* a route to the home screen */}
@@ -102,11 +111,14 @@ const App = props => {
 
           
 
+          
         </Routes>
+        </UserContext>
+
 
       </Router>
     </div>
-  )
+    /*</ThemeProvider>*/  )
 }
 
 // make this available to other modules as an import

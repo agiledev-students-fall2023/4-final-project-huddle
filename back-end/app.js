@@ -157,6 +157,45 @@ app.post('/editprofile', upload.single('file'), async (req, res) => {
   res.json({success: true});
 });
 
+
+app.post('/auth/createaccount', async (req, res)=> {
+  const {username, pw: password, location} = req.body;
+
+  if (!username || !password || !location) {
+    return res.status(400).json({ message: "Required fields missing" });
+  }
+
+  //create the new user thats about to register 
+  const newUser = new User({username, password, location})
+
+  try {
+    await newUser.save();
+    res.json({message:"SUCCESS"})
+    res.status(200).json({ message: "Account created successfully!" });
+  } catch (err) {
+    console.error("Error creating account", err);
+    return res.status(500).json({ message: "Error creating account" });
+  }
+
+  
+})
+
+
+app.get('/profile', async (req, res) => {
+  // const theUser = await User.findOne({username: "yhunter"});
+  const theUser = await User.findOne({_id: "65653a973fad11a425c9a76f"});
+
+  console.log(theUser);
+  res.json({
+    img: theUser.profilePicture,
+    name: theUser.username,
+    location: theUser.location,
+    bio: theUser.bio,
+    comments: theUser.comments,
+    success:true
+  });
+});
+
 app.get('/viewprofile', async (req, res) => {
     
     const theUser = await User.findOne({username: "ihunt"});
@@ -212,10 +251,6 @@ app.post('/login', (req, res)=> {
   else{res.json({success:false})}
 })
 
-app.post('/createaccount', (req, res)=> {
-  console.log(req.body)
-  res.json({success:true})
-})
 
 
 app.get('/gamesHappeningSoon/:sport', (req, res) => {
@@ -234,24 +269,76 @@ app.get('/protected/gamesHappeningSoon', async (req, res) => {
     res.send(all);
   });
 
+app.get('/search', async (req, res) => {
+    try {
+        const username = req.query.username;
+        const users = await User.find({ username: new RegExp(username, 'i') });
+        res.json(users);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
 
-app.get("/messages", (req, res) => {
-    // res.send("messages!");
+app.post('/createGame', (req, res) => {
+  const newGame = new Game({
+      ...req.body,
+      id: uuidv4(), // Generate a unique ID for the game
+      // Default values for other fields are set by the schema
+  });
+
+  newGame.save()
+      .then(game => res.json(game))
+      .catch(err => res.status(400).json('Error: ' + err));
+});
+
+axios.post('http://localhost:7002/createGame', this.state)
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
+
+app.get("/messages", async (req, res) => {
+
+  // const singlemessage = await Message.findOne({_id : "6566008dcbd6e0752876b6ab"})
+  // console.log(singlemessage.body); 
+  // console.log(singlemessage);
     res.json({
         from: "person A",
         text: "hey! hows..."
-
-        // message1: "Hey",
-        // message2: "want to play bball?",
-        // message3: "sure what time works?",
-        // message4: "I get off work at 5",   
-        // message5: "my friend wants to join... can you find another player for a 2 on 2?",           
+ 
     });
 });
 
+// app.get('/viewprofile', async (req, res) => {
+    
+//   const theUser = await User.findOne({username: "ihunt"});
+//  console.log(theUser);
+//  res.json({
+//   img: theUser.profilePicture,
+//   name: theUser.username,
+//   location: theUser.location,
+//   bio: theUser.bio,
+//   comments: theUser.comments,
+//   success:true
+// });
+// });
 
-app.get("/chat", (req, res) => {
-    // res.send("messages!");
+
+app.get("/chat", async (req, res) => {
+  //  const singlemessage = await Message.findOne({_id : "6566008dcbd6e0752876b6ab"})
+  //  console.log(singlemessage.body); 
+  //  console.log(singlemessage);
+
+  //  res.json({
+  //       _id: "6566008dcbd6e0752876b6ab", 
+  //       time: Timestamp({ t: 0, i: 0 }),
+  //       body: " this is a test chat message"
+  //     });
+  
+  // res.send("messages!");
+
     res.json({
         person: "person A",
         sentmsg: ["Hey",
@@ -264,7 +351,19 @@ app.get("/chat", (req, res) => {
     });
 });
 
+//gettting all the users but excluding current logged in
+app.get("/users/:userId", (req, res) => {
+  const loggedInUserId = req.params.userId;
 
+  User.find({ _id: { $ne: loggedInUserId } })
+    .then((users) => {
+      res.status(200).json(users);
+    })
+    .catch((err) => {
+      console.log("Error retrieving users", err);
+      res.status(500).json({ message: "Error retrieving users" });
+    });
+});
 
 // export the express app we created to make it available to other modules
 module.exports = app

@@ -48,6 +48,9 @@
 
     border: 2px solid black;
     background-color: pink;
+    flex-direction: row;
+    align-items: center;
+    /* gap: 10; */
     /* border: 2px solid black;
     width: 70%;
     height: 50px;
