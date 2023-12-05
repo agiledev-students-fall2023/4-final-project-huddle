@@ -7,9 +7,9 @@ import { Navigate } from "react-router-dom"
 
 
 const Profile = props => {
-  const jwtToken = localStorage.getItem("token"); // gets the token
-  const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true); //sets the state of being logged in
-  const [profile, setProfile] = useState([]);//this is where the profile data will be stored
+  const jwtToken = localStorage.getItem("token");
+  const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true)
+  const [profile, setProfile] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     const fetchProfile = async () => {
@@ -20,8 +20,7 @@ const Profile = props => {
         .then(response => {
           // axios bundles up all response data in response.data property
           const profile = response.data;
-          
-          console.log("img is" + profile.img);
+          console.log(profile);
           setProfile(profile);
         })
         .catch(err => {
@@ -40,7 +39,7 @@ const Profile = props => {
       
       <section className="main-content">
         <div className="biofull">
-          <img alt="welcome!" src={profile.img!==undefined ? profile.img: ("/defaultProfile.png")} length = "75" width = "75"/>
+          <img alt="welcome!" src={profile.img} length = "75" width = "75"/>
 
           <div className="bio">
             <p>Name: {profile.name}</p>
@@ -48,7 +47,7 @@ const Profile = props => {
             <p>Bio:{profile.bio}</p>
           </div>
         </div>
-        <button onClick={() => navigate("/editprofile")}>Edit Profile</button>
+        {/*<button onClick={() => navigate("/editprofile")}>Edit Profile</button>*/}
 
         <div className="comments">
           <h2>Profile Comments</h2>

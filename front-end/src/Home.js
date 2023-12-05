@@ -19,9 +19,6 @@ const Home = props => {
       <p>
       <Link to="/createaccount"><button className="hbutton">Create Account</button></Link><br /><br /><br /><br />
       </p>
-      <p>
-      <Link to="/settings"><button className="hbutton">Settings</button></Link><br /><br /><br /><br />
-      </p>
     </>
   )
 }

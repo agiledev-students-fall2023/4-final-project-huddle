@@ -46,7 +46,7 @@ const Messages = (props) => {
               }
             // } catch (error) {
             //   console.log("error showing the friends", error);
-            // }
+            // } 
         //   };
           fetchFriends();
         }, []);
