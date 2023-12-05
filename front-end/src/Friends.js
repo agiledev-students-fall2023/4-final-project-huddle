@@ -51,7 +51,7 @@ const Friends = props => {
             <FriendCard key={friend.name} friend={friend} />
           ))}
         </div>
-
+        <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid'  }}><a href={"./Search"}>Add New Friend</a></button>
         
       </section>
       
