@@ -17,7 +17,7 @@ const authenticationRouter = () => {
     console.log(`Incoming signup data: ${JSON.stringify(req.body, null, 0)}`)
     // grab the username and password from the POST body
     const username = req.body.username;
-    const password = req.body.pw;
+    const password = req.body.pw; 
     const games = req.body.games;
     const win = req.body.win;
     const loss = req.body.loss;
@@ -59,10 +59,10 @@ const authenticationRouter = () => {
     }
   });
 
-  // a route to handle login attempts requested to /auth/login
+  // a route to handle login atempts requested to /auth/login
   router.post("/login", async function (req, res, next) {
     // grab the name and password that were submitted as POST body data
-    const username = req.body.username;
+    const username = req.body.username; 
     const password = req.body.pw;
 
 

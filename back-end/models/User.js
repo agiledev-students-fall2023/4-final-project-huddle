@@ -19,7 +19,7 @@ const UserSchema = new Schema({
       type: String
   },
   games: {
-      required: true,
+      // required: true,
       type: Array
   },
   location: {
@@ -27,17 +27,29 @@ const UserSchema = new Schema({
       type: String
   },
   win: {
-      required: true,
+      // required: true,
       type: Number
   },
   loss: {
-      required: true,
+      // required: true,
       type: Number
   },
   friends: {
-      required: true,
-      type: Array
+      type: mongoose.Schema.Types.ObjectId,
+      ref:"User"
   },
+
+  friendrequests: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"User"
+  },
+
+  sentFriendRequests: {
+    type: mongoose.Schema.Types.ObjectId,
+    ref:"User"
+  },
+
+
   comments: {
       required: false,
       type: Array

@@ -3,6 +3,13 @@
 import React from "react";
 import { useParams } from 'react-router-dom';
 
+const sports = [
+  { name: 'Basketball', icon: process.env.PUBLIC_URL + '/bball.jpeg' },
+  { name: 'Soccer', icon: process.env.PUBLIC_URL + '/soccer.jpeg' },
+  { name: 'Tennis', icon: process.env.PUBLIC_URL + '/tennis.jpeg' },
+  { name: 'Volleyball', icon: process.env.PUBLIC_URL + '/volleyball.jpeg' },
+];
+
 const Match = () => {
     // Get the matchId from the URL
     const { matchId } = useParams();

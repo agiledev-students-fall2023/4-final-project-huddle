@@ -4,12 +4,11 @@ const cors = require('cors');
 const path = require("path");
 const axios = require("axios");
 const app = express(); // instantiate an Express object
-const { v4: uuidv4 } = require('uuid'); // Import UUID
 
 const mongoose = require("mongoose")
 const dotenv = require("dotenv");
 const User = require("./models/User");
-const Game = require("./models/Game");
+const Game = require("./models/game");
 const { match } = require("assert");
 const Message = require("./models/message");
 require('dotenv').config();
@@ -48,6 +47,14 @@ app.use(passport.initialize())
 // mongoose models for MongoDB data manipulation
 
 
+const sampleGames = [
+    { sportName: 'Basketball', numberOfPeople: 10, tierLevel: 3, locationName: 'Central Gym', time: '2023-11-20T12:00:00Z' },
+    { sportName: 'Football', numberOfPeople: 22, tierLevel: 2, locationName: 'Stadium West', time: '2023-11-20T15:00:00Z' },
+    { sportName: 'Volleyball', numberOfPeople: 12, tierLevel: 4, locationName: 'North Beach Courts', time: '2023-11-21T10:00:00Z' },
+    { sportName: 'Baseball', numberOfPeople: 18, tierLevel: 1, locationName: 'Downtown Field', time: '2023-11-22T16:00:00Z' },
+    { sportName: 'Soccer', numberOfPeople: 22, tierLevel: 5, locationName: 'East Park Stadium', time: '2023-11-23T14:00:00Z' },
+    { sportName: 'Tennis', numberOfPeople: 2, tierLevel: 3, locationName: 'Riverfront Courts', time: '2023-11-24T09:00:00Z' }
+  ];
   
 db()  
 // app.use(cors());
@@ -115,7 +122,6 @@ app.get("/", (req, res) => {
     
   getuser(req,res);
 });
- 
 
 
 app.post('/auth/createaccount', async (req, res)=> {
@@ -130,6 +136,7 @@ app.post('/auth/createaccount', async (req, res)=> {
 
   try {
     await newUser.save();
+    res.json({message:"SUCCESS"})
     res.status(200).json({ message: "Account created successfully!" });
   } catch (err) {
     console.error("Error creating account", err);
@@ -314,6 +321,19 @@ app.get("/chat", async (req, res) => {
     });
 });
 
+//gettting all the users but excluding current logged in
+app.get("/users/:userId", (req, res) => {
+  const loggedInUserId = req.params.userId;
+
+  User.find({ _id: { $ne: loggedInUserId } })
+    .then((users) => {
+      res.status(200).json(users);
+    })
+    .catch((err) => {
+      console.log("Error retrieving users", err);
+      res.status(500).json({ message: "Error retrieving users" });
+    });
+});
 
 // export the express app we created to make it available to other modules
 module.exports = app
