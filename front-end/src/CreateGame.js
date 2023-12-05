@@ -16,7 +16,7 @@ class NewGameForm extends React.Component {
 
     handleSubmit = (e) => {
         e.preventDefault();
-        axios.post('/createGame', this.state)
+        axios.post('http://localhost:3000/createGame', this.state)
             .then(response => {
                 console.log(response.data);
             })
