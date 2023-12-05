@@ -14,6 +14,7 @@ import CreateGame from "./CreateGame.js"
 import Match from "./Match.js"
 import HamburgerMenu from './HamburgerMenu';
 import Logout from "./Logout.js"
+import { ThemeProvider } from './ThemeContext';
 
 
 
@@ -32,8 +33,12 @@ import "./App.css"
 const App = props => {
   //const [user, setUser] = useState({}) // a state variable that stores the logged-in user, if any
   // axios.defaults.withCredentials = true;
+  <script>
+  // Immediately set the class on the body based on local storage
+  document.body.className = localStorage.getItem('theme') || 'light';
+  </script>
   return (
-    
+    /*<ThemeProvider>*/
     <div className="container">
 
       <div className="App">
@@ -106,7 +111,7 @@ const App = props => {
 
       </Router>
     </div>
-  )
+    /*</ThemeProvider>*/  )
 }
 
 // make this available to other modules as an import

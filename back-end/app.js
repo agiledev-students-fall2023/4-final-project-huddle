@@ -4,11 +4,12 @@ const cors = require('cors');
 const path = require("path");
 const axios = require("axios");
 const app = express(); // instantiate an Express object
+const { v4: uuidv4 } = require('uuid'); // Import UUID
 
 const mongoose = require("mongoose")
 const dotenv = require("dotenv");
 const User = require("./models/User");
-const Game = require("./models/game");
+const Game = require("./models/Game");
 const { match } = require("assert");
 const Message = require("./models/message");
 require('dotenv').config();
@@ -47,14 +48,6 @@ app.use(passport.initialize())
 // mongoose models for MongoDB data manipulation
 
 
-const sampleGames = [
-    { sportName: 'Basketball', numberOfPeople: 10, tierLevel: 3, locationName: 'Central Gym', time: '2023-11-20T12:00:00Z' },
-    { sportName: 'Football', numberOfPeople: 22, tierLevel: 2, locationName: 'Stadium West', time: '2023-11-20T15:00:00Z' },
-    { sportName: 'Volleyball', numberOfPeople: 12, tierLevel: 4, locationName: 'North Beach Courts', time: '2023-11-21T10:00:00Z' },
-    { sportName: 'Baseball', numberOfPeople: 18, tierLevel: 1, locationName: 'Downtown Field', time: '2023-11-22T16:00:00Z' },
-    { sportName: 'Soccer', numberOfPeople: 22, tierLevel: 5, locationName: 'East Park Stadium', time: '2023-11-23T14:00:00Z' },
-    { sportName: 'Tennis', numberOfPeople: 2, tierLevel: 3, locationName: 'Riverfront Courts', time: '2023-11-24T09:00:00Z' }
-  ];
   
 db()  
 // app.use(cors());
@@ -248,6 +241,26 @@ app.get('/search', async (req, res) => {
         res.status(500).send(error.message);
     }
 });
+
+app.post('/createGame', (req, res) => {
+  const newGame = new Game({
+      ...req.body,
+      id: uuidv4(), // Generate a unique ID for the game
+      // Default values for other fields are set by the schema
+  });
+
+  newGame.save()
+      .then(game => res.json(game))
+      .catch(err => res.status(400).json('Error: ' + err));
+});
+
+axios.post('http://localhost:7002/createGame', this.state)
+    .then(response => {
+        console.log(response.data);
+    })
+    .catch(error => {
+        console.error('Error:', error);
+    });
 
 app.get("/messages", async (req, res) => {
 
