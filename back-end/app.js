@@ -291,13 +291,6 @@ app.post('/createGame', (req, res) => {
       .catch(err => res.status(400).json('Error: ' + err));
 });
 
-axios.post('http://localhost:7002/createGame', this.state)
-    .then(response => {
-        console.log(response.data);
-    })
-    .catch(error => {
-        console.error('Error:', error);
-    });
 
 app.get("/messages", async (req, res) => {
 
