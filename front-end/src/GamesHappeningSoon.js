@@ -99,10 +99,6 @@ function GameCard({ sport, playersNeeded, tier, location, time }) {
                 <span style={{ marginLeft: '10px' }}>{playersNeeded}</span>
             </div>
             <div>
-                <label>Tier:</label>
-                <span style={{ marginLeft: '10px' }}>{tier}</span>
-            </div>
-            <div>
                 <label>Location:</label>
                 <span style={{ marginLeft: '10px' }}>{location}</span>
             </div>
