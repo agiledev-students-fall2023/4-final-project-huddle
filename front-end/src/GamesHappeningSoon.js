@@ -73,7 +73,6 @@ function GamesHappeningSoon() {
                         key={index}
                         sport={game.sport}
                         playersNeeded={game.playersNeeded}
-                        tier={game.tier}
                         location={game.location}
                         time={game.time}
                     />
@@ -87,7 +86,7 @@ function GamesHappeningSoon() {
     );
 }
 
-function GameCard({ sport, playersNeeded, tier, location, time }) {
+function GameCard({ sport, playersNeeded, location, time }) {
     return (
         <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }}>
             <div>

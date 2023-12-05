@@ -239,6 +239,15 @@ app.get('/protected/gamesHappeningSoon', async (req, res) => {
     res.send(all);
   });
 
+app.get('/search', async (req, res) => {
+    try {
+        const username = req.query.username;
+        const users = await User.find({ username: new RegExp(username, 'i') });
+        res.json(users);
+    } catch (error) {
+        res.status(500).send(error.message);
+    }
+});
 
 app.get("/messages", async (req, res) => {
 
