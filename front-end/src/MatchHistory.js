@@ -86,7 +86,7 @@ function MatchCard({ match }) {
             <span style={{ marginLeft: '10px' }}>{match.isFull ? 'Yes' : 'No'}</span>
         </div>
 
-        <div>
+        <div> 
             <label>Winner:</label>
             <span style={{ marginLeft: '10px' }}>{match.winner || 'Not decided yet'}</span>
         </div>
