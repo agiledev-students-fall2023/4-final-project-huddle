@@ -9,18 +9,6 @@ function GamesHappeningSoon() {
     const location = useLocation();
     const { sport } = location.state || {};
 
-useEffect(() => {
-    if (sport) {
-        axios.get(`http://localhost:3000/games/${encodeURIComponent(sport)}`)
-            .then(response => {
-                setGames(response.data);
-            })
-            .catch(error => {
-                console.error('Error fetching games:', error);
-            });
-    } 
-}, [sport]);
-
 const handleJoinGame = (gameId) => {
     const jwtToken = localStorage.getItem("token");
     axios.post(`http://localhost:3000/games/join/${gameId}`, {}, {
@@ -64,6 +52,24 @@ const handleJoinGame = (gameId) => {
         )
         // setIsLoggedIn(false)  update this state variable, so the component re-renders
       })},[])
+      
+      useEffect(() => {
+        if (sport) {
+            axios.get(`http://localhost:3000/games/${encodeURIComponent(sport)}`)
+                .then(res => {
+                    
+                    const gamesWithFormattedDate = res.data.map(game => ({
+                        ...game,
+                        date: new Date(game.dateAndTime).toLocaleDateString(),
+                        time: new Date(game.dateAndTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+                      }));
+                      setGames(gamesWithFormattedDate);
+                })
+                .catch(error => {
+                    console.error('Error fetching games:', error);
+                });
+        } 
+    }, [sport]);
 
     return (
         <div style={{ padding: '20px' }}>

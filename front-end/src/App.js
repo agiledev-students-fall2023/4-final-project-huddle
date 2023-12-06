@@ -46,11 +46,12 @@ const App = props => {
     /*<ThemeProvider>*/
     <div className="container">
 
-      <div className="App">
-      <HamburgerMenu />
-      </div>
-      <Router>
-      <UserContext>
+      
+        <Router>
+        <div className="App">
+        <HamburgerMenu />
+        </div>
+        <UserContext>
         {/* pass the setter function that can be called if the user successfully logs in from the login screen */}
         <Routes>
           {/* a route to the home screen */}
