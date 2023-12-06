@@ -12,7 +12,8 @@ import { Navigate } from "react-router-dom"
 
 
 const Friends = props => {
-   const {userId, setUserId, jwtToken} = useContext(UserType)
+  const jwtToken = localStorage.getItem("token");
+  //const {userId, setUserId, jwtToken} = useContext(UserType)
 
   const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true)
 
@@ -21,9 +22,9 @@ const Friends = props => {
   useEffect(() => {
     const fetchFriend = async () => {
       axios
-      .get("http://localhost:3000/protected/friends/${userId}",
-        {headers: { Authorization: `JWT ${jwtToken}` },
-      })
+      .get("http://localhost:3000/protected/friends",
+      {headers: { Authorization: `JWT ${jwtToken}` },
+  })
 
       .then(response => {
         // const friendsData = response.data.users;
