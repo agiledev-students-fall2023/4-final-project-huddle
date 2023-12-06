@@ -6,6 +6,7 @@ import axios from 'axios'
 // import { Link } from 'react-router-dom'
 import { FaLocationDot } from "react-icons/fa6";
 import { UserType } from "./UserContext";
+import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom"
 

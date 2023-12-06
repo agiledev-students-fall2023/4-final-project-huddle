@@ -86,10 +86,16 @@ function MatchCard({ match }) {
             <span style={{ marginLeft: '10px' }}>{match.isFull ? 'Yes' : 'No'}</span>
         </div>
 
-        <div>
+        <div> 
             <label>Winner:</label>
             <span style={{ marginLeft: '10px' }}>{match.winner || 'Not decided yet'}</span>
         </div>
+
+        <button style={{ marginTop: '10px' }}>
+
+            <Link to={`/editmatch/${match.id}`}>Edit Match</Link>
+            {/* style={{ marginTop: '10px' }}><a href={`./Match/${match.id}`}>See Details</a> */}
+        </button>
 
         {/* <button style={{ marginTop: '10px' }}>
             <Link to={`./Match/${match.id}`}>See Details</Link>
