@@ -78,7 +78,7 @@ const protectedContentRoutes = () => {
       }); // send the token to the client to store
       next();
     } catch (err) {
-      // error saving user to database... send an error response
+      // error saving user to database... send an error response 
       console.error(`Failed to save game: ${err}`);
       res.status(500).json({
         success: false,
@@ -90,11 +90,30 @@ const protectedContentRoutes = () => {
   });
 
   router.get("/friends",passport.authenticate("jwt", {session:false}), async (req,res,next)=>{
+    console.log("we in here");
+    console.log(req.user.username);
     const theUser = await User.findOne({username: req.user.username});
-    res.json({
-      friends: theUser.friends,
-      success:true
-    });
+    let friendsDatas =[];
+    const friendsIDs = theUser.friends;
+    
+    if(friendsIDs.length >0){
+      for(let i =0; i<friendsIDs.length;i++){
+        const singleFriend = await User.findOne({username : friendsIDs[i]});
+        friendsDatas.push(singleFriend);
+      }
+      console.log(friendsDatas);
+      res.json({
+        friends: friendsDatas,
+        success:true
+      });
+    }
+    else{
+      res.json({
+        friends:null,
+        success:true
+      })
+    }
+    
   
 
   }
