@@ -58,7 +58,7 @@ const App = props => {
           <Route path="/profile" element={<Profile/>} />
 
           {/* a route to the other profile  screen */}
-          <Route path="/viewprofile" element={<ViewProfile/>} />
+          <Route path="/viewprofile/:slug" element={<ViewProfile/>} />
 
            {/* a route to the edit profile  screen */}
            <Route path="/editprofile" element={<EditProfile/>} />

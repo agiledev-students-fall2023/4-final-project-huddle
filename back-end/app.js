@@ -196,9 +196,9 @@ app.get('/profile', async (req, res) => {
   });
 });
 
-app.get('/viewprofile', async (req, res) => {
-    
-    const theUser = await User.findOne({username: "ihunt"});
+app.get('/viewprofile/:slug', async (req, res) => {
+    otherUser = req.params.slug;
+    const theUser = await User.findOne({username: otherUser});
    console.log(theUser);
    res.json({
     img: theUser.profilePicture,
@@ -209,7 +209,20 @@ app.get('/viewprofile', async (req, res) => {
     success:true
   });
   });
+app.post('/comment/:slug', async(req,res)=>{
+  console.log("we in here");
+  console.log(req.body);
+  console.log(req.params.slug);
+  const otherUser = await User.findOne({username: req.params.slug});
+  const comment = `@${req.body.main} - ${req.body.comment}`;
+  otherUser.comments.push(comment);
+  otherUser.save();
 
+  res.json({success:true});
+
+
+
+});
 
 app.get('/friends', async (req, res) => {
   const allUsers = await User.find();

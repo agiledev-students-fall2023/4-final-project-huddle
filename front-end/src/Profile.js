@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom"
 
-
+ 
 const Profile = props => {
   const jwtToken = localStorage.getItem("token"); // gets the token
   const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true); //sets the state of being logged in

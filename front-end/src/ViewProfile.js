@@ -3,14 +3,21 @@ import "./ViewProfile.css"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link } from "react-router-dom";
+import { useParams } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
 
 
 const ViewProfile = props => {
+  const jwtToken = localStorage.getItem("token"); // gets the token
+  const { slug } = useParams();
   const [profile, setProfile] = useState([]);
+  const [comment, setComment] = useState();
+  const [thisUser, setThisUser] = useState();
+  let navigate = useNavigate()
   useEffect(() => {
     const fetchProfile = async () => {
       axios
-        .get("http://localhost:3000/viewprofile")
+        .get(`http://localhost:3000/viewprofile/${slug}`)
         .then(response => {
           // axios bundles up all response data in response.data property
           const Profile = response.data;
@@ -20,9 +27,48 @@ const ViewProfile = props => {
           const errMsg = JSON.stringify(err, null, 2);// convert error object to a string so we can simply dump it to the screen
           console.log(errMsg);
         })
+      
+        axios
+        .get("http://localhost:3000/protected/profile",
+        {headers: { Authorization: `JWT ${jwtToken}` },})
+        .then(response => {
+          // axios bundles up all response data in response.data property
+          const thisUserProfile = response.data;
+          setThisUser(thisUserProfile.name);
+        })
+        .catch(err => {
+          const errMsg = JSON.stringify(err, null, 2);// convert error object to a string so we can simply dump it to the screen
+          console.log(errMsg);
+        })
     }
     fetchProfile();
   }, []);
+  const handleChange = event =>{
+    setComment(event.target.value);
+  };
+
+  const handleComment = event=>{
+    event.preventDefault();
+
+    if(jwtToken){
+      axios
+    .post(`http://localhost:3000/comment/${slug}`,{comment: comment, main: thisUser})
+    .then(res=>{
+      console.log(res);
+      
+    })
+    .catch(err=>{
+        console.log(err);
+    })
+    window.location.reload(true);
+    }
+    else{
+      //redirecto to login
+    }
+
+    
+    
+  };
 
 
   return (
@@ -30,8 +76,7 @@ const ViewProfile = props => {
       
       <section className="main-content">
         <div className="biofull">
-          <img alt="welcome!" src={profile.img} length = "75" width = "75"/>
-
+          <img alt="welcome!"  src={profile.img!==undefined ? profile.img: ("/defaultProfile.png")} length = "75" width = "75"/>
           <div className="bio">
             <p>Name: {profile.name}</p>
             <p>Location: {profile.location}</p>
@@ -44,18 +89,17 @@ const ViewProfile = props => {
           <h2>Profile Comments</h2>
           {profile.comments?.map(comment=>(
             <div className="comment">
-              <h3>user</h3>
               <p>{comment}</p>
             </div>
 
           ))}
         </div>
         <div className="Commentform">
-          <form action = "viewprofile" method = "Post">
-            <textarea name="comments" id="comments" style={{width: "100%"}}>
+          <form action = "/commentprofile" method = "Post">
+            <textarea name="comments" id="comments" placeholder = "Say something" onChange={handleChange} style={{width: "100%"}}>
 
             </textarea>
-            <input type="submit" value="Add comment"></input>
+            <input type="submit" value="Add comment"onClick={handleComment}></input>
 
           </form>
         </div>

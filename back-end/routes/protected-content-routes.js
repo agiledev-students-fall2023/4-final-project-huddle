@@ -45,6 +45,17 @@ const protectedContentRoutes = () => {
 
   }
   );
+  router.post('/comment/:slug',passport.authenticate("jwt", {session:false}), async(req,res)=>{
+    const mainUser = req.user.username;
+    const otherUser = req.body.comment;
+    console.log("we in here");
+    console.log("here is maine " + mainUser);
+    console.log("here is maine " + otherUser);
+    res.json({success:true});
+  
+  
+  
+  });
 
   return router;
 
