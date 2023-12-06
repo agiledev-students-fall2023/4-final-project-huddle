@@ -86,7 +86,7 @@ const EditMatch = () => {
                         name="dateAndTime" 
                         value={matchDetails.dateAndTime || ''} 
                         onChange={handleChange} 
-                    />
+            />
 
                             {/* name="time"
                             type="time"

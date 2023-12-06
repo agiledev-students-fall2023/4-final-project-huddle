@@ -99,10 +99,9 @@ function MatchCard({ match }) {
         </button>
 
 
-        <button style={{ marginTop: '10px' }}>
+        {/* <button style={{ marginTop: '10px' }}>
             <Link to={`./Match/${match.id}`}>See Details</Link>
-            {/* style={{ marginTop: '10px' }}><a href={`./Match/${match.id}`}>See Details</a> */}
-        </button>
+        </button> */}
         </div>
     );
 }
