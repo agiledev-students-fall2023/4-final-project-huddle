@@ -6,7 +6,7 @@ import axios from 'axios'
 // import { Link } from 'react-router-dom'
 import { FaLocationDot } from "react-icons/fa6";
 import { UserType } from "./UserContext";
-
+import { FaSearch } from "react-icons/fa";
 
 
 const Friends = props => {
@@ -48,7 +48,19 @@ const Friends = props => {
 
   return (
     <div className="Friends">
-      <h1 >Your Friends</h1>
+           <button className="searchbutton"><a href={"./Search"}> <FaSearch /></a></button>
+
+     <div className="header">
+
+        <h1 >Your Friends</h1>
+         
+
+     </div>
+
+
+      
+      <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'white', borderRadius: '10px', border: 'solid', fontWeight:'bold'}}><a href={"./Search"}>Add New Friend</a></button>
+
 
       <section className="main-content">
         <div>
@@ -56,7 +68,6 @@ const Friends = props => {
             <FriendCard key={friend.name} friend={friend} />
           ))}
         </div>
-        <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid'  }}><a href={"./Search"}>Add New Friend</a></button>
         
       </section>
       

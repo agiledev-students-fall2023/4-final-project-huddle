@@ -23,7 +23,6 @@ function HamburgerMenu() {
           <a href="./messages" onClick={toggleMenu}>Messages</a>
           <a href="./MatchHistory" onClick={toggleMenu}>Match History</a>
           <a href="./GamesHappeningSoon" onClick={toggleMenu}>Games Happening Soon</a>
-          <a href="./Search" onClick={toggleMenu}>Search</a>
           <a href="./AboutUs" onClick={toggleMenu}>About Us</a>
           <a href="./logout" onClick={toggleMenu}>Logout</a>
         </div>

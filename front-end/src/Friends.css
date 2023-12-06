@@ -1,7 +1,27 @@
 .Friends{
     font-family: Arial, Helvetica, sans-serif;
-    text-align: center;
-    
+
+}
+
+.header{
+    /* display: flex; */
+    justify-content: center;
+    align-items: center;
+
+}
+
+.searchbutton{
+    margin-top: 10px;
+  /* padding: 5px; */
+  /* margin: 5px; */
+  background-color: white;
+  border-radius: 10px;
+  border: solid;
+  font-weight: bold;
+  float: right;
+  position: absolute;
+  top: 10px;
+  right: 15px;
 }
 
 .FriendCard {
