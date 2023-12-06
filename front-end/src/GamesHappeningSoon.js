@@ -6,24 +6,37 @@ import "./GamesHappeningSoon.css";
 
 function GamesHappeningSoon() {
     const [games, setGames] = useState(useRef([]));
-    // const location = useLocation();
-    // const { sport } = location.state || {};
+    const location = useLocation();
+    const { sport } = location.state || {};
 
-    // useEffect(() => {
-    //     if (sport) {
-    //         axios.get(`/sampleGames/${sport}`)
-    //             .then(response => {
-    //                 setGames(response.data);
-    //                 console.log(games);
-    //             })
-    //             .catch(error => {
-    //                 console.error('There was an error fetching the games:', error);
-    //             });
-    //     }
-    // }, [sport]);
+useEffect(() => {
+    if (sport) {
+        axios.get(`http://localhost:3000/games/${encodeURIComponent(sport)}`)
+            .then(response => {
+                setGames(response.data);
+            })
+            .catch(error => {
+                console.error('Error fetching games:', error);
+            });
+    }
+}, [sport]);
+
+const handleJoinGame = (gameId) => {
+    const jwtToken = localStorage.getItem("token");
+    axios.post(`http://localhost:3000/games/join/${gameId}`, {}, {
+        headers: { Authorization: `Bearer ${jwtToken}` }
+    })
+    .then(response => {
+        navigate('/Lobby', { state: { gameId: gameId } });
+    })
+    .catch(error => {
+        console.error('Error joining game:', error);
+    });
+};
+
+    
     const navigate = useNavigate();
 
-    const sport =[];
     useEffect(() => {
     const jwtToken = localStorage.getItem("token");
 
@@ -60,9 +73,9 @@ function GamesHappeningSoon() {
 
             <section>
                 <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>
-                    Games Happening Soon for {'All Sports'} 
-                    {/* {sport || 'All Sports'}  */}
+                Games Happening Soon for {sport || 'All Sports'}
                 </h2>
+
                 <button className='gbutton' onClick={() => navigate('/CreateGame')}>Create a Game</button>
 
 
@@ -81,10 +94,12 @@ function GamesHappeningSoon() {
                 games.map((game, index) => (
                     <GameCard 
                         key={index}
+                        id={game.id}
                         sportName={game.sportName}
                         maxPlayers={game.maxPlayers}
                         location={game.location}
                         time={game.time}
+                        onJoinGame={handleJoinGame}
                     />
                 ))
                     ) : (
@@ -96,11 +111,13 @@ function GamesHappeningSoon() {
     );
 }
 
-function GameCard({ sportName, maxPlayers, location, time }) {
-    console.log('Time:', time);
-
+function GameCard({ id, sportName, maxPlayers, location, time, onJoinGame }) {
     return (
         <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }} className="GameCard">
+            <div>
+                <label>Game ID:</label>
+                <span style={{ marginLeft: '10px' }}>{id}</span>
+            </div>
             <div>
                 <label>Sport:</label>
                 <span style={{ marginLeft: '10px' }}>{sportName}</span>
@@ -117,7 +134,7 @@ function GameCard({ sportName, maxPlayers, location, time }) {
                 <label>Time:</label>
                 <span style={{ marginLeft: '10px' }}>{time}</span>
             </div>
-            <button style={{ marginTop: '10px' }}><a href={"./Lobby"}>Join Game</a></button>
+            <button style={{ marginTop: '10px' }} onClick={() => onJoinGame(id)}>Join Game</button>
         </div>
     );
 }
