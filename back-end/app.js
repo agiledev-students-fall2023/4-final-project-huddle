@@ -196,6 +196,8 @@ app.get('/profile', async (req, res) => {
   });
 });
 
+
+
 app.get('/viewprofile', async (req, res) => {
     
     const theUser = await User.findOne({username: "ihunt"});
@@ -223,12 +225,62 @@ app.get('/friends', async (req, res) => {
   });
 });
 
+app.get('/friends/:userId', async (req, res) => {
+  try{
+    const {userId} = req.params;
+    const user = await User.findById(userId).populate(
+      "friends", 
+      "name email image"
+    )
+    
+    const friends = user.friends; 
+    res.json(friends)
+  } catch(error){
+    console.log(error);
+    res.status(500).json({message:"internal server error "})
+  }
+  
+  // res.json({
+  //   users: allUsers.map(user => ({
+  //     img: user.profilePicture,
+  //     name: user.username,
+  //     location: user.location,
+  //   })),
+  //   success: true
+  // });
+});
+ 
+
+app.post('/editmatch/:matchId', async (req, res) => {
+  try {
+      const matchId = req.params.matchId;
+      const { dateAndTime, location, winner } = req.body;
+      const match = await Game.findOne({ id: matchId });
+
+      if (!matchId) {
+          return res.status(404).send('Match not found');
+      }
+
+      match.dateAndTime = dateAndTime;
+      match.location = location;
+      match.winner = winner;
+
+      await match.save();
+      res.json(match);
+  } catch (error) {
+      console.error('Error updating match:', error);
+
+      res.status(500).send('Internal Server Error');
+  }
+});
+
 
 
 app.get('/matchHistory', async (req, res) => {
   const allMatches = await Game.find();
   res.json({
     matches: allMatches.map(match => ({
+      id: match.id,
       sportName: match.sportName,
       location: match.location,
       inProgress: match.inProgress,
@@ -241,6 +293,23 @@ app.get('/matchHistory', async (req, res) => {
     success: true
   });
 });
+
+app.get('/match/:matchId', async (req, res) => {
+  try {
+      const matchId = req.params.matchId;
+      const match = await Game.findOne({ id: matchId });
+
+      if (!match) {
+          return res.status(404).send('Match not found');
+      }
+
+      res.json(match);
+  } catch (error) {
+      console.error('Error fetching match:', error);
+      res.status(500).send('Internal Server Error');
+  }
+});
+
 
 app.post('/login', (req, res)=> {
     const [email, password] = ['abc','123'];
