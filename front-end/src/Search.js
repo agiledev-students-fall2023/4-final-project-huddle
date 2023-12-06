@@ -1,5 +1,6 @@
 import React from 'react';
 import axios from 'axios';
+import { Link } from 'react-router-dom'
 import "./Search.css";
 
 class SearchScreen extends React.Component {
@@ -36,10 +37,10 @@ class SearchScreen extends React.Component {
                         this.state.users.map((user, index) => (
                             <div className="user" key={index}>
                                 <div className="avatar">
-                                    <img src={user.profilePicture} alt="Avatar" />
+                                    <img src={user.profilePicture!==undefined ? user.profilePicture: ("/defaultProfile.png")} alt="Avatar" />
                                 </div>
                                 <div className="details">
-                                    <span className="username">{user.username}</span>
+                                    <Link to={`/viewprofile/${user.username}`}> <span className="username">{user.username}</span></Link>
                                     <span className="location">{user.location}</span>
                                     {/* ... */}
                                 </div>
