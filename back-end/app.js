@@ -8,7 +8,7 @@ const { v4: uuidv4 } = require('uuid');
 const mongoose = require("mongoose")
 const dotenv = require("dotenv");
 const User = require("./models/User");
-const Game = require("./models/game");
+const Game = require("./models/Game");
 const { match } = require("assert");
 const Message = require("./models/message");
 require('dotenv').config();
