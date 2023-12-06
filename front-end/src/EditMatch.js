@@ -63,6 +63,14 @@ const EditMatch = () => {
         <section className="main-content">
              <form onSubmit={handleSubmit}>
          
+             <label>Location:</label>
+                    <input 
+                        type="text" 
+                        name="location" 
+                        value={matchDetails.location || ''} 
+                        onChange={handleChange} 
+            />
+
             <label>Winner:</label>
                     <input 
                         type="text" 
@@ -79,6 +87,14 @@ const EditMatch = () => {
                         value={matchDetails.dateAndTime || ''} 
                         onChange={handleChange} 
                     />
+
+                            {/* name="time"
+                            type="time"
+                            className="form-control"
+                            value={this.state.time}
+                            onChange={this.handleChange}
+                            min="00:00"
+                            max="12:59" */}
         
 
             <button type="submit">Save Changes</button>
