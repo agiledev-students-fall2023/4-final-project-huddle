@@ -47,17 +47,6 @@ const protectedContentRoutes = () => {
 
   }
   );
-  router.post('/comment/:slug',passport.authenticate("jwt", {session:false}), async(req,res)=>{
-    const mainUser = req.user.username;
-    const otherUser = req.body.comment;
-    console.log("we in here");
-    console.log("here is maine " + mainUser);
-    console.log("here is maine " + otherUser);
-    res.json({success:true});
-  
-  
-  
-  });
 
   router.post("/creategame", async (req, res, next) => {
     console.log(`Incoming signup data: ${JSON.stringify(req.body, null, 0)}`)
@@ -104,8 +93,6 @@ const protectedContentRoutes = () => {
     const theUser = await User.findOne({username: req.user.username});
     res.json({
       friends: theUser.friends,
-      img: theUser.profilePicture,
-      name: theUser.username,
       success:true
     });
   
