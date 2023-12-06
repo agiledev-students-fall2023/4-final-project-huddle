@@ -31,6 +31,7 @@ const Friends = props => {
         // const friendsData = response.data.users;
         const friendsData = response.data.friends;
         setFriends(friendsData);
+        console.log(friendsData);
       })
       .catch(error => {
         const errMsg = JSON.stringify(error, null, 2);
@@ -81,9 +82,9 @@ const Friends = props => {
 function FriendCard({friend}) {
   return (
       <div className="FriendCard">
-        <img className="profpic" alt="profpic!" src={friend.profilePicture || "https://picsum.photos/200?page=home"} />
+        <img className="profpic" alt="profpic!" src={friend.profilePicture || "/defaultProfile.png"} />
         <div className="friendDetails">
-          <div>Name: {friend.name}
+          <div>Name: {friend.username}
                 {/* <span style={{ marginLeft: '10px' }}></span> */}
             </div>
 
