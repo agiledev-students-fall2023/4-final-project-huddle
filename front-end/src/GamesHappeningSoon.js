@@ -82,7 +82,7 @@ function GamesHappeningSoon() {
                     <GameCard 
                         key={index}
                         sportName={game.sportName}
-                        playersNeeded={game.playersNeeded}
+                        maxPlayers={game.maxPlayers}
                         location={game.location}
                         time={game.time}
                     />
@@ -96,18 +96,18 @@ function GamesHappeningSoon() {
     );
 }
 
-function GameCard({ sportName, playersNeeded, location, time }) {
+function GameCard({ sportName, maxPlayers, location, time }) {
     console.log('Time:', time);
 
     return (
-        <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }} class="GameCard">
+        <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }} className="GameCard">
             <div>
                 <label>Sport:</label>
                 <span style={{ marginLeft: '10px' }}>{sportName}</span>
             </div>
             <div>
-                <label># Players needed:</label>
-                <span style={{ marginLeft: '10px' }}>{playersNeeded}</span>
+                <label>Max # of Players:</label>
+                <span style={{ marginLeft: '10px' }}>{maxPlayers}</span>
             </div>
             <div>
                 <label>Location:</label>
