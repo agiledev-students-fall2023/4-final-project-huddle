@@ -68,7 +68,7 @@ const NewGameForm = props => {
         .then(response => {
           // Handle success
           console.log("Success!")
-        //   navigate("/profile");
+          navigate("/gamesHappeningSoon");
         })
         .catch(err => {
           // Handle error
