@@ -63,9 +63,9 @@ const Friends = props => {
 
         <section className="main-content">
           <div>
-            {friends.map((friend) => (
+            {friends.length>0?friends.map((friend) => (
               <FriendCard key={friend.name} friend={friend} />
-            ))}
+            )): <div className="noFriends">{"nothing to see here:("}</div>}
           </div>
 
           
