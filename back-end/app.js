@@ -346,9 +346,13 @@ app.get('/protected/gamesHappeningSoon', async (req, res) => {
   
 app.get('/games/:sportName', async (req, res) => {
   try {
+      console.log("we in here");
+      console.log(req.params.sportName);
+
       const sportName = req.params.sportName;
       // Use a case-insensitive regex search to match the sport name.
-      const games = await Database.find({ sportName: new RegExp('^' + sportName + '$', 'i') });
+      const games = await Game.find({ sportName: new RegExp('^' + sportName + '$', 'i') });
+      console.log(games);
       res.json(games);
   } catch (error) {
       res.status(500).json({ message: error.message });
