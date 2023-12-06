@@ -55,8 +55,10 @@ const Friends = props => {
     <>
     {isLoggedIn ? (
       <div className="Friends">
+         <h1 >Your Friends</h1>
         <button className="searchbutton"><a href={"./Search"}> <FaSearch /></a></button>
-        <h1 >Your Friends</h1>
+        <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid'  }}><a href={"./Search"}>Add New Friend</a></button>
+
 
         <section className="main-content">
           <div>
@@ -66,7 +68,6 @@ const Friends = props => {
           </div>
 
           
-          <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid'  }}><a href={"./Search"}>Add New Friend</a></button>
           
         </section>
         
