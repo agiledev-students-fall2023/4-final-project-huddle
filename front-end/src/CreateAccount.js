@@ -131,8 +131,14 @@ const CreateAccount = props => {
 
         <div className='LocationInput'> <input type='text' name='location' value={info.location} 
         onChange={handleLocationChange} placeholder='Location' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
-        <div><input type='submit' onChange={handleSubmit} value="Create Account" style={{ width: '380px', height: '30px', fontWeight:'bold', fontSize:'larger'}}/> </div>
+        <div><input type='submit' onChange={handleSubmit} value="Create Account" style={{ width: '300px', height: '30px', fontWeight:'bold', fontSize:'larger', color:'blue'}}/> </div>
       </form>
+
+      <div style={{ textAlign: 'center', marginTop: '20px' }}>
+        <button onClick={() => navigate('/login')} style={{ fontWeight: 'bolder' }}>
+          Already have an account? Click here to log in.
+        </button>
+      </div>
 
     </div>
   )

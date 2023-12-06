@@ -1,5 +1,6 @@
 import React from "react"
 import "./ViewProfile.css"
+import "./EditProfile.css"
 import { useState, useEffect } from 'react'
 import { useNavigate } from "react-router-dom";
 import axios from 'axios'
@@ -71,7 +72,7 @@ const EditProfile = props => {
     <div className="EditProfile">
       <section className="main-content">
         <form action="/editprofile" method="POST" encType="multipart/form-data">
-            <img alt="welcome!" src={profile.img!==undefined ? profile.img: ("/defaultProfile.png")}  length = "75" width = "75"/>
+            <img alt="profpic" src={profile.img!==undefined ? profile.img: ("/defaultProfile.png")}  length = "175" width = "175"/>
             <input type="file" onChange={handleFileChange} />
             <label for="bio">Bio: </label>
             <input type="text" id="bio" name="bio" onChange={handleChange} value= {bio}></input>
