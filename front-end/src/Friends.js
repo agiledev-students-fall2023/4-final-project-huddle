@@ -55,6 +55,7 @@ const Friends = props => {
     <>
     {isLoggedIn ? (
       <div className="Friends">
+        <button className="searchbutton"><a href={"./Search"}> <FaSearch /></a></button>
         <h1 >Your Friends</h1>
 
         <section className="main-content">
