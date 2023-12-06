@@ -1,7 +1,8 @@
 import React, { useState, useEffect, useRef } from 'react';
-import { useLocation } from 'react-router-dom';
+import { useLocation, useNavigate } from 'react-router-dom';
 import axios from 'axios';
 import "./GamesHappeningSoon.css";
+
 
 function GamesHappeningSoon() {
     const [games, setGames] = useState(useRef([]));
@@ -20,7 +21,8 @@ function GamesHappeningSoon() {
     //             });
     //     }
     // }, [sport]);
-    
+    const navigate = useNavigate();
+
     const sport =[];
     useEffect(() => {
     const jwtToken = localStorage.getItem("token");
@@ -32,8 +34,14 @@ function GamesHappeningSoon() {
       .then(res => {
         console.log(`token sent: ${jwtToken}`)
         console.log(res.data) // store the response data
-        setGames(res.data);
+        // setGames(res.data);
         console.log(games.current[0])
+        const gamesWithFormattedDate = res.data.map(game => ({
+            ...game,
+            date: new Date(game.dateAndTime).toLocaleDateString(),
+            time: new Date(game.dateAndTime).toLocaleTimeString([], { hour: '2-digit', minute: '2-digit' })
+          }));
+          setGames(gamesWithFormattedDate);
       })
       .catch(err => {
         console.log(`token sent: ${jwtToken}`)
@@ -55,6 +63,8 @@ function GamesHappeningSoon() {
                     Games Happening Soon for {'All Sports'} 
                     {/* {sport || 'All Sports'}  */}
                 </h2>
+                <button className='gbutton' onClick={() => navigate('/CreateGame')}>Create a Game</button>
+
 
                 {/* {games.current.map((game, index) => (
                     <GameCard
@@ -71,8 +81,8 @@ function GamesHappeningSoon() {
                 games.map((game, index) => (
                     <GameCard 
                         key={index}
-                        sport={game.sport}
-                        playersNeeded={game.playersNeeded}
+                        sportName={game.sportName}
+                        maxPlayers={game.maxPlayers}
                         location={game.location}
                         time={game.time}
                     />
@@ -86,16 +96,18 @@ function GamesHappeningSoon() {
     );
 }
 
-function GameCard({ sport, playersNeeded, location, time }) {
+function GameCard({ sportName, maxPlayers, location, time }) {
+    console.log('Time:', time);
+
     return (
-        <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }} class="GameCard">
+        <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px' }} className="GameCard">
             <div>
                 <label>Sport:</label>
-                <span style={{ marginLeft: '10px' }}>{sport}</span>
+                <span style={{ marginLeft: '10px' }}>{sportName}</span>
             </div>
             <div>
-                <label># Players needed:</label>
-                <span style={{ marginLeft: '10px' }}>{playersNeeded}</span>
+                <label>Max # of Players:</label>
+                <span style={{ marginLeft: '10px' }}>{maxPlayers}</span>
             </div>
             <div>
                 <label>Location:</label>

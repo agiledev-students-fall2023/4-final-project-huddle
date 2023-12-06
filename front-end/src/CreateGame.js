@@ -41,6 +41,16 @@ class NewGameForm extends React.Component {
                         />
                     </div>
                     <div className="form-group">
+                        <label>Date: </label>
+                        <input
+                            name="date"
+                            type="date"
+                            className="form-control"
+                            value={this.state.date}
+                            onChange={this.handleChange}
+                        />
+                    </div>
+                    <div className="form-group">
                         <label>Time: </label>
                         <input
                             name="time"
@@ -69,7 +79,7 @@ class NewGameForm extends React.Component {
                     <div className="form-group">
                         <label># of Players: </label>
                         <input
-                            name="numberOfPlayers"
+                            name="maxPlayers"
                             type="number"
                             className="form-control"
                             value={this.state.numberOfPlayers}

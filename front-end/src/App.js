@@ -31,6 +31,7 @@ import { UserContext } from "../src/UserContext"
 // /back-end/UserContext.js
 
 import "./App.css"
+import EditMatch from "./EditMatch.js"
 
 // set up routes so different URL routes load up different main components
 const App = props => {
@@ -93,6 +94,9 @@ const App = props => {
 
           {/* a route to the match screen */}
           <Route path="/match" element={<Match/>} />
+
+          {/* a route to the edit match screen */}
+          <Route path="/editmatch/:matchId" element={<EditMatch/>} />
 
           {/* a route to the match screen */}
           <Route path="/aboutUs" element={<AboutUs/>} />

@@ -2,7 +2,7 @@ import React from "react"
 import "./MatchHistory.css"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
-import { Link } from 'react-router-dom'
+import { Link, useNavigate, Navigate } from 'react-router-dom'
   
 const MatchHistory = props => {
 
@@ -29,6 +29,7 @@ const MatchHistory = props => {
             <section className="main-content">
 
                 {matchHistory.map((match) => (
+                    
                     <MatchCard key={match.dateAndTime} match={match} />
                 ))}
 
@@ -49,6 +50,7 @@ const MatchHistory = props => {
 }
 
 function MatchCard({ match }) {
+    console.log(match);
     return (
         <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px', borderRadius: '10px', background: 'white' }}>
         <div>
@@ -70,7 +72,7 @@ function MatchCard({ match }) {
             <br />
             <label>Teams:</label>
             <br />
-            <span style={{ marginLeft: '10px' }}>{match.team1.join(' ')} <br />vs<br /> {match.team2.join(' ')}</span>
+            <span style={{ marginLeft: '10px' }}>{match.team1.join(', ')} <br />vs<br /> {match.team2.join(' ')}</span>
         </div>
 
         <div>
@@ -89,10 +91,10 @@ function MatchCard({ match }) {
             <span style={{ marginLeft: '10px' }}>{match.winner || 'Not decided yet'}</span>
         </div>
 
-        <button style={{ marginTop: '10px' }}>
+        {/* <button style={{ marginTop: '10px' }}>
             <Link to={`./Match/${match.id}`}>See Details</Link>
-            {/* style={{ marginTop: '10px' }}><a href={`./Match/${match.id}`}>See Details</a> */}
-        </button>
+            
+        </button> */}
         </div>
     );
 }

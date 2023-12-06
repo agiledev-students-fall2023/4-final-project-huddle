@@ -1,0 +1,71 @@
+.Match{
+    /* background-color: whitesmoke; */
+    margin: 0;
+    padding: 0;
+    
+
+}
+.main-content{
+    width: 70%;
+    margin: auto;
+    /* background-color: whitesmoke; */
+    padding-left: 3em;
+    padding-right: 3em;
+    padding-top: 1em;
+    padding-bottom: 1em;
+
+}
+img{
+    float:left ;
+    margin-right: 1em;
+}
+p{
+    font-family: 'Times New Roman', Times, serif;
+}
+
+.biofull{
+    margin-bottom: 3em;
+}
+.bio{
+    
+}
+.comments{
+    border-top: 2px black solid;
+    border-bottom: 2px black dashed;
+    
+}
+.comment > p{
+    
+    background-color: white;
+    padding: 1em;
+}
+
+.userSports>ul{
+    text-align: center;
+    list-style: inside;
+    background-color: white;
+}
+
+.sportRating{
+    text-align: center;
+    background-color: white;
+}
+.match{
+    text-align: center;
+    background-color: white;
+}
+#history{
+    text-align: center;
+    
+}
+
+@media only screen and (max-width: 600px) {
+    .bio>p{
+        font-size: 0.75em;
+    }
+
+    .biofull{
+        margin-bottom: 1em;
+    }
+    
+  }

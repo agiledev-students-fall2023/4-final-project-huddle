@@ -41,6 +41,7 @@ const protectedContentRoutes = () => {
       comments: theUser.comments,
       success:true
     });
+    
 
 
   }
@@ -56,6 +57,19 @@ const protectedContentRoutes = () => {
   
   
   });
+
+  router.get("/friends",passport.authenticate("jwt", {session:false}), async (req,res,next)=>{
+    const theUser = await User.findOne({username: req.user.username});
+    res.json({
+      friends: theUser.friends,
+      img: theUser.profilePicture,
+      name: theUser.username,
+      success:true
+    });
+  
+
+  }
+  );
 
   return router;
 
