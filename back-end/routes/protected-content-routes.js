@@ -109,7 +109,7 @@ const protectedContentRoutes = () => {
     }
     else{
       res.json({
-        friends:null,
+        friends:[],
         success:true
       })
     }
