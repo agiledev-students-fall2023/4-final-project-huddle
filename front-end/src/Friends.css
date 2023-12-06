@@ -30,7 +30,7 @@
     border: 1px solid black;
     
     border-radius: 10px;
-    width: 100%;
+    width: 300px;
     margin-bottom: 15px;
     padding: 15px;
     align-items: center;
@@ -52,6 +52,7 @@
 
 .username {
     display: flex;
+    align-items: left;
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
     text-align: left;
@@ -64,12 +65,16 @@
 
 .location{
     display: flex;
+    align-items: left;
+    padding-left: 25px;
+
     flex-direction: column;
     font-family: Arial, Helvetica, sans-serif;
     text-align: left;
     font-weight:lighter;
     font-size: medium;
     margin-top: 5px;
+    
 }
 
 .mbutton {
