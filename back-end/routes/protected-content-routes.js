@@ -5,6 +5,7 @@ const multer = require("multer");
 const path = require("path");
 const mongoose = require("mongoose");
 const User = require("../models/User");
+const Game = require("../models/Game.js");
 
 // a method that constains code to handle routes related to protected content that requires login to access
 const protectedContentRoutes = () => {
@@ -46,6 +47,47 @@ const protectedContentRoutes = () => {
 
   }
   );
+
+  router.post("/creategame", async (req, res, next) => {
+    console.log(`Incoming signup data: ${JSON.stringify(req.body, null, 0)}`)
+    // grab the username and password from the POST body
+    const team1 = [];
+    const team2=[];
+    const sportName = req.body.sportName; 
+    const maxPlayers = req.body.maxPlayers;
+
+    const location = req.body.location;
+    let inProgress = true;
+    const creationTime = req.body.creationTime;
+    const dateAndTime = req.body.dateAndTime;
+    const isFull = false;
+    const winner = '';
+    // res.send([username,password])
+
+
+    // try to create a new user
+    try {
+      const game = await new Game({ team1, team2, sportName, maxPlayers, location, inProgress, creationTime, dateAndTime,isFull, winner}).save();
+      // user saved successfully... send a success response
+      console.error(`New game: ${game}`);
+       // generate a signed token
+      res.json({
+        success: true,
+        message: "Game saved successfully.",
+
+      }); // send the token to the client to store
+      next();
+    } catch (err) {
+      // error saving user to database... send an error response
+      console.error(`Failed to save game: ${err}`);
+      res.status(500).json({
+        success: false,
+        message: "Error saving game to database.",
+        error: err,
+      });
+      next();
+    }
+  });
 
   router.get("/friends",passport.authenticate("jwt", {session:false}), async (req,res,next)=>{
     const theUser = await User.findOne({username: req.user.username});
