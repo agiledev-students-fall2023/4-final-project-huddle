@@ -196,11 +196,9 @@ app.get('/profile', async (req, res) => {
   });
 });
 
-
-
-app.get('/viewprofile', async (req, res) => {
-    
-    const theUser = await User.findOne({username: "ihunt"});
+app.get('/viewprofile/:slug', async (req, res) => {
+    otherUser = req.params.slug;
+    const theUser = await User.findOne({username: otherUser});
    console.log(theUser);
    res.json({
     img: theUser.profilePicture,
@@ -211,7 +209,20 @@ app.get('/viewprofile', async (req, res) => {
     success:true
   });
   });
+app.post('/comment/:slug', async(req,res)=>{
+  console.log("we in here");
+  console.log(req.body);
+  console.log(req.params.slug);
+  const otherUser = await User.findOne({username: req.params.slug});
+  const comment = `@${req.body.main} - ${req.body.comment}`;
+  otherUser.comments.push(comment);
+  otherUser.save();
 
+  res.json({success:true});
+
+
+
+});
 
 app.get('/friends', async (req, res) => {
   const allUsers = await User.find();
@@ -322,7 +333,9 @@ app.post('/login', (req, res)=> {
 
 
 
-app.get('/gamesHappeningSoon/:sport', (req, res) => {
+
+app.get('/protected/gamesHappeningSoon', async (req, res) => {
+    const all = await Game.find();
     const { sport } = req.params;
     // will later fetch this data from a database
     const games = gamesData[sport] || [];
@@ -330,13 +343,52 @@ app.get('/gamesHappeningSoon/:sport', (req, res) => {
     // sending the games data back to the client
     res.json(games);
   });
-app.get('/protected/gamesHappeningSoon', async (req, res) => {
-    const all = await Game.find();
+  
+app.get('/games/:sportName', async (req, res) => {
+  try {
+      const sportName = req.params.sportName;
+      // Use a case-insensitive regex search to match the sport name.
+      const games = await Database.find({ sportName: new RegExp('^' + sportName + '$', 'i') });
+      res.json(games);
+  } catch (error) {
+      res.status(500).json({ message: error.message });
+  }
+});
+
+app.post('/games/join/:id', async (req, res) => {
+  const id = req.params.id;
+  const username = req.body.username;
+
+  try {
+    const game = await Game.findById(id);
     
+    // Check if the game exists and is not already full
+    if (!game) {
+      return res.status(404).send('Game not found');
+    }
     
-    // sending the games data back to the client
-    res.send(all);
-  });
+    if (game.team1.length + game.team2.length >= game.maxPlayers) {
+      return res.status(400).send('Game is already full');
+    }
+
+    // Check if the user exists
+    const user = await User.findById(username);
+    if (!user) {
+      return res.status(404).send('User not found');
+    }
+
+    // Add the user to the team
+    game.team1.push(user);
+    
+    await game.save();
+    
+    res.status(200).json(game);
+  } catch (error) {
+    res.status(500).send('Server error');
+  }
+});
+
+
 
 app.get('/search', async (req, res) => {
     try {

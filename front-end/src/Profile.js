@@ -5,7 +5,7 @@ import axios from 'axios'
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom"
 
-
+ 
 const Profile = props => {
   const jwtToken = localStorage.getItem("token"); // gets the token
   const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true); //sets the state of being logged in
@@ -68,8 +68,7 @@ const Profile = props => {
           
 
           <div className="match">
-          <p id = "history">Total Record: Wins : Losses </p>
-            <p>Game 1 : Ending Score W/L: Points: Points</p>
+          <p id = "history">Total Record - Wins:{profile.wins} Losses:{profile.losses} </p>
             <p>Location : City</p>
             <p>Players : Lorem ipsum dolor sit amet, consectetur adipiscing elt</p>
           </div>

@@ -56,12 +56,12 @@ const EditProfile = props => {
     formData.append('username',username);
     axios
     .post("http://localhost:3000/editprofile", formData)
-      .then(res=>{
+    .then(res=>{
         console.log(res);
         navigate("/profile");
         
       })
-      .catch(err=>{
+    .catch(err=>{
           console.log(err);
       })
        
