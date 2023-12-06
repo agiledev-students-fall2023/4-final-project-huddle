@@ -18,7 +18,7 @@ useEffect(() => {
             .catch(error => {
                 console.error('Error fetching games:', error);
             });
-    }
+    } 
 }, [sport]);
 
 const handleJoinGame = (gameId) => {
