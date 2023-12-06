@@ -19,6 +19,10 @@ const gameSchema = mongoose.Schema({
         required: true,
         type: String
     },
+    maxPlayers: {
+        required: true,
+        type: Number
+    },
     location: {
         required: true,
         type: String
