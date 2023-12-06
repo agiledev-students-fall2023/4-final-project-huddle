@@ -5,12 +5,13 @@ import axios from 'axios'
 import { Link, useNavigate, Navigate } from 'react-router-dom'
   
 const MatchHistory = props => {
-
+    const jwtToken = localStorage.getItem("token"); // gets the token
     const [matchHistory, setMatchHistory] = useState([]);
     useEffect(() => {
       const fetchMatchHistory = async () => {
         try {
-          const response = await axios.get("http://localhost:3000/matchHistory");
+          const response = await axios.get("http://localhost:3000/protected/matchHistory",{headers: { Authorization: `JWT ${jwtToken}` },
+        });
           const matchHistoryData = response.data.matches;
           setMatchHistory(matchHistoryData);
         } catch (error) {
@@ -28,10 +29,10 @@ const MatchHistory = props => {
 
             <section className="main-content">
 
-                {matchHistory.map((match) => (
+                {matchHistory.length>0? matchHistory.map((match) => (
                     
                     <MatchCard key={match.dateAndTime} match={match} />
-                ))}
+                )): <div className="noMatches">No Matches at This Time...</div>}
 
                 {/* <MatchCard key={match.id} match={match} /> */}
 

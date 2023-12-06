@@ -42,7 +42,7 @@ const protectedContentRoutes = () => {
       comments: theUser.comments,
       success:true
     });
-    
+
 
 
   }
@@ -88,6 +88,24 @@ const protectedContentRoutes = () => {
       next();
     }
   });
+  router.get("/matchhistory",passport.authenticate("jwt", {session:false}), async (req,res,next)=>{
+    const theUser = await User.findOne({username: req.user.username});
+    let userMatches = [];
+    const matchesIDs = theUser.games;
+    if(matchesIDs.length>0){
+      for(let i =0; i<matchesIDs.length; i++){
+        const singleMatch = await Game.findOne({_id:matchesIDs[i] });
+        userMatches.push(singleMatch);
+
+      }
+      console.log(userMatches);
+    }
+    res.json({
+      matches: userMatches
+   })
+
+  }
+  );
 
   router.get("/friends",passport.authenticate("jwt", {session:false}), async (req,res,next)=>{
     console.log("we in here");
