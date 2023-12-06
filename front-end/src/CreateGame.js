@@ -29,7 +29,7 @@ class NewGameForm extends React.Component {
         return (
             <div className="new-game-container">
                 <h2 className="form-title">New Game</h2>
-                <form onSubmit={this.handleSubmit} className="game-form">
+                <form action = "/createGame" className="game-form">
                     <div className="form-group">
                         <label>Location: </label>
                         <input
@@ -77,7 +77,7 @@ class NewGameForm extends React.Component {
                         />
                     </div>
                     
-                    <button type="submit" className="submit-btn">Create Game</button>
+                    <button type="submit" onClick={this.handleSubmit} className="submit-btn">Create Game</button>
                 </form>
             </div>
         );
