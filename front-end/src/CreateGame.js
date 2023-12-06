@@ -79,7 +79,7 @@ class NewGameForm extends React.Component {
                     <div className="form-group">
                         <label># of Players: </label>
                         <input
-                            name="numberOfPlayers"
+                            name="maxPlayers"
                             type="number"
                             className="form-control"
                             value={this.state.numberOfPlayers}
