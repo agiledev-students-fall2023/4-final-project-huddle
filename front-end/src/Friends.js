@@ -59,7 +59,7 @@ const Friends = props => {
 
 
       
-      <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'white', borderRadius: '10px', border: 'solid', fontWeight:'bold'}}><a href={"./Search"}>Add New Friend</a></button>
+      <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'white', border: '1px solid black', borderRadius: '10px', fontWeight:'bold'}}><a href={"./Search"}>Add New Friend</a></button>
 
 
       <section className="main-content">

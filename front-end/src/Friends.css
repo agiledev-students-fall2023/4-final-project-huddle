@@ -16,7 +16,7 @@
   /* margin: 5px; */
   background-color: white;
   border-radius: 10px;
-  border: solid;
+  border: 1px solid black;
   font-weight: bold;
   float: right;
   position: absolute;

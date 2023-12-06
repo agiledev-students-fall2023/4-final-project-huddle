@@ -9,10 +9,10 @@ body {
     width: auto;
   }
   
-code {
+/* code {
 font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
     monospace;
-}
+} */
   
 
 .MatchCard {
@@ -60,6 +60,15 @@ font-family: source-code-pro, Menlo, Monaco, Consolas, 'Courier New',
   border-style: double;  
   border-radius: 10px;
   align-items: center;
-  background-color: rgb(173, 214, 226);
+  background-color: rgb(21, 103, 5);
   margin-bottom: 10px;
+}
+
+.joinbutton{
+  color: white;
+  text-decoration: none;
+  font-weight: bold;
+  font-size: large;
+  
+
 }

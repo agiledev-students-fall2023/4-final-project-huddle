@@ -117,7 +117,9 @@ function GameCard({ sportName, maxPlayers, location, time }) {
                 <label>Time:</label>
                 <span style={{ marginLeft: '10px' }}>{time}</span>
             </div>
-            <button style={{ marginTop: '10px' }}><a href={"./Lobby"}>Join Game</a></button>
+            <button >
+                <a href={"./Lobby"} className='joinbutton'>Join Game</a>
+                </button>
         </div>
     );
 }
