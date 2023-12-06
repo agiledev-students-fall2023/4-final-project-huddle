@@ -68,8 +68,7 @@ const Profile = props => {
           
 
           <div className="match">
-          <p id = "history">Total Record: Wins : Losses </p>
-            <p>Game 1 : Ending Score W/L: Points: Points</p>
+          <p id = "history">Total Record - Wins:{profile.wins} Losses:{profile.losses} </p>
             <p>Location : City</p>
             <p>Players : Lorem ipsum dolor sit amet, consectetur adipiscing elt</p>
           </div>
