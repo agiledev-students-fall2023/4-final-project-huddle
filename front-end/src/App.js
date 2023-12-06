@@ -32,6 +32,7 @@ import { UserContext } from "../src/UserContext"
 
 import "./App.css"
 import EditMatch from "./EditMatch.js"
+import NewGameForm from "./CreateGame.js"
 
 // set up routes so different URL routes load up different main components
 const App = props => {
@@ -90,7 +91,7 @@ const App = props => {
           <Route path="/gamesHappeningSoon" element={<GamesHappeningSoon/>} />
 
           {/* a route to the match history screen */}
-          <Route path="/createGame" element={<CreateGame/>} />
+          <Route path="/createGame" element={<NewGameForm/>} />
 
           {/* a route to the match screen */}
           <Route path="/match" element={<Match/>} />
