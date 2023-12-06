@@ -17,6 +17,10 @@ const EditMatch = () => {
         axios.get(`http://localhost:3000/match/${matchId}`)
              .then(response => {
                 console.log("Match data fetched:", response.data);
+                const fetchedMatch = response.data;
+                if (fetchedMatch.dateAndTime) {
+                    fetchedMatch.dateAndTime = fetchedMatch.dateAndTime.split(' ')[0];
+                }
                 setMatchDetails(response.data)
                 // setLocation(response.data.location);
              })
@@ -39,8 +43,8 @@ const EditMatch = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log("updated match details: ", matchDetails);
-        axios.post('http://localhost:3000/editmatch', matchDetails)
-            .then(response => {
+        axios.post(`http://localhost:3000/editmatch/${matchId}`, matchDetails)
+        .then(response => {
                 console.log("Match updated successfully:", response.data);
                 navigate('/MatchHistory');
             })
@@ -58,26 +62,24 @@ const EditMatch = () => {
 
         <section className="main-content">
              <form onSubmit={handleSubmit}>
-             <label for="location">Location: </label>
-            <input type="text" id="location" name="location" onChange={handleChange} value= {matchDetails.location}></input>
-            
-            <label for="winner">Winner: </label>
-            <input type="text" id="winner" name="winner" onChange={handleChange} value= {matchDetails.winner}></input>
-            
-            <label for="date">Date: </label>
-            <input type="date" id="date" name="date" onChange={handleChange} value= {matchDetails.date}></input>
-            
+         
+            <label>Winner:</label>
+                    <input 
+                        type="text" 
+                        name="winner" 
+                        value={matchDetails.winner || ''} 
+                        onChange={handleChange} 
+            />
 
-            {/* <form onSubmit={handleSubmit}> */}
-                {/* <label>Date:</label>
-                <input 
-                    type="date" 
-                    name="dateAndTime" 
-                    value={matchDetails.dateAndTime ? matchDetails.dateAndTime.split('T')[0] : ''} 
-                    onChange={handleChange} 
-                /> */}
-                
-            
+
+            <label>Date:</label>
+                    <input 
+                        type="date" 
+                        name="dateAndTime" 
+                        value={matchDetails.dateAndTime || ''} 
+                        onChange={handleChange} 
+                    />
+        
 
             <button type="submit">Save Changes</button>
             </form>
