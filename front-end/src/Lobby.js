@@ -17,6 +17,7 @@ function Lobby() {
             .then(response => {
                 setTeam1(response.data.team1);
                 setTeam2(response.data.team2);
+                console.log(response.data.team2);
                 setGame(response.data.game);
                 console.log(response.data);
             })
@@ -34,7 +35,8 @@ function Lobby() {
             <div className="game-info">Location of Game: {game.location}</div>
             <div className="game-info">Date and Time: {game.dateAndTime}</div>
             <div className="player-list" style={{ textAlign: 'center', marginBottom: '20px' }}>
-                {team1?.map((player, index) => (
+            {team1?.map((player, index) => 
+                player ? (
                     <div className="player" key={index}>
                         <div className="avatar"></div>
                         <div className="details">
@@ -42,10 +44,14 @@ function Lobby() {
                             <span>{player.location}</span>
                         </div>
                     </div>
-                ))}
+                ) : (
+                    <div key={index}>&nbsp;</div>  // Renders a blank space for null players
+                )
+                )}
             </div>
             <div className="player-list" style={{ textAlign: 'center', marginBottom: '20px' }}>
-                {team2?.map((player, index) => (
+            {team2?.map((player, index) => 
+                player ? (
                     <div className="player" key={index}>
                         <div className="avatar"></div>
                         <div className="details">
@@ -53,8 +59,12 @@ function Lobby() {
                             <span>{player.location}</span>
                         </div>
                     </div>
-                ))}
-            </div> 
+                ) : (
+                    <div key={index}>&nbsp;</div>  // Renders a blank space for null players
+                )
+                )}
+            </div>
+
         </div>
     );
 }
