@@ -25,7 +25,7 @@ const MatchHistory = props => {
 
     return (
         <><div className="MatchHistory">
-            <h1 style={{ textAlign: 'center'}}>Your Match History</h1>
+            <h1 style={{ textAlign: 'center'}}>Your Matches</h1>
 
             <section className="main-content">
 
