@@ -54,7 +54,6 @@ const Profile = props => {
           <h2>Profile Comments</h2>
           {profile.comments?.map(comment=>(
             <div className="comment">
-              <h3>user</h3>
               <p>{comment}</p>
             </div>
  

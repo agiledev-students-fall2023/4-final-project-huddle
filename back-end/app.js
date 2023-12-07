@@ -210,7 +210,7 @@ app.get('/viewprofile/:slug', async (req, res) => {
   });
   });
 app.post('/comment/:slug', async(req,res)=>{
-  console.log("we in here");
+  
   console.log(req.body);
   console.log(req.params.slug);
   const otherUser = await User.findOne({username: req.params.slug});
@@ -333,7 +333,7 @@ app.post('/login', (req, res)=> {
  
 
 
-
+ 
 app.get('/protected/gamesHappeningSoon', async (req, res) => {
     try{let all ={} 
       if (req.body.sportName){
@@ -355,9 +355,6 @@ app.get('/protected/gamesHappeningSoon', async (req, res) => {
   
 app.get('/games/:sportName', async (req, res) => {
   try {
-      console.log("we in here");
-      console.log(req.params.sportName);
-
       const sportName = req.params.sportName;
       // Use a case-insensitive regex search to match the sport name.
       const games = await Game.find({ sportName: new RegExp('^' + sportName + '$', 'i') });

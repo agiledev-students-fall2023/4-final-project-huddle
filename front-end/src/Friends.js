@@ -9,7 +9,7 @@ import { UserType } from "./UserContext";
 import { FaSearch } from "react-icons/fa";
 import { useNavigate } from "react-router-dom";
 import { Navigate } from "react-router-dom"
-
+import { Link } from "react-router-dom";
 
 
 const Friends = props => {
@@ -31,6 +31,7 @@ const Friends = props => {
         // const friendsData = response.data.users;
         const friendsData = response.data.friends;
         setFriends(friendsData);
+        console.log(friendsData);
       })
       .catch(error => {
         const errMsg = JSON.stringify(error, null, 2);
@@ -62,9 +63,9 @@ const Friends = props => {
 
         <section className="main-content">
           <div>
-            {friends.map((friend) => (
+            {friends.length>0?friends.map((friend) => (
               <FriendCard key={friend.name} friend={friend} />
-            ))}
+            )): <div className="noFriends">{"nothing to see here:("}</div>}
           </div>
 
           
@@ -81,9 +82,9 @@ const Friends = props => {
 function FriendCard({friend}) {
   return (
       <div className="FriendCard">
-        <img className="profpic" alt="profpic!" src={friend.profilePicture || "https://picsum.photos/200?page=home"} />
+        <img className="profpic" alt="profpic!" src={friend.profilePicture || "/defaultProfile.png"} />
         <div className="friendDetails">
-          <div>Name: {friend.name}
+          <div>Name: {friend.username}
                 {/* <span style={{ marginLeft: '10px' }}></span> */}
             </div>
 
@@ -105,9 +106,9 @@ function FriendCard({friend}) {
           {/* <mbutton>See Details</mbutton> */}
             
 
-          <button style={{ marginLeft: '0px', marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'white', borderRadius: '10px', border: 'solid' }}><a href={"./Profile"}>See Details</a></button>
+          <button style={{ marginLeft: '0px', marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'pink', borderRadius: '10px', border: 'solid' }}><Link to={`/viewprofile/${friend.username}`}>See Details</Link></button>
 
-          <button style={{ marginLeft: '0px', marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'white', borderRadius: '10px', border: 'solid' }}><a href={"./Lobby"}>Invite</a></button>
+          <button style={{ marginLeft: '0px', marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'pink', borderRadius: '10px', border: 'solid' }}><a href={"/Lobby"}>Invite</a></button>
           {/* <button className="plus-icon"><a href={"./Lobby"}>+</a></button> */}
       </div>
   );

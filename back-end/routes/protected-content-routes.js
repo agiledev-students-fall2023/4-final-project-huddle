@@ -42,7 +42,7 @@ const protectedContentRoutes = () => {
       comments: theUser.comments,
       success:true
     });
-    
+
 
 
   }
@@ -78,7 +78,7 @@ const protectedContentRoutes = () => {
       }); // send the token to the client to store
       next();
     } catch (err) {
-      // error saving user to database... send an error response
+      // error saving user to database... send an error response 
       console.error(`Failed to save game: ${err}`);
       res.status(500).json({
         success: false,
@@ -88,13 +88,50 @@ const protectedContentRoutes = () => {
       next();
     }
   });
+  router.get("/matchhistory",passport.authenticate("jwt", {session:false}), async (req,res,next)=>{
+    const theUser = await User.findOne({username: req.user.username});
+    let userMatches = [];
+    const matchesIDs = theUser.games;
+    if(matchesIDs.length>0){
+      for(let i =0; i<matchesIDs.length; i++){
+        const singleMatch = await Game.findOne({_id:matchesIDs[i] });
+        userMatches.push(singleMatch);
+
+      }
+      console.log(userMatches);
+    }
+    res.json({
+      matches: userMatches
+   })
+
+  }
+  );
 
   router.get("/friends",passport.authenticate("jwt", {session:false}), async (req,res,next)=>{
+    console.log("we in here");
+    console.log(req.user.username);
     const theUser = await User.findOne({username: req.user.username});
-    res.json({
-      friends: theUser.friends,
-      success:true
-    });
+    let friendsDatas =[];
+    const friendsIDs = theUser.friends;
+    
+    if(friendsIDs.length >0){
+      for(let i =0; i<friendsIDs.length;i++){
+        const singleFriend = await User.findOne({username : friendsIDs[i]});
+        friendsDatas.push(singleFriend);
+      }
+      console.log(friendsDatas);
+      res.json({
+        friends: friendsDatas,
+        success:true
+      });
+    }
+    else{
+      res.json({
+        friends:[],
+        success:true
+      })
+    }
+    
   
 
   }
