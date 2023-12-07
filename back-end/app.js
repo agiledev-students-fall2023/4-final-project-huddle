@@ -428,13 +428,13 @@ app.post('/games/join/:id', async (req, res) => {
     // Check if the user exists
     const user = await User.findOne({username:userid});
     if (!user) {
-      return res.status(404).send('User not found');
+      return res.status(400).send('User not found');
     }
     
     const username = user.username;
     if(game.team1.includes(username) || game.team2.includes(username)){
       console.log("in already");
-      return res.status(404).send('User already in game');
+      return res.status(400).send('User already in game');
     }
     
     // Add the user to the team
