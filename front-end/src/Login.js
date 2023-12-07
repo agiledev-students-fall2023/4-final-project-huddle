@@ -75,6 +75,10 @@ const Login = props => {
   return (
     <>
       <h1 className='login_header'>Login</h1>
+      {error && <div className="loginError">
+          Incorrect Username or Password!
+        
+        </div>} 
       <form onSubmit={handleSubmit}>
         <div> 
           <input type='text' name='username' placeholder='username' id="name_field" value={info.username} 

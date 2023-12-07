@@ -34,3 +34,9 @@
     align-items: center;
     background-color: rgb(173, 214, 226);
   }
+
+
+  .loginError {
+    color: red;
+    margin: 10px 0;
+  }
