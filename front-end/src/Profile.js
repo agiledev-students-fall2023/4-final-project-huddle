@@ -62,7 +62,7 @@ const Profile = props => {
           </div>
         </div>
         {/* <button onClick={() => navigate("/editprofile")}>Edit Profile</button> */}
-        <button onClick={() => navigate("/editprofile")} className="edit-profile-button">
+        <button onClick={() => navigate("/editprofile")} className="editbutton">
           Edit Profile
         </button>
         <div className="comments">

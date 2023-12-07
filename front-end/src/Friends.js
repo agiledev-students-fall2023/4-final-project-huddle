@@ -1,15 +1,12 @@
 
-import React, { useContext } from "react"
+import React, { useContext, useState, useEffect } from "react"
 import "./Friends.css"
-import { useState, useEffect } from 'react'
 import axios from 'axios'
 // import { Link } from 'react-router-dom'
 import { FaLocationDot } from "react-icons/fa6";
 import { UserType } from "./UserContext";
 import { FaSearch } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
-import { Navigate } from "react-router-dom"
-import { Link } from "react-router-dom";
+import { Navigate, useNavigate, Link } from "react-router-dom"
 
 
 const Friends = props => {
@@ -57,7 +54,9 @@ const Friends = props => {
       <div className="Friends">
          <h1 >Your Friends</h1>
         <button className="searchbutton"><a href={"./Search"}> <FaSearch /></a></button>
-        <button style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid'  }}><a href={"./Search"}>Add New Friend</a></button>
+        <button className="addbutton"
+        // style={{ marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightpink', borderRadius: '10px', border: 'solid'  }}
+        ><a href={"./Search"}>Add New Friend</a></button>
 
 
         <section className="main-content">
@@ -105,7 +104,7 @@ function FriendCard({friend}) {
           {/* <mbutton>See Details</mbutton> */}
             
 
-          <button style={{ marginLeft: '0px', marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'pink', borderRadius: '10px', border: 'solid' }}><Link to={`/viewprofile/${friend.username}`}>See Details</Link></button>
+          <button style={{ marginLeft: '0px', marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightgreen', borderRadius: '10px', border: 'solid' }}><Link to={`/viewprofile/${friend.username}`}>See Details</Link></button>
 
           {/* <button className="plus-icon"><a href={"./Lobby"}>+</a></button> */}
       </div>
