@@ -35,7 +35,7 @@ const Play = () => {
             alt={sport.name} />
 
           {/* <img src={sport.icon} alt={sport.name} style={{ width: '50px', height: '50px' }} /> */}
-          <span>{sport.name}</span>
+          <div className='sporttitle'>{sport.name}</div>
       </div>
          );
      };

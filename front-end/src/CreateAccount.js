@@ -131,7 +131,7 @@ const CreateAccount = props => {
 
         <div className='LocationInput'> <input type='text' name='location' value={info.location} 
         onChange={handleLocationChange} placeholder='Location' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
-        <div><input type='submit' onChange={handleSubmit} value="Create Account" style={{ width: '300px', height: '30px', fontWeight:'bold', fontSize:'larger', color:'blue'}}/> </div>
+        <div><input type='submit' onChange={handleSubmit} value="Create Account" style={{ width: '300px', height: '30px', fontWeight:'bold', fontSize:'larger', color:'white', height:'', borderRadius:'10px'}}/> </div>
       </form>
 
       <div style={{ textAlign: 'center', marginTop: '20px' }}>

@@ -87,3 +87,13 @@
     align-items: center;
     background-color: rgb(33, 118, 144);
   }
+
+  .addbutton{
+    font-size: large;
+    color: white;
+    font-weight: bold;
+    text-decoration: none;
+    
+
+  }
+  
