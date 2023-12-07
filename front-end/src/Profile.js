@@ -47,13 +47,24 @@ const Profile = props => {
           <img alt="welcome!" src={profile.img!==undefined ? profile.img: ("/defaultProfile.png")} length = "75" width = "75"/>
 
           <div className="bio">
-            <p>Name: {profile.name}</p>
-            <p>Location: {profile.location}</p>
-            <p>Bio:{profile.bio}</p>
+            <p className="bio-info">
+              <span className="label">Name:</span> {profile.name}
+            </p>
+            <p className="bio-info">
+              <span className="label">Location:</span> {profile.location}
+            </p>
+            {/* <p className="bio-info">Name: {profile.name}</p>
+            <p className="bio-info">Location: {profile.location}</p>
+            <p className="bio-info">Bio:{profile.bio}</p> */}
+            <p className="bio-info">
+              <span className="label">Bio:</span> {profile.bio}
+            </p>
           </div>
         </div>
-        <button onClick={() => navigate("/editprofile")}>Edit Profile</button>
-
+        {/* <button onClick={() => navigate("/editprofile")}>Edit Profile</button> */}
+        <button onClick={() => navigate("/editprofile")} className="edit-profile-button">
+          Edit Profile
+        </button>
         <div className="comments">
           <h2>Profile Comments</h2>
           {comments.length>0?profile.comments.map(comment=>(
