@@ -335,13 +335,22 @@ app.post('/login', (req, res)=> {
 
 
 app.get('/protected/gamesHappeningSoon', async (req, res) => {
-    const all = await Game.find();
+    try{let all ={} 
+      if (req.body.sportName){
+        all=await Game.find({ sportName: req.body.sportName });
+      }
+      else{
+        all= await Game.find();
+      }
     // const { sport } = req.params;
     // will later fetch this data from a database
     // const games = gamesData[sport] || [];
     
     // sending the games data back to the client
-    res.json(all);
+    res.json(all);}
+    catch(err){
+      console.log(err)
+    }
   });
   
 app.get('/games/:sportName', async (req, res) => {
