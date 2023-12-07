@@ -199,13 +199,23 @@ app.get('/profile', async (req, res) => {
 app.get('/viewprofile/:slug', async (req, res) => {
     otherUser = req.params.slug;
     const theUser = await User.findOne({username: otherUser});
-   console.log(theUser);
+
+    let userMatches= [];
+    const matchesIDs = theUser.games;
+    if(matchesIDs.length>0){
+      for(let i =0; i<matchesIDs.length; i++){
+        const singleMatch = await Game.findOne({_id:matchesIDs[i] });
+        userMatches.push(singleMatch);
+      }
+    }
+
    res.json({
     img: theUser.profilePicture,
     name: theUser.username,
     location: theUser.location,
     bio: theUser.bio,
     comments: theUser.comments,
+    games: userMatches,
     success:true
   });
   });
