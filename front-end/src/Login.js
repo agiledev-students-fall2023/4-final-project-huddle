@@ -38,6 +38,7 @@ const Login = props => {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    localStorage.setItem("username", info.username);
     axios
     .post("http://localhost:3000/auth/login", {
       ...info
