@@ -199,13 +199,23 @@ app.get('/profile', async (req, res) => {
 app.get('/viewprofile/:slug', async (req, res) => {
     otherUser = req.params.slug;
     const theUser = await User.findOne({username: otherUser});
-   console.log(theUser);
+
+    let userMatches= [];
+    const matchesIDs = theUser.games;
+    if(matchesIDs.length>0){
+      for(let i =0; i<matchesIDs.length; i++){
+        const singleMatch = await Game.findOne({_id:matchesIDs[i] });
+        userMatches.push(singleMatch);
+      }
+    }
+
    res.json({
     img: theUser.profilePicture,
     name: theUser.username,
     location: theUser.location,
     bio: theUser.bio,
     comments: theUser.comments,
+    games: userMatches,
     success:true
   });
   });
@@ -335,13 +345,22 @@ app.post('/login', (req, res)=> {
 
  
 app.get('/protected/gamesHappeningSoon', async (req, res) => {
-    const all = await Game.find();
+    try{let all ={} 
+      if (req.body.sportName){
+        all=await Game.find({ sportName: req.body.sportName });
+      }
+      else{
+        all= await Game.find();
+      }
     // const { sport } = req.params;
     // will later fetch this data from a database
     // const games = gamesData[sport] || [];
     
     // sending the games data back to the client
-    res.json(all);
+    res.json(all);}
+    catch(err){
+      console.log(err)
+    }
   });
   
 app.get('/games/:sportName', async (req, res) => {
@@ -479,6 +498,62 @@ app.get("/users/:userId", (req, res) => {
       res.status(500).json({ message: "Error retrieving users" });
     });
 });
+
+app.post('/sendFriendRequest', async (req, res) => {
+  const { senderUsername, receiverUsername } = req.body;
+
+  try {
+    // Add receiver's username to sender's sentFriendRequests
+    await User.updateOne({ username: senderUsername }, { $addToSet: { sentFriendRequests: receiverUsername } });
+
+    // Add sender's username to receiver's friendrequests
+    await User.updateOne({ username: receiverUsername }, { $addToSet: { friendrequests: senderUsername } });
+
+    res.status(200).send('Friend request sent.');
+  } catch (error) {
+    res.status(500).send('Error sending friend request: ' + error);
+  }
+});
+
+
+app.post('/acceptFriendRequest', async (req, res) => {
+  const { userId, requestId } = req.body;
+
+  try {
+    // Move requestId from userId's friendrequests to friends
+    await User.updateOne({ username: userId }, { 
+      $pull: { friendrequests: requestId },
+      $addToSet: { friends: requestId }
+    });
+
+    // Move userId from requestId's sentFriendRequests to friends
+    await User.updateOne({ username: requestId }, { 
+      $pull: { sentFriendRequests: userId },
+      $addToSet: { friends: userId }
+    });
+
+    res.status(200).send('Friend request accepted.');
+  } catch (error) {
+    res.status(500).send('Error accepting friend request: ' + error);
+  }
+});
+
+app.post('/declineFriendRequest', async (req, res) => {
+  const { userId, requestId } = req.body;
+
+  try {
+    // Remove requestId from userId's friendrequests
+    await User.updateOne({ username: userId }, { $pull: { friendrequests: requestId } });
+
+    // Remove userId from requestId's sentFriendRequests
+    await User.updateOne({ username: requestId }, { $pull: { sentFriendRequests: userId } });
+
+    res.status(200).send('Friend request declined.');
+  } catch (error) {
+    res.status(500).send('Error declining friend request: ' + error);
+  }
+});
+
 
 // export the express app we created to make it available to other modules
 module.exports = app

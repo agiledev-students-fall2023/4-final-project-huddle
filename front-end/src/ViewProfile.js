@@ -13,7 +13,9 @@ const ViewProfile = props => {
   const [profile, setProfile] = useState([]);
   const [comment, setComment] = useState();
   const [thisUser, setThisUser] = useState();
-  let navigate = useNavigate()
+  const [matches, setMatches] = useState([]);
+  const [comments, setComments] = useState([]);
+  let navigate = useNavigate();
   useEffect(() => {
     const fetchProfile = async () => {
       axios
@@ -21,7 +23,10 @@ const ViewProfile = props => {
         .then(response => {
           // axios bundles up all response data in response.data property
           const Profile = response.data;
+          console.log(Profile)
           setProfile(Profile);
+          setMatches(Profile.games);
+          setComments(Profile.comments);
         })
         .catch(err => {
           const errMsg = JSON.stringify(err, null, 2);// convert error object to a string so we can simply dump it to the screen
@@ -43,6 +48,7 @@ const ViewProfile = props => {
     }
     fetchProfile();
   }, []);
+
   const handleChange = event =>{
     setComment(event.target.value);
   };
@@ -87,19 +93,19 @@ const ViewProfile = props => {
 
         <div className="comments">
           <h2>Profile Comments</h2>
-          {profile.comments?.map(comment=>(
+          {comments.length>0?comments.map(c=>(
             <div className="comment">
-              <p>{comment}</p>
-
-
-
+              <p>{c}</p>
             </div>
-
-          ))}
+ 
+          )):(
+            <div>No Comments Yet</div>
+          )}
         </div>
+        
         <div className="Commentform">
           <form action = "/commentprofile" method = "Post">
-            <textarea name="comments" id="comments" placeholder = "Say something" onChange={handleChange} style={{width: "100%"}}>
+            <textarea name="comment" id="comment" placeholder = "Say something" onChange={handleChange} style={{width: "100%"}}>
 
             </textarea>
             <input type="submit" value="Add comment"onClick={handleComment}></input>
@@ -110,14 +116,17 @@ const ViewProfile = props => {
 
         <div className="record">
           <h2>Record</h2>
-          
-
-          <div className="match">
-          <p id = "history">Total Record: Wins : Losses </p>
-            <p>Game 1 : Ending Score W/L: Points: Points</p>
-            {/* <p>Location : City</p> */}
-            <p>Players : Lorem ipsum dolor sit amet, consectetur adipiscing elt</p>
-          </div>
+          {matches.length>0? matches.map(match=>(
+            <div className="match">
+              <div>Sport: {match.sportName}</div>
+              <div>Location: {match.location}</div>
+              <div>Date and Time: {match.dateAndTime}</div>
+              <div>Winner: {match.winner}</div>
+            
+            </div>
+          )):(
+            <div>No Match History</div>
+          )}
         </div>
 
         </section>

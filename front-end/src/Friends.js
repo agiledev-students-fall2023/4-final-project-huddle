@@ -51,7 +51,6 @@ const Friends = props => {
     fetchFriend();
   }, []);
 
-
   return (
     <>
     {isLoggedIn ? (
@@ -76,8 +75,8 @@ const Friends = props => {
     ) : (<Navigate to="/login" />
     )}
     </>
-  )
-}
+    )
+  };
 
 function FriendCard({friend}) {
   return (
@@ -114,4 +113,15 @@ function FriendCard({friend}) {
   );
 }
 
+  function FriendRequestCard({ request, onAccept, onDecline }) {
+    return (
+      <div className="FriendRequestCard">
+        <div>{request.username} sent you a friend request!</div>
+        <button onClick={() => onAccept(request.id)}>Accept</button>
+        <button onClick={() => onDecline(request.id)}>Decline</button>
+      </div>
+    );
+  }
+
+  
 export default Friends

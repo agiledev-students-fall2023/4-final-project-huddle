@@ -10,6 +10,8 @@ const Profile = props => {
   const jwtToken = localStorage.getItem("token"); // gets the token
   const [isLoggedIn, setIsLoggedIn] = useState(jwtToken && true); //sets the state of being logged in
   const [profile, setProfile] = useState([]);//this is where the profile data will be stored
+  const [matches, setMatches] = useState([]);
+  const [comments, setComments] = useState([]);
   const navigate = useNavigate();
   useEffect(() => {
     const fetchProfile = async () => {
@@ -23,6 +25,8 @@ const Profile = props => {
           
           console.log("img is" + profile.img);
           setProfile(profile);
+          setMatches(profile.games);
+          setComments(profile.comments);
         })
         .catch(err => {
           console.log(
@@ -43,35 +47,53 @@ const Profile = props => {
           <img alt="welcome!" src={profile.img!==undefined ? profile.img: ("/defaultProfile.png")} length = "75" width = "75"/>
 
           <div className="bio">
-            <p>Name: {profile.name}</p>
-            <p>Location: {profile.location}</p>
-            <p>Bio:{profile.bio}</p>
+            <p className="bio-info">
+              <span className="label">Name:</span> {profile.name}
+            </p>
+            <p className="bio-info">
+              <span className="label">Location:</span> {profile.location}
+            </p>
+            {/* <p className="bio-info">Name: {profile.name}</p>
+            <p className="bio-info">Location: {profile.location}</p>
+            <p className="bio-info">Bio:{profile.bio}</p> */}
+            <p className="bio-info">
+              <span className="label">Bio:</span> {profile.bio}
+            </p>
           </div>
         </div>
-        <button className="editbutton" onClick={() => navigate("/editprofile")}>Edit Profile</button>
-
+        {/* <button onClick={() => navigate("/editprofile")}>Edit Profile</button> */}
+        <button onClick={() => navigate("/editprofile")} className="edit-profile-button">
+          Edit Profile
+        </button>
         <div className="comments">
           <h2>Profile Comments</h2>
-          {profile.comments?.map(comment=>(
+          {comments.length>0?profile.comments.map(comment=>(
             <div className="comment">
               <p>{comment}</p>
             </div>
  
-          ))}
+          )):(
+            <div>No Comments Yet</div>
+          )}
         
         </div>
 
 
         <div className="record">
           <h2>Record</h2>
-          
-
-          <div className="match">
-          <p id = "history">Total Record - Wins:{profile.wins} Losses:{profile.losses} </p>
-            <p>Location : City</p>
-            <p>Players : Lorem ipsum dolor sit amet, consectetur adipiscing elt</p>
-          </div>
+          {matches.length>0? matches.map(match=>(
+            <div className="match">
+              <div>Sport: {match.sportName}</div>
+              <div>Location: {match.location}</div>
+              <div>Date and Time: {match.dateAndTime}</div>
+              <div>Winner: {match.winner}</div>
+            
+            </div>
+          )):(
+            <div>No Match History</div>
+          )}
         </div>
+          
 
         </section>
     

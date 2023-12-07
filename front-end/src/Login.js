@@ -19,7 +19,9 @@ const Login = props => {
   });
   const [error, setError] = useState("")
   if (localStorage.getItem("token")){
-    return(<></>)
+    return(<>
+    <h1>You are logged in! Log out to use log in again.</h1>
+    </>)
   }
   function handleUsernameChange(e) {
     setInfo({
@@ -36,6 +38,7 @@ const Login = props => {
   }
   function handleSubmit(e) {
     e.preventDefault();
+    localStorage.setItem("username", info.username);
     axios
     .post("http://localhost:3000/auth/login", {
       ...info
