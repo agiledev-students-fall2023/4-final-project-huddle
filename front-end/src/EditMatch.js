@@ -8,6 +8,8 @@ const EditMatch = () => {
         location: '',
         winner: ''
     });
+    const [location, setLocation] = useState();
+    const [winner, setWinner] = useState();
     const { matchId } = useParams();
     // const [location, setLocation] = useState('');
     const navigate = useNavigate();
@@ -21,17 +23,22 @@ const EditMatch = () => {
                 if (fetchedMatch.dateAndTime) {
                     fetchedMatch.dateAndTime = fetchedMatch.dateAndTime.split(' ')[0];
                 }
-                setMatchDetails(response.data)
+                setMatchDetails(response.data);
+                setLocation(response.data.location);
+                setWinner(response.data.winner);
                 // setLocation(response.data.location);
              })
              .catch(error => console.error('Error fetching match details', error));
     }, [matchId]);
 
-    const handleChange = (e) => {
-        console.log("Field name:", e.target.name);
-        console.log("Field value:", e.target.value);
+    const handleLocation = (e) => {
+        console.log(e.target.value);
+        setLocation(e.target.value);
+    };
+    const handleWinner = (e) => {
+        console.log(e.target.value);
 
-        setMatchDetails({ ...matchDetails, [e.target.name]: e.target.value });
+        setWinner(e.target.value);
     };
 
     // const handleLocationChange = (e) => {
@@ -43,7 +50,7 @@ const EditMatch = () => {
     const handleSubmit = (e) => {
         e.preventDefault();
         // console.log("updated match details: ", matchDetails);
-        axios.post(`http://localhost:3000/editmatch/${matchId}`, matchDetails)
+        axios.post(`http://localhost:3000/editmatch/${matchId}`, {location:location, winner:winner})
         .then(response => {
                 console.log("Match updated successfully:", response.data);
                 navigate('/MatchHistory');
@@ -67,25 +74,16 @@ const EditMatch = () => {
                     <input 
                         type="text" 
                         name="location" 
-                        value={matchDetails.location || ''} 
-                        onChange={handleChange} 
+                        value={location} 
+                        onChange={handleLocation} 
             />
 
             <label>Winner:</label>
                     <input 
                         type="text" 
                         name="winner" 
-                        value={matchDetails.winner || ''} 
-                        onChange={handleChange} 
-            />
-
-
-            <label>Date:</label>
-                    <input 
-                        type="date" 
-                        name="dateAndTime" 
-                        value={matchDetails.dateAndTime || ''} 
-                        onChange={handleChange} 
+                        value={winner} 
+                        onChange={handleWinner} 
             />
 
                             {/* name="time"

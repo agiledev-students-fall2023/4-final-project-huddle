@@ -302,15 +302,17 @@ app.get('/friends/:userId', async (req, res) => {
 
 app.post('/editmatch/:matchId', async (req, res) => {
   try {
+      console.log("we in here");
+      console.log(req.body);
       const matchId = req.params.matchId;
-      const { dateAndTime, location, winner } = req.body;
-      const match = await Game.findOne({ id: matchId });
+      console.log("matchid"+matchId)
+      const {location, winner } = req.body;
+      const match = await Game.findOne({ _id: matchId });
+      console.log(match);
 
       if (!matchId) {
           return res.status(404).send('Match not found');
       }
-
-      match.dateAndTime = dateAndTime;
       match.location = location;
       match.winner = winner;
 
@@ -346,7 +348,7 @@ app.get('/matchHistory', async (req, res) => {
 app.get('/match/:matchId', async (req, res) => {
   try {
       const matchId = req.params.matchId;
-      const match = await Game.findOne({ id: matchId });
+      const match = await Game.findOne({ _id: matchId });
 
       if (!match) {
           return res.status(404).send('Match not found');
@@ -450,7 +452,7 @@ app.post('/games/join/:id', async (req, res) => {
     else{
       return res.status(400).send('Game is already full');
     }
-    
+     
     await game.save();
     
     res.status(200).json(game);

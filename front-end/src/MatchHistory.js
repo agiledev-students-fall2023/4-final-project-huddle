@@ -93,9 +93,7 @@ function MatchCard({ match }) {
         </div>
 
         <button style={{ marginTop: '10px' }}>
-
-            <Link to={`/editmatch/${match.id}`}>Edit Match</Link>
-            {/* style={{ marginTop: '10px' }}><a href={`./Match/${match.id}`}>See Details</a> */}
+            <Link to={`/editmatch/${match._id}`}>Edit Match</Link>
         </button>
 
         {/* <button style={{ marginTop: '10px' }}>
