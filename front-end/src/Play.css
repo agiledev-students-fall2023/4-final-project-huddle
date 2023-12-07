@@ -14,45 +14,36 @@ code {
       monospace;
 }
 
-.play{
-      /* display: 'flex', flexDirection: 'column', justifyContent: 'center', alignItems: 'center', height: '50vh'  */
+.play {
   display: flex;
   flex-direction: column;
-  flex-wrap: wrap;
-  gap: 50px;
-  /* margin-top: 10px; */
-  margin-bottom: 10px;
-  align-items: center;
+  align-items: center; /* Centers items horizontally */
+  width: 100%; /* Ensure it takes full width to center content */
+  gap: 20px; /* Adjust this value as needed to reduce spacing */
 }
 
-
-.sportcard{
-  width: 80%;
-  height:  100px;
-  /* background-color: gray; */
-  /* border: selectedSport == sport.name ? '2px solid red' : 'none'; */
+.sportcard {
+  width: 80%; /* Adjust if needed to change the card size */
+  text-align: center; /* This will center the text within the sportcard */
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
+  align-items: center; /* This will center the items within the sportcard */
   font-size: larger;
-  margin-bottom: 10px;
-}
-
-.sportpic.selected {
-  outline: 2px solid red;
+  margin-bottom: 10px; /* Adjust the bottom margin to control spacing between cards */
 }
 
 .sportpic {
-  /* width: max-content; */
   width: 190px;
   height: 190px;
   border-radius: 10px;
-  margin: 20px;  
-
+  margin-bottom: 10px; /* Space between image and text */
+  object-fit: cover;
+  margin-left: -25px; /* Moves the image 10 pixels to the left */
 }
+
+
+
 
 .mbutton {
   width: 388px; 
