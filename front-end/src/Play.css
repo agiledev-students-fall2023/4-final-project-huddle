@@ -33,15 +33,9 @@ code {
   cursor: pointer;
   display: flex;
   flex-direction: column;
-  justify-content: center;
-  align-items: center;
-  border-radius: 10px;
+  align-items: center; /* This will center the items within the sportcard */
   font-size: larger;
-  margin-bottom: 0px;
-}
-
-.sportpic.selected {
-  outline: 2px solid red;
+  margin-bottom: 10px; /* Adjust the bottom margin to control spacing between cards */
 }
 
 .sportpic {
@@ -53,6 +47,9 @@ code {
   /* margin: 0px;   */
   /* gap: 30px; */
 }
+
+
+
 
 .mbutton {
   width: 388px; 
