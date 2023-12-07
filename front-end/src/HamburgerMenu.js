@@ -22,8 +22,7 @@ function HamburgerMenu() {
           <Link to="/Play" onClick={toggleMenu}>Play</Link>
           <Link to="/Profile" onClick={toggleMenu}>Profile</Link>
           <Link to="/Friends" onClick={toggleMenu}>Friends</Link>
-          <Link to="/messages" onClick={toggleMenu}>Messages</Link>
-          <Link to="/MatchHistory" onClick={toggleMenu}>Match History</Link>
+          <Link to="/MatchHistory" onClick={toggleMenu}>Your Matches</Link>
           <Link to="/GamesHappeningSoon" onClick={toggleMenu}>Games Happening Soon</Link>
           <Link to="/AboutUs" onClick={toggleMenu}>About Us</Link>
           <Link to="/logout" onClick={toggleMenu}>Logout</Link>

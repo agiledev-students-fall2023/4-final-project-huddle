@@ -3,10 +3,11 @@ import "./MatchHistory.css"
 import { useState, useEffect } from 'react'
 import axios from 'axios'
 import { Link, useNavigate, Navigate } from 'react-router-dom'
-  
+
 const MatchHistory = props => {
     const jwtToken = localStorage.getItem("token"); // gets the token
     const [matchHistory, setMatchHistory] = useState([]);
+    const navigate = useNavigate();
     useEffect(() => {
       const fetchMatchHistory = async () => {
         try {
@@ -25,16 +26,21 @@ const MatchHistory = props => {
 
     return (
         <><div className="MatchHistory">
-            <h1 style={{ textAlign: 'center'}}>Your Match History</h1>
+            <h1 style={{ textAlign: 'center'}}>Your Matches</h1>
 
             <section className="main-content">
 
-                {matchHistory.length>0? matchHistory.map((match) => (
-                    
+            {matchHistory.length > 0 ? matchHistory.reverse().map((match) => (
                     <MatchCard key={match.dateAndTime} match={match} />
-                )): <div className="noMatches">No Matches at This Time...</div>}
+                ))
+                : <div className="noMatches">No Matches at This Time...</div>}
 
-                {/* <MatchCard key={match.id} match={match} /> */}
+
+                {/* {matchHistory.length>0? matchHistory.map((match) => (
+                    
+                     <MatchCard key={match.dateAndTime} match={match} />
+                 )): <div className="noMatches">No Matches at This Time...</div>} */}
+
 
                 
                 {/* {Array.isArray(matchHistory) && matchHistory.length > 0 ? ( */}
@@ -52,6 +58,11 @@ const MatchHistory = props => {
 
 function MatchCard({ match }) {
     console.log(match);
+    const navigate = useNavigate();
+    const gotolobby = (e) => {
+        navigate('/Lobby', { state: { gameId: match._id } });
+        
+    };
     return (
         <div style={{ border: '1px solid black', padding: '10px', marginBottom: '10px', borderRadius: '10px', background: 'white' }}>
         <div>
@@ -68,6 +79,9 @@ function MatchCard({ match }) {
             <label>In Progress:</label>
             <span style={{ marginLeft: '10px' }}>{match.inProgress ? 'Yes' : 'No'}</span>
         </div>
+        <button onClick={gotolobby} style={{ marginTop: '10px' }} >
+        View Lobby
+        </button>
 
         <div>
             <br />
@@ -92,8 +106,9 @@ function MatchCard({ match }) {
             <span style={{ marginLeft: '10px' }}>{match.winner || 'Not decided yet'}</span>
         </div>
 
-        <button style={{ marginTop: '10px' }}>
-            <Link to={`/editmatch/${match._id}`}>Edit Match</Link>
+        <button style={{ marginTop: '10px', color:'white' }}>
+              <Link to={`/editmatch/${match._id}`} style={{ color: 'white', textDecoration:'none'}}>Edit Match</Link>
+
         </button>
 
         {/* <button style={{ marginTop: '10px' }}>
