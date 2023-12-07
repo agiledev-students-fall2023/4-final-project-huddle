@@ -82,7 +82,7 @@ function FriendCard({friend}) {
       <div className="FriendCard">
         <img className="profpic" alt="profpic!" src={friend.profilePicture || "/defaultProfile.png"} />
         <div className="friendDetails">
-          <div>Name: {friend.username}
+          <div className="username"> Name: {friend.username}
                 {/* <span style={{ marginLeft: '10px' }}></span> */}
             </div>
 
@@ -104,7 +104,7 @@ function FriendCard({friend}) {
           {/* <mbutton>See Details</mbutton> */}
             
 
-          <button style={{ marginLeft: '0px', marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'lightgreen', borderRadius: '10px', border: 'solid' }}><Link to={`/viewprofile/${friend.username}`}>See Details</Link></button>
+          <button style={{ marginLeft: '0px', marginTop: '10px', padding: '5px', margin: '5px', backgroundColor: 'white', borderRadius: '10px', border: '1px solid black', textDecoration:'none' }}><Link to={`/viewprofile/${friend.username}`}>See Details</Link></button>
 
           {/* <button className="plus-icon"><a href={"./Lobby"}>+</a></button> */}
       </div>

@@ -44,7 +44,7 @@ class SearchScreen extends React.Component {
             try {  
         
                 await axios.post('http://localhost:3000/sendFriendRequest', { senderId: loggeduser, receiverId: receiverUsername });
-                alert("Friend request sent successfully.");
+                alert("Friend added successfully.");
             } catch (error) {
                 console.error('Error sending friend request:', error);
                 alert("Failed to send friend request.");
@@ -91,7 +91,7 @@ class SearchScreen extends React.Component {
                                         onClick={() => this.sendFriendRequest(user.username)}
                                         disabled={this.state.sendingRequest}
                                     >
-                                        Send Friend Request
+                                        Add Friend
                                     </button>
                                 </div>
                             </div>
