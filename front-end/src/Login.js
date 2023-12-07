@@ -89,7 +89,7 @@ const Login = props => {
         onChange={handlePasswordChange} placeholder='Password' className='infobox'/><br /><br />
         </div>
         <div>
-          <input type='submit' value="Login" className='button'/> 
+          <input type='submit' value="Login" className='Lbutton'/> 
         </div>
 
       </form>
@@ -99,7 +99,8 @@ const Login = props => {
         <Link to="/home"><button className='button'>Login</button></Link>
       </p> */}
       <p>
-        <Link to="/createaccount"><button className='button'>Create Account</button></Link>
+        <Link to="/createaccount">
+          <button className='Lbutton'>Create Account</button></Link>
       </p>
 
     </>
