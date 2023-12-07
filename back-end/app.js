@@ -443,17 +443,20 @@ app.post('/games/join/:id', async (req, res) => {
     if(game.team1.length < game.maxPlayers/2){
       console.log("choice one: game.team1.length <= game.maxPlayers/2")
       game.team1.push(username);
+      user.games.push(game._id);
     }
     else if(game.team2.length < game.maxPlayers/2)
     {
       console.log("choice two: game.team1.length <= game.maxPlayers/2")
-      game.team2.push(username)
+      game.team2.push(username);
+      user.games.push(game._id);
     }
     else{
       return res.status(400).send('Game is already full');
     }
      
     await game.save();
+    await user.save();
     
     res.status(200).json(game);
   } catch (error) {
