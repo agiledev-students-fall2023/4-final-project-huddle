@@ -19,8 +19,9 @@ code {
   display: flex;
   flex-direction: column;
   flex-wrap: wrap;
-  gap: 20px;
+  gap: 50px;
   /* margin-top: 10px; */
+  margin-bottom: 10px;
   align-items: center;
 }
 
@@ -45,10 +46,11 @@ code {
 }
 
 .sportpic {
-  width: max-content;
-  /* width: 90px; */
-  height: 100px;
+  /* width: max-content; */
+  width: 190px;
+  height: 190px;
   border-radius: 10px;
+  margin: 20px;  
 
 }
 

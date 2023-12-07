@@ -78,6 +78,10 @@ const Login = props => {
   return (
     <>
       <h1 className='login_header'>Login</h1>
+      {error && <div className="loginError">
+          Incorrect Username or Password!
+        
+        </div>} 
       <form onSubmit={handleSubmit}>
         <div> 
           <input type='text' name='username' placeholder='username' id="name_field" value={info.username} 
@@ -88,7 +92,7 @@ const Login = props => {
         onChange={handlePasswordChange} placeholder='Password' className='infobox'/><br /><br />
         </div>
         <div>
-          <input type='submit' value="Login" className='button'/> 
+          <input type='submit' value="Login" className='Lbutton'/> 
         </div>
 
       </form>
@@ -98,7 +102,8 @@ const Login = props => {
         <Link to="/home"><button className='button'>Login</button></Link>
       </p> */}
       <p>
-        <Link to="/createaccount"><button className='button'>Create Account</button></Link>
+        <Link to="/createaccount">
+          <button className='Lbutton'>Create Account</button></Link>
       </p>
 
     </>
