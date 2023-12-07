@@ -38,7 +38,7 @@ function Lobby() {
             {team1?.map((player, index) => 
                 player ? (
                     <div className="player" key={index}>
-                        <div className="avatar"></div>
+                        <div className="avatar"><div className="avatar"><img alt="profpic" src={player.profilePicture!==undefined ? player.profilePicture: ("/defaultProfile.png")}  length = "25" width = "25"/></div></div>
                         <div className="details">
                             <span>{player.username}</span>
                             <span>{player.location}</span>
@@ -53,7 +53,7 @@ function Lobby() {
             {team2?.map((player, index) => 
                 player ? (
                     <div className="player" key={index}>
-                        <div className="avatar"></div>
+                        <div className="avatar"><img alt="profpic" src={player.profilePicture!==undefined ? player.profilePicture: ("/defaultProfile.png")}  length = "25" width = "25"/></div>
                         <div className="details">
                             <span>{player.username}</span>
                             <span>{player.location}</span>
