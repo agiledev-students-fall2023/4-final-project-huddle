@@ -13,7 +13,7 @@ function Lobby() {
     useEffect(() => {
         const jwtToken = localStorage.getItem("token");
         if (gameId) {
-            axios.get(`http://localhost:3000/getGame/${gameId}`)
+            axios.get(`${process.env.REACT_APP_BACKEND}/getGame/${gameId}`)
             .then(response => {
                 setTeam1(response.data.team1);
                 setTeam2(response.data.team2);

@@ -109,7 +109,7 @@ const Messages = (props) => {
                 <h2>Messages </h2>
             </div>
             <Link to="/chat">
-                (friends.map((item, index)) => (
+                {/* (friends.map((item, index)) => ( */}
                     {/* <Message key={index} item={item}/> */}
                 {/* ))} */}
                 {/* <Image source = ({uri:item?.image})/> */}

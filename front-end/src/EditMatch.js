@@ -16,7 +16,7 @@ const EditMatch = () => {
     console.log("Match ID:", matchId);
 
     useEffect(() => {
-        axios.get(`http://localhost:3000/match/${matchId}`)
+        axios.get(`${process.env.REACT_APP_BACKEND}/match/${matchId}`)
              .then(response => {
                 console.log("Match data fetched:", response.data);
                 const fetchedMatch = response.data;

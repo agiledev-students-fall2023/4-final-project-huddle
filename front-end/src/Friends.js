@@ -23,7 +23,7 @@ const Friends = props => {
   useEffect(() => {
     const fetchFriend = async () => {
       axios
-      .get("http://localhost:3000/protected/friends",
+      .get(`${process.env.REACT_APP_BACKEND}/protected/friends`,
       {headers: { Authorization: `JWT ${jwtToken}` },
   })
 

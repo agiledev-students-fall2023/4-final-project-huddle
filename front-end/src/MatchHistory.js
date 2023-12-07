@@ -10,7 +10,7 @@ const MatchHistory = props => {
     useEffect(() => {
       const fetchMatchHistory = async () => {
         try {
-          const response = await axios.get("http://localhost:3000/protected/matchHistory",{headers: { Authorization: `JWT ${jwtToken}` },
+          const response = await axios.get(`${process.env.REACT_APP_BACKEND}/protected/matchHistory`,{headers: { Authorization: `JWT ${jwtToken}` },
         });
           const matchHistoryData = response.data.matches;
           setMatchHistory(matchHistoryData);

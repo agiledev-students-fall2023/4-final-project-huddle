@@ -75,7 +75,7 @@ const NewGameForm = props => {
         creationTime: new Date().toISOString(), // Set creation time to the current time
       };
     
-      axios.post("http://localhost:3000/protected/creategame", submissionInfo)
+      axios.post(`${process.env.REACT_APP_BACKEND}/protected/creategame`, submissionInfo)
         .then(response => {
           // Handle success
           console.log("Game created successfully", response);

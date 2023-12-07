@@ -40,7 +40,7 @@ const Login = props => {
     e.preventDefault();
     localStorage.setItem("username", info.username);
     axios
-    .post("http://localhost:3000/auth/login", {
+    .post(`${process.env.REACT_APP_BACKEND}/auth/login`, {
       ...info
     })
     .then(response => {
@@ -51,7 +51,7 @@ const Login = props => {
       console.log(localStorage.getItem("token"));
       const jwtToken = localStorage.getItem("token");
       axios
-      .get(`http://localhost:3000/protected/`, {
+      .get(`${process.env.REACT_APP_BACKEND}/protected/`, {
         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
       })
       .then(res => {
