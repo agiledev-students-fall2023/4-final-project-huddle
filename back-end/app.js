@@ -553,16 +553,28 @@ app.get("/users/:userId", (req, res) => {
 });
 
 app.post('/sendFriendRequest', async (req, res) => {
-  const { senderUsername, receiverUsername } = req.body;
+  console.log("in sendfriend request");
+  console.log(req.body);
+  const senderUsername = req.body.senderId;
+  const receiverUsername = req.body.receiverId;
+  console.log(senderUsername);
+  console.log(receiverUsername);
+
 
   try {
-    // Add receiver's username to sender's sentFriendRequests
-    await User.updateOne({ username: senderUsername }, { $addToSet: { sentFriendRequests: receiverUsername } });
+    //find the user adding a friend
+    let friends = []
+    const mainUser = await User.findOne({username: senderUsername});
+    friends = mainUser.friends;
+    if(friends.includes(receiverUsername)){
+      res.status(400).send("Already friends.");
+    }else{
+      friends.push(receiverUsername);
+      mainUser.friends = friends;
+      await mainUser.save(); 
+      res.status(200).send('Friend request sent.');
 
-    // Add sender's username to receiver's friendrequests
-    await User.updateOne({ username: receiverUsername }, { $addToSet: { friendrequests: senderUsername } });
-
-    res.status(200).send('Friend request sent.');
+    }
   } catch (error) {
     res.status(500).send('Error sending friend request: ' + error);
   }

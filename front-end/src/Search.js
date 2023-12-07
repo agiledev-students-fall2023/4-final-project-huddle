@@ -35,16 +35,28 @@ class SearchScreen extends React.Component {
 
     sendFriendRequest = async (receiverUsername) => {
         this.setState({ sendingRequest: true });
-        try {
-            const { loggedInUsername } = localStorage.getItem('username');
-            await axios.post('http://localhost:3000/sendFriendRequest', { senderId: loggedInUsername, receiverId: receiverUsername });
-            alert("Friend request sent successfully.");
-        } catch (error) {
-            console.error('Error sending friend request:', error);
-            alert("Failed to send friend request.");
-        } finally {
-            this.setState({ sendingRequest: false });
-        }
+        const jwtToken = localStorage.getItem("token");
+        console.log(jwtToken);
+        axios.get("http://localhost:3000/protected/profile",{headers: { Authorization: `JWT ${jwtToken}` },})
+        .then(async response => {
+            const loggeduser = response.data.name;
+            console.log(loggeduser);
+            try {  
+        
+                await axios.post('http://localhost:3000/sendFriendRequest', { senderId: loggeduser, receiverId: receiverUsername });
+                alert("Friend request sent successfully.");
+            } catch (error) {
+                console.error('Error sending friend request:', error);
+                alert("Failed to send friend request.");
+            } finally {
+                this.setState({ sendingRequest: false });
+            }
+        })
+        .catch(err => {
+            console.log(
+              "The server rejected the request for this protected resource... we probably do not have a valid JWT token."
+            )
+        })
     };
 
     acceptFriendRequest = async (requestUsername) => {
