@@ -19,7 +19,9 @@ const Login = props => {
   });
   const [error, setError] = useState("")
   if (localStorage.getItem("token")){
-    return(<></>)
+    return(<>
+    <h1>You are logged in! Log out to use log in again.</h1>
+    </>)
   }
   function handleUsernameChange(e) {
     setInfo({
