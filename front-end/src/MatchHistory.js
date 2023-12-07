@@ -30,12 +30,17 @@ const MatchHistory = props => {
 
             <section className="main-content">
 
-                {matchHistory.length>0? matchHistory.map((match) => (
-                    
+            {matchHistory.length > 0 ? matchHistory.reverse().map((match) => (
                     <MatchCard key={match.dateAndTime} match={match} />
-                )): <div className="noMatches">No Matches at This Time...</div>}
+                ))
+                : <div className="noMatches">No Matches at This Time...</div>}
 
-                {/* <MatchCard key={match.id} match={match} /> */}
+
+                {/* {matchHistory.length>0? matchHistory.map((match) => (
+                    
+                     <MatchCard key={match.dateAndTime} match={match} />
+                 )): <div className="noMatches">No Matches at This Time...</div>} */}
+
 
                 
                 {/* {Array.isArray(matchHistory) && matchHistory.length > 0 ? ( */}
@@ -101,8 +106,9 @@ function MatchCard({ match }) {
             <span style={{ marginLeft: '10px' }}>{match.winner || 'Not decided yet'}</span>
         </div>
 
-        <button style={{ marginTop: '10px' }}>
-            <Link to={`/editmatch/${match._id}`}>Edit Match</Link>
+        <button style={{ marginTop: '10px', color:'white' }}>
+              <Link to={`/editmatch/${match._id}`} style={{ color: 'white', textDecoration:'none'}}>Edit Match</Link>
+
         </button>
 
         {/* <button style={{ marginTop: '10px' }}>
