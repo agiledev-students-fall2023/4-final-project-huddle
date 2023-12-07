@@ -100,7 +100,7 @@ const handleJoinGame = (gameId) => {
                 games.map((game, index) => (
                     <GameCard 
                         key={index}
-                        id={game.id}
+                        id={game._id}
                         sportName={game.sportName}
                         maxPlayers={game.maxPlayers}
                         location={game.location}

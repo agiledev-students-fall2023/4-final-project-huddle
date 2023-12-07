@@ -18,6 +18,12 @@ const NewGameForm = props => {
     });
     const [error, setError] = useState("");
     const [response, setResponse] = useState("");
+
+    
+    // Handle change for the date and time
+    const handleDateAndTimeChange = (event) => {
+      setInfo({ ...info, dateAndTime: event.target.value });
+    };
   
     const handleInputChange = (e) => {
       setInfo({
@@ -32,7 +38,7 @@ const NewGameForm = props => {
         sportName: e.target.value
       });
     }
-    function handlemaxPlayersChange(e) {
+    function handleMaxPlayersChange(e) {
       setInfo({
         ...info,
         maxPlayers: e.target.value
@@ -61,20 +67,27 @@ const NewGameForm = props => {
     const [password, setPassword]= useState("");
     const [location, setLocation]= useState("");
   
-    const handleSubmit = (e) => {
-      e.preventDefault();
-  
-      axios.post("http://localhost:3000/protected/creategame", info)
+    const handleSubmit = (event) => {
+      event.preventDefault();
+      // Create the object with the current creation time
+      const submissionInfo = {
+        ...info,
+        creationTime: new Date().toISOString(), // Set creation time to the current time
+      };
+    
+      axios.post("http://localhost:3000/protected/creategame", submissionInfo)
         .then(response => {
           // Handle success
-          console.log("Success!")
+          console.log("Game created successfully", response);
           navigate("/gamesHappeningSoon");
         })
         .catch(err => {
           // Handle error
+          console.error("Error creating game:", err);
           setError("Error creating game!");
         });
     };
+    
     // const handleSubmit = (e) => {
     //   const user = {
     //     name:name, 
@@ -110,127 +123,84 @@ const NewGameForm = props => {
       //   console.log("error cerating acocunt ", error)
       // })
   // }
-    return (
-      <div className='container'>
-        <h1 className='CreateAccountHeader'>Create Account</h1>
-        <form onSubmit={handleSubmit}>
 
-          <div className='SportnameInput'> <input type='text' name='sportname' value={info.sportName} 
-          onChange={handleSportChange} placeholder='Sportname' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
-          
-          <div className='MaxPlayerInput'> <input type='number' name='pw' value={info.maxPlayers} 
-          onChange={handlemaxPlayersChange} placeholder='maxPlayers' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
+
+
   
-          <div className='TimeInput'> <input type='date' name='time' value={info.creationTime} 
-          onChange={handleTimeChange} placeholder='Time' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
+  return (
+    <div className='container'>
+      <h1 className='CreateAccountHeader'>Create a Game</h1>
+      <form onSubmit={handleSubmit}>
   
-          <div className='LocationInput'> <input type='text' name='location' value={info.location} 
-          onChange={handleLocationChange} placeholder='Location' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
-          
-          <div className='dateAndTimeInput'> <input type='text' name='dateAndTime' value={info.dateAndTime} 
-          onChange={handleDateChange} placeholder='dateAndTime' style={{ width: '380px', height: '50px' }}></input><br /><br /><br /><br /></div>
-          
-          
-          
-          
-          
-          <div><input type='submit' onChange={handleSubmit} value="Create Game" style={{ width: '380px', height: '30px'}}/> </div>
-        </form>
+        <div className="form-group">
+          <label>Sport name: </label>
+          <input 
+            type='text' 
+            name='sportname' 
+            className="form-control" 
+            value={info.sportName} 
+            onChange={handleSportChange} 
+            placeholder='Sport Name'
+          />
+        </div>
+        
+        <div className="form-group">
+          <label>Max Players: </label>
+          <input 
+            type='number' 
+            name='maxPlayers' 
+            className="form-control" 
+            value={info.maxPlayers} 
+            onChange={handleMaxPlayersChange} 
+            placeholder='Max Players'
+          />
+        </div>
   
-      </div>
-    )
-  }
-
-// class NewGameForm extends React.Component {
-//     state = {
-//         location: '',
-//         time: '',
-//         sport: '',
-//         numberOfPlayers: 0
-//     };
-
-//     handleChange = (e) => {
-//         this.setState({ [e.target.name]: e.target.value });
-//     }
-
-//     handleSubmit = (e) => {
-//         e.preventDefault();
-//         axios.post('http://localhost:3000/createGame', this.state)
-//             .then(response => {
-//                 console.log(response.data);
-//             })
-//             .catch(error => {
-//                 console.error('Error:', error);
-//             });
-//     }
-
-//     render() {
-//         return (
-//             <div className="new-game-container">
-//                 <h2 className="form-title">New Game</h2>
-//                 <form action = "/createGame" className="game-form">
-//                     <div className="form-group">
-//                         <label>Location: </label>
-//                         <input
-//                             name="location"
-//                             type="text"
-//                             className="form-control"
-//                             value={this.state.location}
-//                             onChange={this.handleChange}
-//                         />
-//                     </div>
-//                     <div className="form-group">
-//                         <label>Date: </label>
-//                         <input
-//                             name="date"
-//                             type="date"
-//                             className="form-control"
-//                             value={this.state.date}
-//                             onChange={this.handleChange}
-//                         />
-//                     </div>
-//                     <div className="form-group">
-//                         <label>Time: </label>
-//                         <input
-//                             name="time"
-//                             type="time"
-//                             className="form-control"
-//                             value={this.state.time}
-//                             onChange={this.handleChange}
-//                             min="00:00"
-//                             max="12:59"
-//                         />
-//                     </div>
-//                     <div className="form-group">
-//                         <label>Sport: </label>
-//                         <select 
-//                             name="sport"
-//                             className="form-control"
-//                             value={this.state.sport}
-//                             onChange={this.handleChange}>
-//                             <option value="">Select Sport</option>
-//                             <option value="Volleyball">Volleyball</option>
-//                             <option value="Basketball">Basketball</option>
-//                             <option value="Soccer">Soccer</option>
-//                             <option value="Tennis">Tennis</option>
-//                         </select>
-//                     </div>
-//                     <div className="form-group">
-//                         <label># of Players: </label>
-//                         <input
-//                             name="maxPlayers"
-//                             type="number"
-//                             className="form-control"
-//                             value={this.state.numberOfPlayers}
-//                             onChange={this.handleChange}
-//                         />
-//                     </div>
-                    
-//                     <button type="submit" onClick={this.handleSubmit} className="submit-btn">Create Game</button>
-//                 </form>
-//             </div>
-//         );
-//     }
-// }
+        <div className="form-group">
+          <label>Date and Time: </label>
+          <input 
+            type='datetime-local' 
+            name='dateAndTime' 
+            className="form-control" 
+            value={info.dateAndTime} 
+            onChange={handleDateAndTimeChange}
+          />
+        </div>
+  
+        {/* <div className='TimeInput'>
+          <label>Creation Time: </label>
+          <input 
+            type='date' 
+            name='time' 
+            className="form-control" 
+            value={info.creationTime} 
+            onChange={handleTimeChange} 
+            placeholder='Time'
+          />
+        </div> */}
+  
+        <div className="form-group">
+          <label>Location: </label>
+          <input 
+            type='text' 
+            name='location' 
+            className="form-control" 
+            value={info.location} 
+            onChange={handleLocationChange} 
+            placeholder='Location'
+          />
+        </div>
+        
+        <div className="form-group">
+          <input 
+            type='submit' 
+            className="form-control" 
+            value="Create Game"
+          />
+        </div>
+      </form>
+    </div>
+  )  
+};
 
 export default NewGameForm;
