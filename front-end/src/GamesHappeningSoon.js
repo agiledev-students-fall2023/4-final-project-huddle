@@ -5,15 +5,15 @@ import "./GamesHappeningSoon.css";
 
 
 function GamesHappeningSoon() {
+    const jwtToken = localStorage.getItem("token");
     const [games, setGames] = useState(useRef([]));
     const location = useLocation();
     const { sport } = location.state || {};
+    const [user,setUser] = useState();
 
 const handleJoinGame = (gameId) => {
     const jwtToken = localStorage.getItem("token");
-    axios.post(`http://localhost:3000/games/join/${gameId}`, {}, {
-        headers: { Authorization: `Bearer ${jwtToken}` }
-    })
+    axios.post(`http://localhost:3000/games/join/${gameId}`, {username:user} )
     .then(response => {
         navigate('/Lobby', { state: { gameId: gameId } });
     })
@@ -26,7 +26,21 @@ const handleJoinGame = (gameId) => {
     const navigate = useNavigate();
 
     useEffect(() => {
-    const jwtToken = localStorage.getItem("token");
+    axios
+        .get("http://localhost:3000/protected/profile",
+        {headers: { Authorization: `JWT ${jwtToken}` },
+    }) 
+        .then(response => {
+          // axios bundles up all response data in response.data property
+          const profile = response.data;
+          console.log(profile);
+          setUser(profile.name); 
+        })
+        .catch(err => {
+          console.log(
+            "The server rejected the request for this protected resource... we probably do not have a valid JWT token."
+          )
+        })
 
     axios
       .get(`http://localhost:3000/protected/gamesHappeningSoon`, {

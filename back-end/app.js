@@ -51,7 +51,7 @@ const jwtStrategy = require("./config/jwt-config.js") // import setup options fo
 passport.use(jwtStrategy)
 
 // tell express to use passport middleware
-app.use(passport.initialize())
+app.use(passport.initialize()) 
 
 
 app.use(express.static('public'));
@@ -128,7 +128,7 @@ const getuser = () => {
 
 
 app.use('/', getuser())
-app.use(express.static('public'))
+
 app.get("/", (req, res) => {
     res.send("Hello!");
     
@@ -219,6 +219,8 @@ app.get('/viewprofile/:slug', async (req, res) => {
     success:true
   });
   });
+
+
 app.post('/comment/:slug', async(req,res)=>{
   
   console.log(req.body);
@@ -231,6 +233,32 @@ app.post('/comment/:slug', async(req,res)=>{
   res.json({success:true});
 
 
+
+});
+
+app.get("/getGame/:gameid", async (req,res,next)=>{
+  gameID = req.params.gameid;
+  const thegame = await Game.findOne({_id: gameID});
+  const t1 = thegame.team1;
+  const t2 = thegame.team2;
+  let team1 = [];
+  let team2 = []
+
+  for(let i = 0; i<t1.length;i++){
+    const player = await User.findOne({username: t1[i]});
+    team1.push(player);
+  }
+  for(let j = 0; j<t1.length;j++){
+    const player = await User.findOne({username: t2[j]});
+    team2.push(player);
+  }
+
+
+  res.json({
+    game: thegame, 
+    team1: team1,
+    team2: team2
+  })
 
 });
 
@@ -377,8 +405,10 @@ app.get('/games/:sportName', async (req, res) => {
 
 app.post('/games/join/:id', async (req, res) => {
   const id = req.params.id;
-  const username = req.body.username;
-
+  const userid = req.body.username;
+  console.log("in /games/join/:id");
+  console.log(id);
+  console.log(userid);
   try {
     const game = await Game.findById(id);
     
@@ -390,15 +420,36 @@ app.post('/games/join/:id', async (req, res) => {
     if (game.team1.length + game.team2.length >= game.maxPlayers) {
       return res.status(400).send('Game is already full');
     }
+    console.log("this the game"+game);
+    console.log(game.maxPlayers);
+    console.log(game.team1);
+    console.log(game.team2);
 
     // Check if the user exists
-    const user = await User.findById(username);
+    const user = await User.findOne({username:userid});
     if (!user) {
       return res.status(404).send('User not found');
     }
-
+    
+    const username = user.username;
+    if(game.team1.includes(username) || game.team2.includes(username)){
+      console.log("in already");
+      return res.status(404).send('User already in game');
+    }
+    
     // Add the user to the team
-    game.team1.push(user);
+    if(game.team1.length < game.maxPlayers/2){
+      console.log("choice one: game.team1.length <= game.maxPlayers/2")
+      game.team1.push(username);
+    }
+    else if(game.team2.length < game.maxPlayers/2)
+    {
+      console.log("choice two: game.team1.length <= game.maxPlayers/2")
+      game.team2.push(username)
+    }
+    else{
+      return res.status(400).send('Game is already full');
+    }
     
     await game.save();
     
