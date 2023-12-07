@@ -19,7 +19,7 @@ const EditProfile = props => {
   useEffect( () => {
     const fetchProfile = async () => {
       axios
-        .get("http://localhost:3000/protected/profile",
+        .get(`${process.env.REACT_APP_BACKEND}/protected/profile`,
         {headers: { Authorization: `JWT ${jwtToken}` },
     })
         .then(response => {
@@ -56,7 +56,7 @@ const EditProfile = props => {
     formData.append('location', location);
     formData.append('username',username);
     axios
-    .post("http://localhost:3000/editprofile", formData)
+    .post(`${process.env.REACT_APP_BACKEND}/editprofile`, formData)
     .then(res=>{
         console.log(res);
         navigate("/profile");

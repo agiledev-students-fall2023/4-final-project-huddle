@@ -26,7 +26,7 @@ class SearchScreen extends React.Component {
 
     handleSearch = async () => {
         try {
-            const response = await axios.get(`http://localhost:3000/search?username=${this.state.searchInput}`);
+            const response = await axios.get(`${process.env.REACT_APP_BACKEND}/search?username=${this.state.searchInput}`);
             this.setState({ users: response.data, searchPerformed: true });
         } catch (error) {
             console.error('Error fetching data:', error);
@@ -37,13 +37,13 @@ class SearchScreen extends React.Component {
         this.setState({ sendingRequest: true });
         const jwtToken = localStorage.getItem("token");
         console.log(jwtToken);
-        axios.get("http://localhost:3000/protected/profile",{headers: { Authorization: `JWT ${jwtToken}` },})
+        axios.get(`${process.env.REACT_APP_BACKEND}/protected/profile`,{headers: { Authorization: `JWT ${jwtToken}` },})
         .then(async response => {
             const loggeduser = response.data.name;
             console.log(loggeduser);
             try {  
         
-                await axios.post('http://localhost:3000/sendFriendRequest', { senderId: loggeduser, receiverId: receiverUsername });
+                await axios.post(`${process.env.REACT_APP_BACKEND}/sendFriendRequest`, { senderId: loggeduser, receiverId: receiverUsername });
                 alert("Friend request sent successfully.");
             } catch (error) {
                 console.error('Error sending friend request:', error);
@@ -61,7 +61,7 @@ class SearchScreen extends React.Component {
 
     acceptFriendRequest = async (requestUsername) => {
       try {
-        await axios.post('http://localhost:3000/acceptFriendRequest', { userId: loggedInUsername, requestId: requestUsername });
+        await axios.post(`${process.env.REACT_APP_BACKEND}/acceptFriendRequest`, { userId: loggedInUsername, requestId: requestUsername });
         console.log('Friend request accepted.');
       } catch (error) {
         console.error('Error accepting friend request:', error);

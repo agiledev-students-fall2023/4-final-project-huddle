@@ -14,7 +14,7 @@ function GamesHappeningSoon() {
 
 const handleJoinGame = (gameId) => {
     const jwtToken = localStorage.getItem("token");
-    axios.post(`http://localhost:3000/games/join/${gameId}`, {username:user} )
+    axios.post(`${process.env.REACT_APP_BACKEND}/games/join/${gameId}`, {username:user} )
     .then(response => {
         navigate('/Lobby', { state: { gameId: gameId } });
     })
@@ -29,7 +29,7 @@ const handleJoinGame = (gameId) => {
 
     useEffect(() => {
     axios
-        .get("http://localhost:3000/protected/profile",
+        .get(`${process.env.REACT_APP_BACKEND}/protected/profile`,
         {headers: { Authorization: `JWT ${jwtToken}` },
     }) 
         .then(response => {
@@ -45,7 +45,7 @@ const handleJoinGame = (gameId) => {
         })
 
     axios
-      .get(`http://localhost:3000/protected/gamesHappeningSoon`, {
+      .get(`${process.env.REACT_APP_BACKEND}/protected/gamesHappeningSoon`, {
         headers: { Authorization: `JWT ${jwtToken}` }, // pass the token, if any, to the server
       })
       .then(res => {
@@ -71,7 +71,7 @@ const handleJoinGame = (gameId) => {
       
       useEffect(() => {
         if (sport) {
-            axios.get(`http://localhost:3000/games/${encodeURIComponent(sport)}`)
+            axios.get(`${process.env.REACT_APP_BACKEND}/games/${encodeURIComponent(sport)}`)
                 .then(res => {
                     
                     const gamesWithFormattedDate = res.data.map(game => ({

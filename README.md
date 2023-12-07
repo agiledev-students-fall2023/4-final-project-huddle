@@ -1,5 +1,9 @@
 # Project Repository
 
+# Project Website: https://king-prawn-app-ihwmq.ondigitalocean.app
+
+We did Continuous Integration.
+
 ## Product Vision Statement
 Huddle is a web app solution to the problem of wanting to play a game of your favorite sport but missing the required amount of players. Huddle connects you to your local talent and allows you to organize immediate pick-up games. Huddle also saves your win-loss history and allows other people to rank your skills after playing a match.
 

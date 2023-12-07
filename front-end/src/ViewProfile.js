@@ -19,7 +19,7 @@ const ViewProfile = props => {
   useEffect(() => {
     const fetchProfile = async () => {
       axios
-        .get(`http://localhost:3000/viewprofile/${slug}`)
+        .get(`${process.env.REACT_APP_BACKEND}/viewprofile/${slug}`)
         .then(response => {
           // axios bundles up all response data in response.data property
           const Profile = response.data;
@@ -34,7 +34,7 @@ const ViewProfile = props => {
         })
       
         axios
-        .get("http://localhost:3000/protected/profile",
+        .get(`${process.env.REACT_APP_BACKEND}/protected/profile`,
         {headers: { Authorization: `JWT ${jwtToken}` },})
         .then(response => {
           // axios bundles up all response data in response.data property
@@ -58,7 +58,7 @@ const ViewProfile = props => {
 
     if(jwtToken){
       axios
-    .post(`http://localhost:3000/comment/${slug}`,{comment: comment, main: thisUser})
+    .post(`${process.env.REACT_APP_BACKEND}/comment/${slug}`,{comment: comment, main: thisUser})
     .then(res=>{
       console.log(res);
       

@@ -16,7 +16,7 @@ const Profile = props => {
   useEffect(() => {
     const fetchProfile = async () => {
       axios
-        .get("http://localhost:3000/protected/profile",
+        .get(`${process.env.REACT_APP_BACKEND}/protected/profile`,
         {headers: { Authorization: `JWT ${jwtToken}` },
     })
         .then(response => {
