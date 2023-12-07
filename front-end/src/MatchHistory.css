@@ -14,15 +14,17 @@
 
 
 .MatchCard {
+  margin-left: auto;
+  margin-right: auto;
   display: flex;
+  flex-direction: column;
   border-radius: 5%;
   /* justify-content: center; */
-  width: 370px; 
+  width: 380px; 
   /* height: 150px; */
   /* padding: auto; */
   padding-bottom: 10%;
   /* font: large; */
-  font-style: normal;
   font-family: Arial, Helvetica, sans-serif;
   border-style: solid;  
   /* font-size: larger; */
@@ -32,7 +34,18 @@
   background-color: rgb(255, 255, 255);
 }
 
+.main-content {
+    justify-content: center;
 
+  padding: 20px;
+  /* border: 1px solid #000000; */
+  border-radius: 10px;
+  margin: 20px;
+  /* background-color: white; */
+  text-align: center;
+  align-items: center;
+
+}
 .cardHeader {
   background-color: #EFEFEF; 
   padding: 10px;
