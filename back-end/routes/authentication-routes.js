@@ -67,9 +67,6 @@ const authenticationRouter = () => {
     const password = req.body.pw;
 
 
-
-    // console.log(`${username}, ${password}`)
-
     if (!username || !password) {
       // no username or password received in the POST body... send an error
       res

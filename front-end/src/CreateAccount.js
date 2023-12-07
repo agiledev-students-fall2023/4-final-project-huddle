@@ -71,7 +71,7 @@ const CreateAccount = props => {
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    axios.post("http://localhost:3000/auth/createaccount", info)
+    axios.post("http://localhost:3000/auth/signup", info)
       .then(response => {
         // Handle success
         navigate("/profile");
