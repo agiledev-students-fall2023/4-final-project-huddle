@@ -30,7 +30,9 @@ function Lobby() {
         <div className="container" style={{ textAlign: 'center', marginBottom: '20px' }}>
             
             <h2>Lobby 1</h2>
-            <div>Location of Game: {game.location}</div>
+            <div className="game-info">Game ID: {game._id}</div>
+            <div className="game-info">Location of Game: {game.location}</div>
+            <div className="game-info">Date and Time: {game.dateAndTime}</div>
             <div className="player-list" style={{ textAlign: 'center', marginBottom: '20px' }}>
                 {team1?.map((player, index) => (
                     <div className="player" key={index}>
@@ -41,10 +43,18 @@ function Lobby() {
                         </div>
                     </div>
                 ))}
-                <div className="add-player">
-                    <button className="plus-icon">+</button>
-                </div>
             </div>
+            <div className="player-list" style={{ textAlign: 'center', marginBottom: '20px' }}>
+                {team2?.map((player, index) => (
+                    <div className="player" key={index}>
+                        <div className="avatar"></div>
+                        <div className="details">
+                            <span>{player.username}</span>
+                            <span>{player.location}</span>
+                        </div>
+                    </div>
+                ))}
+            </div> 
         </div>
     );
 }
