@@ -48,7 +48,7 @@ const Profile = props => {
             <p>Bio:{profile.bio}</p>
           </div>
         </div>
-        <button onClick={() => navigate("/editprofile")}>Edit Profile</button>
+        <button className="editbutton" onClick={() => navigate("/editprofile")}>Edit Profile</button>
 
         <div className="comments">
           <h2>Profile Comments</h2>
