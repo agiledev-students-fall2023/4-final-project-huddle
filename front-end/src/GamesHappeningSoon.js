@@ -10,6 +10,7 @@ function GamesHappeningSoon() {
     const location = useLocation();
     const { sport } = location.state || {};
     const [user,setUser] = useState();
+    const [error, setError] = useState('')
 
 const handleJoinGame = (gameId) => {
     const jwtToken = localStorage.getItem("token");
@@ -18,7 +19,8 @@ const handleJoinGame = (gameId) => {
         navigate('/Lobby', { state: { gameId: gameId } });
     })
     .catch(error => {
-        console.error('Error joining game:', error);
+        setError(error.response.data);
+        console.error('Error joining game:', error.response.data);
     });
 };
 
@@ -95,6 +97,7 @@ const handleJoinGame = (gameId) => {
                 <h2 style={{ textAlign: 'center', marginBottom: '20px' }}>
                 Games Happening Soon for {sport || 'All Sports'}
                 </h2>
+                {error && <h1 className="error-message" style={{color:'red'}}>{error}</h1>}
 
                 <button className='gbutton' onClick={() => navigate('/CreateGame')}>Create a Game</button>
 
